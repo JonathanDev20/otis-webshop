@@ -13,26 +13,27 @@ import {
 
 const NavBar = () => {
 	return (
-		<Navbar collapseOnSelect bg="dark" variant="dark" expand="md">
-			<Navbar.Brand href="#">OTIS</Navbar.Brand>
+		<Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
+			<Navbar.Brand href="#">OTIS Webshop</Navbar.Brand>
 			<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 			<Navbar.Collapse id="responsive-navbar-nav">
-				<Nav classname="mr-auto">
+				<Nav className="mr-auto">
 					<Nav.Link href="#">Startsida</Nav.Link>
-					<NavDropdown title="Kategorier" id="collasible-nav-dropdown">
+					<NavDropdown title="Produkter" id="collasible-nav-dropdown">
 						<NavDropdown.Item href="#">Pipor</NavDropdown.Item>
 						<NavDropdown.Item href="#">Tygkassar</NavDropdown.Item>
 						<NavDropdown.Item href="#">Tavlor</NavDropdown.Item>
+						<NavDropdown.Divider />
 						<NavDropdown.Item href="#">Övrigt</NavDropdown.Item>
 					</NavDropdown>
-					<Nav>
-						<Nav.Link href="#">About</Nav.Link>
-					</Nav>
+					<Nav.Link href="#">Om oss</Nav.Link>
 				</Nav>
-				<Form inline>
-					<FormControl type="text" placeholder="Search" className="mr-sm-2" />
-					<Button variant="outline-info">Search</Button>
-				</Form>
+				<Nav>
+					<Form inline>
+						<FormControl type="text" placeholder="Search" className="mr-sm-2" />
+						<Button variant="outline-info">Search</Button>
+					</Form>
+				</Nav>
 			</Navbar.Collapse>
 		</Navbar>
 	)

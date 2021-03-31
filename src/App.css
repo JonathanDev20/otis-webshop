@@ -1,0 +1,20 @@
+div, h1, h2, h3, p {
+  margin: 0;
+}
+
+.header-image {
+	position: absolute;
+	width: 100%;
+	max-height: 70vh;
+}
+
+.header-text {
+  color: black;
+	position: absolute;
+	text-align: center;
+  font-size: 5rem;
+  line-height: 1;
+  width: min(90%, 70.5rem);
+}
+
+
