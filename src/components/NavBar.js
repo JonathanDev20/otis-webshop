@@ -13,7 +13,7 @@ import {
 
 const NavBar = () => {
 	return (
-		<Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
+		<Navbar className="sticky-top" collapseOnSelect expand="md" bg="dark" variant="dark">
 			<Navbar.Brand href="#">OTIS Webshop</Navbar.Brand>
 			<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 			<Navbar.Collapse id="responsive-navbar-nav">
