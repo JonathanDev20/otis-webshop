@@ -6,6 +6,7 @@ const MyHeader = () => {
 	return (
 		<div className="jumbotron">
 			<Jumbotron style={{ minHeight: '80vh' }} className="startPage">
+        <div className="company-div">
 				<h1 className="company-name">OTIS Design</h1>
 				<p className="company-description">
 					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam
@@ -16,6 +17,7 @@ const MyHeader = () => {
 				<p className="company-button">
 					<Button variant="primary">Learn More!</Button>
 				</p>
+        </div>
 			</Jumbotron>
 		</div>
 	)

@@ -9,6 +9,7 @@ import NavBar from './components/NavBar'
 import MyHeader from './components/MyHeader'
 import CategoryCard from './components/CategoryCard'
 import Product from './components/Product'
+import Footer from './components/Footer'
 
 function App() {
 	return (
@@ -36,7 +37,7 @@ function App() {
 			<h1>Våra Produkter</h1>
 			</div>
 			<Container fluid>
-				<Row style={{ textAlign: 'center', minWidth: '60px' }}>
+				<Row style={{ textAlign: 'center' }}>
 					<Col className="mb-3"><Product /></Col>
 					<Col className="mb-3"><Product /></Col>
 					<Col className="mb-3"><Product /></Col>
@@ -55,6 +56,7 @@ function App() {
 					<Col className="mb-3"><Product /></Col>
 				</Row>
 			</Container>
+			<Footer />
 		</>
 	)
 }
