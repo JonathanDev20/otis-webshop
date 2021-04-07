@@ -3,7 +3,7 @@ import React from 'react'
 // Import react-icons
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 // Import React Router
-import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 // Import react bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {
@@ -17,7 +17,6 @@ import {
 
 const NavBar = () => {
 	return (
-		<Router>
 			<Navbar
 				className="sticky-top"
 				collapseOnSelect
@@ -67,11 +66,6 @@ const NavBar = () => {
 					</Nav>
 				</Navbar.Collapse>
 			</Navbar>
-
-			<Switch>
-				<Route path="/"><h1>Hello World!</h1></Route>
-			</Switch>
-		</Router>
 	)
 }
 
