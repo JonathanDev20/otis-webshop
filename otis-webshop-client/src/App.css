@@ -34,6 +34,12 @@ div, h1, h2, h3, p {
   text-align: center;
 }
 
+.shopping-cart {
+  color: #fff;
+  font-size: 30px;
+  margin-right: 8px;
+}
+
 
 @media screen and (min-width: 1000px) {
   .company-name {
