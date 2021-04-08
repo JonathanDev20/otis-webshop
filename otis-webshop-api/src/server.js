@@ -1,6 +1,7 @@
 import express from 'express'
 import logger from 'morgan'
 import helmet from 'helmet'
+import { router } from './routes/router.js'
 
 const PORT = process.env.PORT || 5000
 
@@ -16,6 +17,8 @@ const main = () => {
 
   // Populates the request object with a body object (req.body).
   app.use(express.urlencoded({ extended: false }))
+
+  app.use('/', router)
 
   app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}.`)
