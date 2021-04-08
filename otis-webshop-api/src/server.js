@@ -2,13 +2,21 @@ import express from 'express'
 import logger from 'morgan'
 import helmet from 'helmet'
 import { router } from './routes/router.js'
+import { connectDB } from './config/mongoose.js'
 
 const PORT = process.env.PORT || 5000
 
 /**
  * The main function of the application.
  */
-const main = () => {
+const main = async () => {
+  try {
+    await connectDB()
+  } catch (err) {
+    console.error(err.message)
+    process.exitCode = 1
+    return
+  }
   const app = express()
 
   app.use(logger('dev'))
