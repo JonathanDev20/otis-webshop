@@ -1,6 +1,7 @@
 import express from 'express'
 import logger from 'morgan'
 import helmet from 'helmet'
+import cors from 'cors'
 import { router } from './routes/router.js'
 import { connectDB } from './config/mongoose.js'
 
@@ -22,6 +23,12 @@ const main = async () => {
   app.use(logger('dev'))
 
   app.use(helmet())
+
+  const corsOptions = {
+    origin: 'http://localhost:3000'
+  }
+
+  app.use(cors(corsOptions))
 
   // Populates the request object with a body object (req.body).
   app.use(express.urlencoded({ extended: false }))
