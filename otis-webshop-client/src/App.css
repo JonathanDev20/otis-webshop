@@ -1,71 +1,109 @@
-div, h1, h2, h3, p {
-  margin: 0;
+div,
+h1,
+h2,
+h3,
+p {
+	margin: 0;
 }
 
 .startPage {
-  background-image: url("./assets/Header.jpg");
+	background-image: url('./assets/Header.jpg');
 }
 
 .company-name {
-  font-size: 60px;
+	font-size: 60px;
 }
 
 .jumbotron {
-  text-align: center;
-  padding: 0 !important;
+	text-align: center;
+	padding: 0 !important;
 }
 
 .company-description {
-  font-size: 20px;
-  max-width: 100vw;
-  margin: 0 auto;
-  margin-bottom: 6px;
+	font-size: 20px;
+	max-width: 100vw;
+	margin: 0 auto;
+	margin-bottom: 6px;
 }
 
 .footer-container {
-  color: #fff;
+	color: #fff;
 }
 
 .footer-container h4 {
-  text-decoration: underline red;
+	text-decoration: underline red;
 }
 
-.test {
-  text-align: center;
+.footer-text {
+	text-align: center;
+	margin-bottom: 20px;
 }
 
 .shopping-cart {
-  color: #fff;
-  font-size: 30px;
-  margin-right: 8px;
+	color: #fff;
+	font-size: 30px;
+	margin-right: 8px;
 }
 
+.footer-links a {
+	text-decoration: none;
+	color: white;
+	position: relative;
+}
+
+.footer-links a:before {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 1px;
+	bottom: 0;
+	left: 0;
+	background-color: #f00;
+	visibility: hidden;
+	transform: scaleX(0);
+	transition: all 0.5s cubic-bezier(1, 0.25, 0, 0.75) 0s;
+}
+
+.footer-links a:hover:before {
+	visibility: visible;
+	transform: scaleX(1);
+}
+
+.copy {
+  font-size: 16px;
+  padding: 20px;
+  border-top: 1px solid #FFFFFF;
+}
 
 @media screen and (min-width: 1000px) {
-  .company-name {
-    font-size: 8vw;
-    text-align: start;
-    margin-left: 20px;
-  }
+	.company-name {
+		font-size: 8vw;
+		text-align: start;
+		margin-left: 20px;
+	}
 
-  .hover-zoom:hover {
-    border: 1px solid black;
-  }
+	.footer-border {
+		border-left: solid 2px #ffffff1a;
+	}
 
-  .company-description {
-    font-size: 1.5vw;
-    max-width: 60vw;
-    margin: 20px;
-    margin-bottom: 5px;
-    text-align: start;
-  }
+	.hover-zoom:hover {
+		border: 1px solid black;
+	}
 
-  .company-button {
-    margin: 20px;
-  }
+	.company-description {
+		font-size: 1.5vw;
+		max-width: 60vw;
+		margin: 20px;
+		margin-bottom: 5px;
+		text-align: start;
+	}
 
-  .jumbotron {
-    text-align: start;
-    padding: 0 !important;
-  }
+	.company-button {
+		margin: 20px;
+	}
+
+	.jumbotron {
+		text-align: start;
+		padding: 0 !important;
+	}
 }
