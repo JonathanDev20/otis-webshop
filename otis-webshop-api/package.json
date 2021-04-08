@@ -2,15 +2,22 @@
   "name": "otis-webshop-api",
   "version": "1.0.0",
   "description": "API for OTIS webshop",
-  "main": "index.js",
+  "main": "src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js",
+    "dev": "nodemon --inspect -r dotenv/config src/server.js",
+    "lint": "npx eslint ./src || exit 0",
+    "lint:fix": "npx eslint ./src --fix || exit 0"
   },
   "keywords": [],
   "author": "Jonathan Olsson",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
+    "helmet": "^4.4.1",
+    "http-errors": "^1.8.0",
+    "mongoose": "^5.12.3",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
