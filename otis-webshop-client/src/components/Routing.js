@@ -12,6 +12,7 @@ import Paintings from './Paintings.js'
 import Extras from './Extras.js'
 import About from './About.js'
 import Cart from './Cart.js'
+import SpecialOrder from './SpecialOrder.js'
 
 const Routing = () => {
 	return (
@@ -97,6 +98,9 @@ const Routing = () => {
 			</Route>
 			<Route path="/about">
 				<About />
+			</Route>
+			<Route path="/special">
+				<SpecialOrder />
 			</Route>
 			<Route path="/cart">
 				<Cart />

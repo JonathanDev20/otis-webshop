@@ -27,34 +27,21 @@ const NavBar = () => {
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 				<Navbar.Collapse id="responsive-navbar-nav">
 					<Nav className="mr-auto">
-						<Link to="/">
-							<Nav.Link href="/">Startsida</Nav.Link>
-						</Link>
+							<Nav.Link href="/" to="/">Startsida</Nav.Link>
 						<NavDropdown title="Produkter" id="collasible-nav-dropdown">
-							<Link to="/pipes">
-								<NavDropdown.Item href="/pipes">Pipor</NavDropdown.Item>
-							</Link>
-							<Link to="/clothbags">
-								<NavDropdown.Item href="/clothbags">Tygkassar</NavDropdown.Item>
-							</Link>
-							<Link to="/paintings">
-								<NavDropdown.Item href="/paintings">Tavlor</NavDropdown.Item>
-							</Link>
+								<NavDropdown.Item to="/pipes" href="/pipes">Pipor</NavDropdown.Item>
+								<NavDropdown.Item to="/clothbags" href="/clothbags">Tygkassar</NavDropdown.Item>
+								<NavDropdown.Item to="/paintings" href="/paintings">Tavlor</NavDropdown.Item>
 							<NavDropdown.Divider />
-							<Link to="/extras">
-								<NavDropdown.Item href="/extras">Övrigt</NavDropdown.Item>
-							</Link>
+								<NavDropdown.Item to="/extras" href="/extras">Övrigt</NavDropdown.Item>
 						</NavDropdown>
-						<Link to="/about">
-							<Nav.Link href="/about">Om oss</Nav.Link>
-						</Link>
+							<Nav.Link to="/about" href="/about">Om oss</Nav.Link>
+							<Nav.Link to="/special" href="/special">Gör din egen</Nav.Link>
 					</Nav>
 					<Nav>
-						<Link to="/cart">
-							<Nav.Link href="/cart">
+							<Nav.Link to="/cart" href="/cart">
 								<AiOutlineShoppingCart className="shopping-cart" />
 							</Nav.Link>
-						</Link>
 						<Form inline>
 							<FormControl
 								type="text"
