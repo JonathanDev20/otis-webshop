@@ -59,6 +59,33 @@ const products = [
   },
   {
     productID: uuidv4(),
+    productCategory: 'clothbag',
+    title: 'Cyklopet OTIS',
+    description: 'En handmålad tygkasse med trycket av OTIS som liknar ett cyklop monster i lite annorlunda stil.',
+    imgSrc: './images/tygkasse1.jpg',
+    imgAlt: 'Tygkasse cyklop',
+    price: 399
+  },
+  {
+    productID: uuidv4(),
+    productCategory: 'clothbag',
+    title: 'OTIS värld',
+    description: 'En handmålad tygkasse med lite gott och blandat från OTIS värld.',
+    imgSrc: './images/tygkasse2.jpg',
+    imgAlt: 'Tygkasse värld',
+    price: 379
+  },
+  {
+    productID: uuidv4(),
+    productCategory: 'clothbag',
+    title: 'OTIS and the bottle',
+    description: 'En handmålad tygkasse med trycket av OTIS och hans favorit flaska.',
+    imgSrc: './images/tygkasse3.jpg',
+    imgAlt: 'Tygkasse flaskan',
+    price: 299
+  },
+  {
+    productID: uuidv4(),
     productCategory: 'paintings',
     title: 'The heart',
     description: 'En handmålad tavla som symboliserar ett hjärta.',
@@ -80,9 +107,27 @@ const products = [
     productCategory: 'paintings',
     title: 'FULL-SIZE OTIS',
     description: 'En handmålad tavla med OTIS i sin fulla storlek.',
-    imgSrc: './images/painting3.jpg',
+    imgSrc: './images/tavla2.jpg',
     imgAlt: 'Tavla fullsize',
     price: 849
+  },
+  {
+    productID: uuidv4(),
+    productCategory: 'paintings',
+    title: 'OTIS Illusion',
+    description: 'En handmålad tavla med OTIS i sitt förvirrande hus.',
+    imgSrc: './images/tavla1.jpg',
+    imgAlt: 'Tavla förvirrande',
+    price: 899
+  },
+  {
+    productID: uuidv4(),
+    productCategory: 'paintings',
+    title: 'Trassligt',
+    description: 'En handmålad tavla som föreställer hur trassligt det kan bli.',
+    imgSrc: './images/tavla3.jpg',
+    imgAlt: 'Tavla trassligt',
+    price: 599
   },
   {
     productID: uuidv4(),
@@ -98,7 +143,7 @@ const products = [
     productCategory: 'extras',
     title: 'OTIS högtalare',
     description: 'En egen-designad högtalare med den omtalande OTIS-mannen.',
-    imgSrc: './images/otisSpeaker.jpg',
+    imgSrc: './images/otisSpeaker.JPEG',
     imgAlt: 'OTIS högtalare',
     price: 2999
   },
