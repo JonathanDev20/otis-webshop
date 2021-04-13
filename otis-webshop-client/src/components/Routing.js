@@ -13,6 +13,7 @@ import Extras from './Extras.js'
 import About from './About.js'
 import Cart from './Cart.js'
 import SpecialOrder from './SpecialOrder.js'
+import ProductView from './ProductView.js'
 
 const Routing = () => {
 	return (
@@ -104,6 +105,9 @@ const Routing = () => {
 			</Route>
 			<Route path="/cart">
 				<Cart />
+			</Route>
+			<Route path="/product/:id">
+				<ProductView />
 			</Route>
 		</Switch>
 	)

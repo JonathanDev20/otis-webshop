@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { Container, Row, Col } from 'react-bootstrap'
 
 const Clothbags = () => {
-  const [responseData, setResponseData] = useState([])
+	const [responseData, setResponseData] = useState([])
 
 	useEffect(() => {
 		async function getData() {
@@ -20,23 +20,24 @@ const Clothbags = () => {
 		}
 		getData()
 	}, [])
-  return (
-    <div>
-      <h1>Detta är sidan för tygkassar.</h1>
-      <Container>
-			{responseData.map((data) => (
-						<Col className="mb-3">
-							<Product
-								title={data.title}
-								imgSrc={data.imgSrc}
-								imgAlt={data.imgAlt}
-                price={data.price + 'kr'}
-							/>
-						</Col>
-			))}
-    </Container>
-    </div>
-  )
+	return (
+		<div>
+			<h1>Detta är sidan för tygkassar.</h1>
+			<Container>
+				{responseData.map((data) => (
+					<Col className="mb-3">
+						<Product
+							key={data.id}
+							title={data.title}
+							imgSrc={data.imgSrc}
+							imgAlt={data.imgAlt}
+							price={data.price + 'kr'}
+						/>
+					</Col>
+				))}
+			</Container>
+		</div>
+	)
 }
 
 export default Clothbags

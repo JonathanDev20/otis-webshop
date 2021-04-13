@@ -6,12 +6,12 @@ import { Card, Button } from 'react-bootstrap'
 
 const Product = (props) => {
   return (
-      <Card>
+      <Card key={props.id}>
         <Card.Body>
           <Card.Img className="hover-zoom" src={props.imgSrc} alt={props.imgAlt}></Card.Img>
           <Card.Title tag="h5">{props.title}</Card.Title>
           <Card.Subtitle tag="h6" className="m-3">{props.price}</Card.Subtitle>
-          <Button variant="primary" size="sm">Gå till produkt</Button>
+          <Button href="/product/:id" variant="primary" size="sm">Gå till produkt</Button>
         </Card.Body>
       </Card>
   )

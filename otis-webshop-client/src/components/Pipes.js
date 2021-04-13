@@ -24,18 +24,19 @@ const Pipes = () => {
 	return (
 		<div>
 			<h1>Detta är sidan för Pipor</h1>
-				<Container>
-			{responseData.map((data) => (
-						<Col className="mb-3">
-							<Product
-								title={data.title}
-								imgSrc={data.imgSrc}
-								imgAlt={data.imgAlt}
-                price={data.price + 'kr'}
-							/>
-						</Col>
-			))}
-    </Container>
+			<Container>
+				{responseData.map((data) => (
+					<Col className="mb-3">
+						<Product
+							key={data.id}
+							title={data.title}
+							imgSrc={data.imgSrc}
+							imgAlt={data.imgAlt}
+							price={data.price + 'kr'}
+						/>
+					</Col>
+				))}
+			</Container>
 		</div>
 	)
 }

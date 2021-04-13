@@ -27,6 +27,7 @@ const Extras = () => {
 			{responseData.map((data) => (
 						<Col className="mb-3">
 							<Product
+                key={data.id}
 								title={data.title}
 								imgSrc={data.imgSrc}
 								imgAlt={data.imgAlt}
