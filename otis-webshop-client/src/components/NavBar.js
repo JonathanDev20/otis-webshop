@@ -2,8 +2,6 @@ import React from 'react'
 
 // Import react-icons
 import { AiOutlineShoppingCart } from 'react-icons/ai'
-// Import React Router
-import { Link } from 'react-router-dom'
 // Import react bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {

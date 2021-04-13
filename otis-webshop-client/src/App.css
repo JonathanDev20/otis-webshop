@@ -75,6 +75,10 @@ p {
   border-top: 1px solid #FFFFFF;
 }
 
+.card {
+	text-align: center;
+}
+
 @media screen and (min-width: 1000px) {
 	.company-name {
 		font-size: 8vw;
@@ -85,6 +89,7 @@ p {
 	.footer-border {
 		border-left: solid 2px #ffffff1a;
 	}
+
 
 	.hover-zoom:hover {
 		border: 1px solid black;
