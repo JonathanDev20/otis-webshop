@@ -125,7 +125,7 @@ const products = [
 const seed = async () => {
   try {
     console.log('Seeding started!')
-    // await connectDB()
+    await connectDB()
     Product.insertMany(products)
   } catch (err) {
     console.error(err.message)

@@ -5,4 +5,6 @@ export const router = express.Router()
 
 const controller = new ProductsController()
 
-router.use('/', controller.index)
+router.get('/', controller.index)
+
+router.get('/pipes', controller.pipes)
