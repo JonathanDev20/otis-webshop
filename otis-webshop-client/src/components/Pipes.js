@@ -14,9 +14,6 @@ const Pipes = () => {
 			try {
 				const response = await axios.get('http://localhost:5000/pipes')
 				setResponseData(response.data.pipes)
-				/*  responseData.forEach(data => {
-          console.log(data.title)
-        }) */
 			} catch (error) {
 				console.log(error)
 			}
@@ -28,9 +25,8 @@ const Pipes = () => {
 		<div>
 			<h1>Detta är sidan för Pipor</h1>
 				<Container>
-					<Row>
 			{responseData.map((data) => (
-						<Col>
+						<Col className="mb-3">
 							<Product
 								title={data.title}
 								imgSrc={data.imgSrc}
@@ -39,7 +35,6 @@ const Pipes = () => {
 							/>
 						</Col>
 			))}
-      </Row>
     </Container>
 		</div>
 	)

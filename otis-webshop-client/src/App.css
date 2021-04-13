@@ -79,6 +79,11 @@ p {
 	text-align: center;
 }
 
+.card-img {
+ max-height: 50vh;
+ max-width: 50vh !important;
+}
+
 @media screen and (min-width: 1000px) {
 	.company-name {
 		font-size: 8vw;
