@@ -30,6 +30,7 @@ export class ProductsController {
       const viewData = {
         pipes: (await Product.find({ productCategory: 'pipes' })).map(
           (pipe) => ({
+            id: pipe._id,
             productID: pipe.productID,
             title: pipe.title,
             description: pipe.description,
@@ -53,7 +54,7 @@ export class ProductsController {
   async clothbags (req, res, next) {
     try {
       const viewData = {
-        clothbags: (await Product.find({ productCategory: 'clothbags' })).map(
+        clothbags: (await Product.find({ productCategory: 'clothbag' })).map(
           (clothbag) => ({
             productID: clothbag.productID,
             title: clothbag.title,
@@ -111,6 +112,26 @@ export class ProductsController {
             imgSrc: extra.imgSrc,
             imgAlt: extra.imgAlt,
             price: extra.price
+          })
+        )
+      }
+      res.send(viewData)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  async specificProduct (req, res, next) {
+    try {
+      const viewData = {
+        productData: (await Product.find({ _id: req.params.id })).map(
+          (product) => ({
+            productID: product.productID,
+            title: product.title,
+            description: product.description,
+            imgSrc: product.imgSrc,
+            imgAlt: product.imgAlt,
+            price: product.price
           })
         )
       }
