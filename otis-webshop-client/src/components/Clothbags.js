@@ -27,7 +27,8 @@ const Clothbags = () => {
 				{responseData.map((data) => (
 					<Col className="mb-3">
 						<Product
-							key={data.id}
+							id={data.id}
+							productID={data.productID}
 							title={data.title}
 							imgSrc={data.imgSrc}
 							imgAlt={data.imgAlt}

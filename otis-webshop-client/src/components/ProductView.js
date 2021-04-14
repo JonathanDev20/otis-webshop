@@ -5,18 +5,17 @@ import { useParams } from 'react-router-dom'
 
 // Import Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Container } from 'react-bootstrap'
+import { Container, Image } from 'react-bootstrap'
 
 const ProductView = () => {
-  const [responseData, setResponseData] = useState('')
+	const [responseData, setResponseData] = useState([])
+	const { id } = useParams()
 
-  const { id } = useParams()
-  useEffect(() => {
+	useEffect(() => {
 		async function getData() {
 			try {
 				const response = await axios.get(`http://localhost:5000/${id}`)
-				setResponseData(response.data)
-        console.log(response.data)
+				setResponseData(response.data.productData)
 			} catch (error) {
 				console.log(error)
 			}
@@ -24,24 +23,40 @@ const ProductView = () => {
 		getData()
 	}, [])
 
-  return (
-    <div>
-      <h1>Det här sidan för en enskild produkt {id}</h1>
-      <Container>
-      <div className="productContent" style={{ display: 'flex', margin: '10px' }}>
-        <div className="productImage">
-          <img src="/images/matt-pipe.JPG" alt="matt pipa" width="450" />
-        </div>
-        <div className="productDescription" style={{ textAlign: 'center', width: '450px' }}>
-          <p>Title</p>
-          <p>Price</p>
-          <p>Add to cart</p>
-        </div>
-      </div>
-      <div>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo, at architecto dolorum iure similique consectetur libero sunt placeat minima nulla magnam quam aliquid facilis quas iusto voluptatibus! Unde, animi velit.</div>
-      </Container>
-    </div>
-  )
+	return (
+		<div>
+			<h1>Det här sidan för en enskild produkt</h1>
+			<Container>
+				{responseData.map((data) => (
+					<>
+						<div className="productContent">
+								<div>
+									<Image
+										className="productImage mx-5"
+										src={`.${data.imgSrc}`}
+										alt={data.imgAlt}
+										rounded
+									/>
+								</div>
+							<div
+								className="productDescription mx-auto"
+								style={{ textAlign: 'center'}}>
+								<p>{data.title}</p>
+								<p>{data.price}</p>
+								<p>Add to cart</p>
+							</div>
+						</div>
+						<div>
+							Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+							Explicabo, at architecto dolorum iure similique consectetur libero
+							sunt placeat minima nulla magnam quam aliquid facilis quas iusto
+							voluptatibus! Unde, animi velit.
+						</div>
+					</>
+				))}
+			</Container>
+		</div>
+	)
 }
 
 export default ProductView

@@ -70,9 +70,9 @@ p {
 }
 
 .copy {
-  font-size: 16px;
-  padding: 20px;
-  border-top: 1px solid #FFFFFF;
+	font-size: 16px;
+	padding: 20px;
+	border-top: 1px solid #ffffff;
 }
 
 .card {
@@ -80,8 +80,17 @@ p {
 }
 
 .card-img {
- max-height: 50vh;
- max-width: 50vh !important;
+	max-height: 50vh;
+	max-width: 50vh !important;
+}
+
+.productImage {
+	max-height: 50vh;
+	max-width: 50vh !important;
+}
+
+.productContent {
+
 }
 
 @media screen and (min-width: 1000px) {
@@ -94,7 +103,6 @@ p {
 	.footer-border {
 		border-left: solid 2px #ffffff1a;
 	}
-
 
 	.hover-zoom:hover {
 		border: 1px solid black;
@@ -115,5 +123,15 @@ p {
 	.jumbotron {
 		text-align: start;
 		padding: 0 !important;
+	}
+}
+
+@media screen and (min-width: 760px) {
+	.productContent {
+		display: flex;
+		max-width: 1140px;
+		background: #fff;
+		margin: 60px auto;
+		padding: 30px;
 	}
 }
