@@ -106,8 +106,7 @@ const Routing = () => {
 			<Route path="/cart">
 				<Cart />
 			</Route>
-			<Route path="/product/:id">
-				<ProductView />
+			<Route path="/product/:id" render={(props) => <ProductView {...props}/>}>
 			</Route>
 		</Switch>
 	)

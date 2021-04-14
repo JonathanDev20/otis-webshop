@@ -4,7 +4,7 @@ import Product from './Product.js'
 
 // Import Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Col } from 'react-bootstrap'
 
 const Clothbags = () => {
 	const [responseData, setResponseData] = useState([])

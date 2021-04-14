@@ -4,7 +4,7 @@ import Product from './Product.js'
 
 // Import Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Col } from 'react-bootstrap'
 
 const Pipes = () => {
 	const [responseData, setResponseData] = useState([])
@@ -28,7 +28,8 @@ const Pipes = () => {
 				{responseData.map((data) => (
 					<Col className="mb-3">
 						<Product
-							key={data.id}
+              id={data.id}
+							productID={data.productID}
 							title={data.title}
 							imgSrc={data.imgSrc}
 							imgAlt={data.imgAlt}
