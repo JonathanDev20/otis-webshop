@@ -5,7 +5,7 @@ import { Jumbotron, Button } from 'react-bootstrap'
 const MyHeader = () => {
 	return (
 		<div className="jumbotron">
-			<Jumbotron style={{ minHeight: '80vh' }} className="startPage">
+			<Jumbotron style={{ minHeight: '85vh' }} className="startPage">
         <div className="company-div">
 				<h1 className="company-name">OTIS Design</h1>
 				<p className="company-description">

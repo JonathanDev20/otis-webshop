@@ -12,7 +12,7 @@ const Pipes = () => {
 	useEffect(() => {
 		async function getData() {
 			try {
-				const response = await axios.get('http://localhost:5000/pipes')
+				const response = await axios.get('http://localhost:5000/products/pipes')
 				setResponseData(response.data.pipes)
 			} catch (error) {
 				console.log(error)
@@ -29,6 +29,7 @@ const Pipes = () => {
 				{responseData.map((data) => (
 					<Col className="mb-3">
 						<Product
+              key={data.id}
               id={data.id}
 							productID={data.productID}
 							title={data.title}

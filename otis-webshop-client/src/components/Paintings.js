@@ -12,7 +12,7 @@ const Paintings = () => {
 	useEffect(() => {
 		async function getData() {
 			try {
-				const response = await axios.get('http://localhost:5000/paintings')
+				const response = await axios.get('http://localhost:5000/products/paintings')
 				setResponseData(response.data.paintings)
 			} catch (error) {
 				console.log(error)

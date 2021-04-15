@@ -22,7 +22,7 @@ const Routing = () => {
 	useEffect(() => {
 		async function getData() {
 			try {
-				const response = await axios.get('http://localhost:5000/random')
+				const response = await axios.get('http://localhost:5000/products/random')
 				setResponseData(response.data.productData)
 			} catch (error) {
 				console.log(error)

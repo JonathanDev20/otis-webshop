@@ -33,8 +33,8 @@ const NavBar = () => {
 							<NavDropdown.Divider />
 								<NavDropdown.Item to="/extras" href="/extras">Övrigt</NavDropdown.Item>
 						</NavDropdown>
-							<Nav.Link to="/about" href="/about">Om oss</Nav.Link>
 							<Nav.Link to="/special" href="/special">Gör din egen</Nav.Link>
+							<Nav.Link to="/about" href="/about">Om oss</Nav.Link>
 					</Nav>
 					<Nav>
 							<Nav.Link to="/cart" href="/cart">

@@ -5,16 +5,17 @@ import { useParams } from 'react-router-dom'
 
 // Import Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Container, Image } from 'react-bootstrap'
+import { Container, Image, Button,Row } from 'react-bootstrap'
+import { AiOutlineShoppingCart } from 'react-icons/ai'
 
 const ProductView = () => {
 	const [responseData, setResponseData] = useState([])
-	const { id } = useParams()
-
+  const { id } = useParams()
+  
 	useEffect(() => {
 		async function getData() {
 			try {
-				const response = await axios.get(`http://localhost:5000/${id}`)
+				const response = await axios.get(`http://localhost:5000/products/${id}`)
 				setResponseData(response.data.productData)
 			} catch (error) {
 				console.log(error)
@@ -29,29 +30,26 @@ const ProductView = () => {
 			<Container>
 				{responseData.map((data) => (
 					<>
+          <Row>
 						<div className="productContent">
-								<div>
 									<Image
 										className="productImage mx-5"
 										src={`.${data.imgSrc}`}
 										alt={data.imgAlt}
 										rounded
 									/>
-								</div>
 							<div
-								className="productDescription mx-auto"
+								className="productDescription m-5"
 								style={{ textAlign: 'center'}}>
 								<p>{data.title}</p>
-								<p>{data.price}</p>
-								<p>Add to cart</p>
+								<p>{data.price}kr</p>
+								<Button variant="success"><AiOutlineShoppingCart /> Lägg i varukorgen</Button>
 							</div>
 						</div>
 						<div>
-							Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-							Explicabo, at architecto dolorum iure similique consectetur libero
-							sunt placeat minima nulla magnam quam aliquid facilis quas iusto
-							voluptatibus! Unde, animi velit.
+							<p style={{ textAlign: 'center' }} >{data.description}</p>
 						</div>
+            </Row>
 					</>
 				))}
 			</Container>

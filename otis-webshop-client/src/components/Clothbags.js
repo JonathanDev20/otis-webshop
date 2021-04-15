@@ -12,7 +12,7 @@ const Clothbags = () => {
 	useEffect(() => {
 		async function getData() {
 			try {
-				const response = await axios.get('http://localhost:5000/clothbags')
+				const response = await axios.get('http://localhost:5000/products/clothbags')
 				setResponseData(response.data.clothbags)
 			} catch (error) {
 				console.log(error)

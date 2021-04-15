@@ -12,7 +12,7 @@ const Extras = () => {
 	useEffect(() => {
 		async function getData() {
 			try {
-				const response = await axios.get('http://localhost:5000/extras')
+				const response = await axios.get('http://localhost:5000/products/extras')
 				setResponseData(response.data.extras)
 			} catch (error) {
 				console.log(error)
