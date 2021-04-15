@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 
 import { Switch, Route } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
@@ -16,6 +17,19 @@ import SpecialOrder from './SpecialOrder.js'
 import ProductView from './ProductView.js'
 
 const Routing = () => {
+	const [responseData, setResponseData] = useState([])
+
+	useEffect(() => {
+		async function getData() {
+			try {
+				const response = await axios.get('http://localhost:5000/random')
+				setResponseData(response.data.productData)
+			} catch (error) {
+				console.log(error)
+			}
+		}
+		getData()
+	}, [])
 	return (
 		<Switch>
 			<Route exact path="/">
@@ -41,48 +55,20 @@ const Routing = () => {
 					<h1>Våra Produkter</h1>
 				</div>
 				<Container fluid>
-					<Row style={{ textAlign: 'center' }}>
-						<Col className="mb-3">
-							<Product />
-						</Col>
-						<Col className="mb-3">
-							<Product />
-						</Col>
-						<Col className="mb-3">
-							<Product />
-						</Col>
-						<Col className="mb-3">
-							<Product />
-						</Col>
-					</Row>
-					<Row style={{ textAlign: 'center' }}>
-						<Col className="mb-3">
-							<Product />
-						</Col>
-						<Col className="mb-3">
-							<Product />
-						</Col>
-						<Col className="mb-3">
-							<Product />
-						</Col>
-						<Col className="mb-3">
-							<Product />
-						</Col>
-					</Row>
-					<Row style={{ textAlign: 'center' }}>
-						<Col className="mb-3">
-							<Product />
-						</Col>
-						<Col className="mb-3">
-							<Product />
-						</Col>
-						<Col className="mb-3">
-							<Product />
-						</Col>
-						<Col className="mb-3">
-							<Product />
-						</Col>
-					</Row>
+				<Row lg={4} md={3} sm={2} xs={1}>
+				{responseData.map((data) => (
+					<Col className="mb-3">
+						<Product
+              id={data.id}
+							productID={data.productID}
+							title={data.title}
+							imgSrc={data.imgSrc}
+							imgAlt={data.imgAlt}
+							price={data.price + 'kr'}
+						/>
+					</Col>
+				))}
+				</Row>
 				</Container>
 			</Route>
 			<Route path="/pipes">

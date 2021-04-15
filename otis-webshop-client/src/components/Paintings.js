@@ -4,7 +4,7 @@ import Product from './Product.js'
 
 // Import Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Container, Col } from 'react-bootstrap'
+import { Container, Col, Row } from 'react-bootstrap'
 
 const Paintings = () => {
 	const [responseData, setResponseData] = useState([])
@@ -24,6 +24,7 @@ const Paintings = () => {
 		<div>
 			<h1>Detta är sidan för tavlor.</h1>
 			<Container>
+			<Row lg={3} md={2} sm={2} xs={1}>
 				{responseData.map((data) => (
 					<Col className="mb-3">
 						<Product
@@ -36,6 +37,7 @@ const Paintings = () => {
 						/>
 					</Col>
 				))}
+				</Row>
 			</Container>
 		</div>
 	)
