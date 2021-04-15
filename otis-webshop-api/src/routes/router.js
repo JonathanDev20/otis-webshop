@@ -10,7 +10,7 @@ import { router as productRouter } from './product-router.js'
 
 export const router = express.Router()
 
-router.use('/', productRouter)
+router.use('/products', productRouter)
 
 router.use('*', (req, res, next) => {
   const error = new Error('Not Found')

@@ -56,6 +56,7 @@ export class ProductsController {
       const viewData = {
         clothbags: (await Product.find({ productCategory: 'clothbag' })).map(
           (clothbag) => ({
+            id: clothbag._id,
             productID: clothbag.productID,
             title: clothbag.title,
             description: clothbag.description,
@@ -81,6 +82,7 @@ export class ProductsController {
       const viewData = {
         paintings: (await Product.find({ productCategory: 'paintings' })).map(
           (painting) => ({
+            id: painting._id,
             productID: painting.productID,
             title: painting.title,
             description: painting.description,
@@ -106,6 +108,7 @@ export class ProductsController {
       const viewData = {
         extras: (await Product.find({ productCategory: 'extras' })).map(
           (extra) => ({
+            id: extra._id,
             productID: extra.productID,
             title: extra.title,
             description: extra.description,
@@ -126,6 +129,27 @@ export class ProductsController {
       const viewData = {
         productData: (await Product.find({ _id: req.params.id })).map(
           (product) => ({
+            productID: product.productID,
+            title: product.title,
+            description: product.description,
+            imgSrc: product.imgSrc,
+            imgAlt: product.imgAlt,
+            price: product.price
+          })
+        )
+      }
+      res.send(viewData)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  async randomProducts (req, res, next) {
+    try {
+      const viewData = {
+        productData: (await Product.aggregate([{ $sample: { size: 12 } }])).map(
+          (product) => ({
+            id: product._id,
             productID: product.productID,
             title: product.title,
             description: product.description,

@@ -12,4 +12,6 @@ router.get('/clothbags', controller.clothbags)
 router.get('/paintings', controller.paintings)
 router.get('/extras', controller.extras)
 
+router.get('/random', controller.randomProducts)
+
 router.get('/:id', controller.specificProduct)
