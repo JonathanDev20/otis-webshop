@@ -12,8 +12,9 @@ const Pipes = () => {
 	useEffect(() => {
 		async function getData() {
 			try {
-				const response = await axios.get('http://localhost:5000/products/pipes')
-				setResponseData(response.data.pipes)
+				const response = await axios.get('http://localhost:5000/products/load')
+        console.log(response.data.allProducts)
+				setResponseData(response.data.allProducts)
 			} catch (error) {
 				console.log(error)
 			}
@@ -26,7 +27,7 @@ const Pipes = () => {
 			<h1>Detta är sidan för Pipor</h1>
 			<Container>
         <Row lg={3} md={2} sm={2} xs={1}>
-				{responseData.map((data) => (
+				{responseData.map((data) => data.productCategory === 'pipes' ? (
 					<Col className="mb-3">
 						<Product
               key={data.id}
@@ -38,7 +39,7 @@ const Pipes = () => {
 							price={data.price + 'kr'}
 						/>
 					</Col>
-				))}
+				):null)}
         </Row>
 			</Container>
 		</div>

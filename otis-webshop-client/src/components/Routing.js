@@ -18,36 +18,47 @@ import ProductView from './ProductView.js'
 
 const Routing = () => {
 	const [responseData, setResponseData] = useState([])
+	const [categoryData, setCategoryData] = useState([])
 
 	useEffect(() => {
 		async function getData() {
 			try {
-				const response = await axios.get('http://localhost:5000/products/random')
+				const response = await axios.get(
+					'http://localhost:5000/products/random'
+				)
 				setResponseData(response.data.productData)
 			} catch (error) {
 				console.log(error)
 			}
 		}
 		getData()
+		getCategories()
 	}, [])
+
+	async function getCategories() {
+		try {
+			const response = await axios.get('http://localhost:5000/products/loadCategories')
+			setCategoryData(response.data.allCategories)
+		} catch (error) {
+			console.log(error)
+		}
+	}
 	return (
 		<Switch>
 			<Route exact path="/">
 				<MyHeader />
 				<Container fluid>
 					<Row style={{ textAlign: 'center' }}>
-						<Col className="mb-3">
-							<CategoryCard />
-						</Col>
-						<Col className="mb-3">
-							<CategoryCard />
-						</Col>
-						<Col className="mb-3">
-							<CategoryCard />
-						</Col>
-						<Col className="mb-3">
-							<CategoryCard />
-						</Col>
+						{categoryData.map((data) => (
+							<Col className="mb-3">
+								<CategoryCard
+									imgSrc={data.imgSrc}
+									imgAlt={data.imgAlt}
+									title={data.title}
+									description={data.description}
+								/>
+							</Col>
+						))}
 					</Row>
 				</Container>
 				<div className="m-4" style={{ textAlign: 'center' }}>
@@ -55,20 +66,20 @@ const Routing = () => {
 					<h1>Våra Produkter</h1>
 				</div>
 				<Container fluid>
-				<Row lg={4} md={3} sm={2} xs={1}>
-				{responseData.map((data) => (
-					<Col className="mb-3">
-						<Product
-              id={data.id}
-							productID={data.productID}
-							title={data.title}
-							imgSrc={data.imgSrc}
-							imgAlt={data.imgAlt}
-							price={data.price + 'kr'}
-						/>
-					</Col>
-				))}
-				</Row>
+					<Row lg={4} md={3} sm={2} xs={1}>
+						{responseData.map((data) => (
+							<Col className="mb-3">
+								<Product
+									id={data.id}
+									productID={data.productID}
+									title={data.title}
+									imgSrc={data.imgSrc}
+									imgAlt={data.imgAlt}
+									price={data.price + 'kr'}
+								/>
+							</Col>
+						))}
+					</Row>
 				</Container>
 			</Route>
 			<Route path="/pipes">
@@ -92,8 +103,9 @@ const Routing = () => {
 			<Route path="/cart">
 				<Cart />
 			</Route>
-			<Route path="/product/:id" render={(props) => <ProductView {...props}/>}>
-			</Route>
+			<Route
+				path="/product/:id"
+				render={(props) => <ProductView {...props} />}></Route>
 		</Switch>
 	)
 }
