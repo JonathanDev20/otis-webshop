@@ -9,4 +9,6 @@ router.get('/load', controller.load)
 
 router.get('/random', controller.randomProducts)
 
+router.get('/loadCategories', controller.loadCategories)
+
 router.get('/:id', controller.specificProduct)

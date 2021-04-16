@@ -6,6 +6,7 @@
  */
 
 import { Product } from '../models/product.js'
+import { Category } from '../models/category.js'
 
 /**
  *
@@ -29,6 +30,25 @@ export class ProductsController {
             imgSrc: products.imgSrc,
             imgAlt: products.imgAlt,
             price: products.price
+          })
+        )
+      }
+      res.send(viewData)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  async loadCategories (req, res, next) {
+    try {
+      const viewData = {
+        allCategories: (await Category.find({})).map(
+          (category) => ({
+            id: category._id,
+            imgSrc: category.categoryImgSrc,
+            imgAlt: category.categoryImgAlt,
+            title: category.title,
+            description: category.description
           })
         )
       }
