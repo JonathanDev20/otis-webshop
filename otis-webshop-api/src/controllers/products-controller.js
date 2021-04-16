@@ -48,7 +48,8 @@ export class ProductsController {
             imgSrc: category.categoryImgSrc,
             imgAlt: category.categoryImgAlt,
             title: category.title,
-            description: category.description
+            description: category.description,
+            path: category.path
           })
         )
       }
