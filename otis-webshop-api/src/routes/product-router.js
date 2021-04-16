@@ -5,12 +5,7 @@ export const router = express.Router()
 
 const controller = new ProductsController()
 
-router.get('/', controller.index)
-
-router.get('/pipes', controller.pipes)
-router.get('/clothbags', controller.clothbags)
-router.get('/paintings', controller.paintings)
-router.get('/extras', controller.extras)
+router.get('/load', controller.load)
 
 router.get('/random', controller.randomProducts)
 
