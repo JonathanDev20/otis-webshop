@@ -49,8 +49,8 @@ const ProductView = ({ cart, setCart }) => {
 								<div
 									className="productDescription m-5"
 									style={{ textAlign: 'center' }}>
-									<p>{data.title}</p>
-									<p>{data.price}kr</p>
+									<p style={{ fontSize: '30px' }}>{data.title}</p>
+									<p style={{ color: 'red', fontSize: '20px' }}>{data.price}kr</p>
 									<InputGroup>
 										<input
 										  ref={input}
@@ -66,8 +66,8 @@ const ProductView = ({ cart, setCart }) => {
 									</InputGroup>
 								</div>
 							</div>
-							<div>
-								<p style={{ textAlign: 'center' }}>{data.description}</p>
+							<div className="container m-5" style={{ border: 'solid black 2px', borderRadius: '20px' }}>
+								<p style={{ margin: '5px', textAlign: 'center' }}>{data.description}</p>
 							</div>
 						</Row>
 					</>

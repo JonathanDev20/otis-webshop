@@ -14,6 +14,31 @@ function App() {
 
 	const [cart, setCart] = useState([])
 
+	
+	
+	// Use Effect
+	useEffect(() => {
+    getLocalTodos()
+  }, [])
+
+   useEffect(() => {
+     saveLocalTodos()
+   }, [cart])
+
+	 // Save to localStorage
+	 const saveLocalTodos = () => {
+		localStorage.setItem('cart', JSON.stringify(cart))
+	}
+	
+	const getLocalTodos = () => {
+		if(localStorage.getItem('cart') === null) {
+			localStorage.setItem('cart', JSON.stringify([]))
+		} else {
+			let cartFromLocal = JSON.parse(localStorage.getItem('cart'))
+			setCart(cartFromLocal)
+		}
+	}
+
 	return (
 		<>
 		<Router>
