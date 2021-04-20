@@ -10,10 +10,11 @@ import {
 	NavDropdown,
 	Form,
 	Button,
-	FormControl
+	FormControl,
+	Badge
 } from 'react-bootstrap'
 
-const NavBar = () => {
+const NavBar = ({ cart }) => {
 	return (
 			<Navbar
 				className="sticky-top"
@@ -38,7 +39,8 @@ const NavBar = () => {
 					</Nav>
 					<Nav>
 							<Nav.Link to="/cart" href="/cart">
-								<AiOutlineShoppingCart className="shopping-cart" />
+									<AiOutlineShoppingCart className="shopping-cart" />
+								<Badge id="cartQuantity" pill variant="danger">{cart}</Badge>	
 							</Nav.Link>
 						<Form inline>
 							<FormControl

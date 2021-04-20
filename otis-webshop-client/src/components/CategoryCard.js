@@ -13,7 +13,7 @@ const CategoryCard = (props) => {
         <Card.Text>
           {props.description}
         </Card.Text>
-        <Button variant="secondary">Köp Pipor</Button>
+        <Button href={props.path} variant="secondary">Ta mig till {props.title}</Button>
       </Card.Body>
     </Card>
   )
