@@ -102,7 +102,7 @@ const Routing = ({ cart, setCart }) => {
 				<SpecialOrder />
 			</Route>
 			<Route path="/cart">
-				<Cart />
+				<Cart cart={cart} setCart={setCart} />
 			</Route>
 			<Route
 				path="/product/:id"
