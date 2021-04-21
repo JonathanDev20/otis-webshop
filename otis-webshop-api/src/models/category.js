@@ -15,6 +15,10 @@ const categorySchema = new mongoose.Schema({
   description: {
     type: String,
     required: true
+  },
+  path: {
+    type: String,
+    required: true
   }
 }, {
   timestamps: true,

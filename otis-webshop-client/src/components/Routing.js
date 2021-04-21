@@ -16,7 +16,7 @@ import Cart from './Cart.js'
 import SpecialOrder from './SpecialOrder.js'
 import ProductView from './ProductView.js'
 
-const Routing = () => {
+const Routing = ({ cart, setCart }) => {
 	const [responseData, setResponseData] = useState([])
 	const [categoryData, setCategoryData] = useState([])
 
@@ -56,6 +56,7 @@ const Routing = () => {
 									imgAlt={data.imgAlt}
 									title={data.title}
 									description={data.description}
+									path={data.path}
 								/>
 							</Col>
 						))}
@@ -101,11 +102,11 @@ const Routing = () => {
 				<SpecialOrder />
 			</Route>
 			<Route path="/cart">
-				<Cart />
+				<Cart cart={cart} setCart={setCart} />
 			</Route>
 			<Route
 				path="/product/:id"
-				render={(props) => <ProductView {...props} />}></Route>
+				render={(props) => <ProductView cart={cart} setCart={setCart} {...props} />}></Route>
 		</Switch>
 	)
 }
