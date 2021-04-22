@@ -12,7 +12,7 @@ const Extras = () => {
 	useEffect(() => {
 		async function getData() {
 			try {
-				const response = await axios.get('http://localhost:5000/products/load')
+				const response = await axios.get(process.env.REACT_APP_URL)
 				setResponseData(response.data.allProducts)
 			} catch (error) {
 				console.log(error)
@@ -26,7 +26,7 @@ const Extras = () => {
       <Container>
 			<Row xl={3} lg={4} md={2} sm={2} xs={1}>
 			{responseData.map((data) => data.productCategory === 'extras' ? (
-						<Col className="mb-3">
+						<Col key={data.id} className="mb-3">
 							<Product
                 id={data.id}
 								productID={data.productID}
