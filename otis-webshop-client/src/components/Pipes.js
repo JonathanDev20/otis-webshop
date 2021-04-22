@@ -26,7 +26,7 @@ const Pipes = () => {
 		<div>
 			<h1>Detta är sidan för Pipor</h1>
 			<Container>
-        <Row lg={3} md={2} sm={2} xs={1}>
+        <Row xl={3} lg={4} md={2} sm={2} xs={1}>
 				{responseData.map((data) => data.productCategory === 'pipes' ? (
 					<Col className="mb-3">
 						<Product

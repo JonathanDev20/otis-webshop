@@ -42,7 +42,7 @@ const ProductView = ({ cart, setCart }) => {
 							<div className="productContent">
 								<Image
 									className="productImage mx-5"
-									src={`.${data.imgSrc}`}
+									src={data.imgSrc}
 									alt={data.imgAlt}
 									rounded
 								/>
