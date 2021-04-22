@@ -10,7 +10,10 @@ import {
 	Image,
 	Button,
 	Row,
-	InputGroup
+	InputGroup,
+	Tabs,
+	Tab,
+	Jumbotron
 } from 'react-bootstrap'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 
@@ -34,10 +37,17 @@ const ProductView = ({ cart, setCart }) => {
 
 	return (
 		<div>
-			<h1>Det här sidan för en enskild produkt</h1>
 			<Container>
 				{responseData.map((data) => (
 					<>
+						<Jumbotron style={{ background: 'linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)' }}>
+							<Container className="m-2">
+								<h1>{data.title}</h1>
+								<p>
+									Här hittar du mer information kring den produkten du valde att klicka dig in på.
+								</p>
+							</Container>
+						</Jumbotron>
 						<Row>
 							<div className="productContent">
 								<Image
@@ -50,24 +60,40 @@ const ProductView = ({ cart, setCart }) => {
 									className="productDescription m-5"
 									style={{ textAlign: 'center' }}>
 									<p style={{ fontSize: '30px' }}>{data.title}</p>
-									<p style={{ color: 'red', fontSize: '20px' }}>{data.price}kr</p>
+									<p>Product ID: {data.productID}</p>
+									<p style={{ color: 'red', fontSize: '20px' }}>
+										{data.price}kr
+									</p>
 									<InputGroup>
 										<input
-										  ref={input}
+											ref={input}
 											type="number"
 											className="form-control"
 											min="1"
 											max="10"
 											placeholder="1"
 										/>
-										<Button onClick={() => setCart([...cart, data])} variant="success" type="submit">
+										<Button
+											onClick={() => setCart([...cart, data])}
+											variant="success"
+											type="submit">
 											<AiOutlineShoppingCart /> Lägg i varukorgen
 										</Button>
 									</InputGroup>
 								</div>
 							</div>
-							<div className="container m-5" style={{ border: 'solid black 2px', borderRadius: '20px' }}>
-								<p style={{ margin: '5px', textAlign: 'center' }}>{data.description}</p>
+							<div className="container m-5">
+								<Tabs className="my-2" defaultActiveKey="description">
+									<Tab eventKey="description" title="Beskrivning">
+										{data.description}
+									</Tab>
+									<Tab eventKey="moreInfo" title="Mer Info">
+										asdasdasdasdasdasd
+									</Tab>
+									<Tab eventKey="review" title="Recensioner">
+										blahblah
+									</Tab>
+								</Tabs>
 							</div>
 						</Row>
 					</>
