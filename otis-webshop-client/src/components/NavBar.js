@@ -45,10 +45,10 @@ const NavBar = ({ cart }) => {
 						<Form inline>
 							<FormControl
 								type="text"
-								placeholder="Search"
+								placeholder="Sök produkter..."
 								className="mr-sm-2"
 							/>
-							<Button variant="outline-info">Search</Button>
+							<Button variant="outline-info">Sök</Button>
 						</Form>
 					</Nav>
 				</Navbar.Collapse>

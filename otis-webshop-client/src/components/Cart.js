@@ -29,7 +29,7 @@ const Cart = ({ cart, setCart }) => {
 			<h3>Detta är dina produkter!</h3>
 			<Row className="my-3" lg={4} md={3} sm={2} xs={1}>
 				{cart.map((product) => (
-					<Col>
+					<Col key={product.productID}>
 						<Card className="m-2">
 							<Card.Img src={product.imgSrc} alt={product.ImgAlt} />
 							<Card.Body>

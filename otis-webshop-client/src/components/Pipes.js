@@ -4,7 +4,7 @@ import Product from './Product.js'
 
 // Import Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Container, Col, Row } from 'react-bootstrap'
+import { Container, Col, Row, Jumbotron } from 'react-bootstrap'
 
 const Pipes = () => {
 	const [responseData, setResponseData] = useState([])
@@ -12,8 +12,7 @@ const Pipes = () => {
 	useEffect(() => {
 		async function getData() {
 			try {
-				const response = await axios.get('http://localhost:5000/products/load')
-        console.log(response.data.allProducts)
+				const response = await axios.get(process.env.REACT_APP_URL)
 				setResponseData(response.data.allProducts)
 			} catch (error) {
 				console.log(error)
@@ -24,23 +23,32 @@ const Pipes = () => {
 
 	return (
 		<div>
-			<h1>Detta är sidan för Pipor</h1>
 			<Container>
-        <Row lg={3} md={2} sm={2} xs={1}>
-				{responseData.map((data) => data.productCategory === 'pipes' ? (
-					<Col className="mb-3">
-						<Product
-              key={data.id}
-              id={data.id}
-							productID={data.productID}
-							title={data.title}
-							imgSrc={data.imgSrc}
-							imgAlt={data.imgAlt}
-							price={data.price + 'kr'}
-						/>
-					</Col>
-				):null)}
-        </Row>
+			<Jumbotron
+				style={{
+					background: 'linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)'
+				}}>
+				<Container className="m-2">
+					<h1>Pipor</h1>
+					<p>Här hittar du vårt fina utbud av pipor. Välj bland olika stilar och färger.</p>
+				</Container>
+			</Jumbotron>
+				<Row xl={3} lg={4} md={2} sm={2} xs={1}>
+					{responseData.map((data) =>
+						data.productCategory === 'pipes' ? (
+							<Col key={data.id} className="mb-3">
+								<Product
+									id={data.id}
+									productID={data.productID}
+									title={data.title}
+									imgSrc={data.imgSrc}
+									imgAlt={data.imgAlt}
+									price={data.price + 'kr'}
+								/>
+							</Col>
+						) : null
+					)}
+				</Row>
 			</Container>
 		</div>
 	)

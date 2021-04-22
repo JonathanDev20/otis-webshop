@@ -9,13 +9,10 @@ const MyHeader = () => {
         <div className="company-div">
 				<h1 className="company-name">OTIS Design</h1>
 				<p className="company-description">
-					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam
-					architecto, porro, molestiae quasi aliquam ducimus nam exercitationem,
-					voluptatem nostrum est error rem dolores. Illo eius aperiam, odio unde
-					aliquam eum!
+				OTIS Design började som en hobby-verksamhet där jag tyckte om att tillverka egen-designade produkter. Det började med mindre teckningar som växte till tavlor, pipor, tygkassar och idag finns det en stor blandning av produkter.
 				</p>
 				<p className="company-button">
-					<Button variant="primary">Learn More!</Button>
+					<Button href="/about" variant="primary">Vill du veta mer?</Button>
 				</p>
         </div>
 			</Jumbotron>
