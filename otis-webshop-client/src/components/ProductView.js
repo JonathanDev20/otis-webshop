@@ -13,7 +13,8 @@ import {
 	InputGroup,
 	Tabs,
 	Tab,
-	Jumbotron
+	Jumbotron,
+	Table
 } from 'react-bootstrap'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 
@@ -88,7 +89,22 @@ const ProductView = ({ cart, setCart }) => {
 										{data.description}
 									</Tab>
 									<Tab eventKey="moreInfo" title="Mer Info">
-										asdasdasdasdasdasd
+										<Table>
+											<thead>
+												<tr>
+												<td>Material</td>
+												<td>Ek</td>
+												</tr>
+												<tr>
+													<td>Färg</td>
+													<td>Röd</td>
+												</tr>
+												<tr>
+													<td>Tilkommer tygkasse</td>
+													<td>Ja</td>
+												</tr>
+											</thead>
+										</Table>
 									</Tab>
 									<Tab eventKey="review" title="Recensioner">
 										blahblah
