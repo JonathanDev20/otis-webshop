@@ -4,7 +4,7 @@ import Product from './Product.js'
 
 // Import Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Container, Col, Row } from 'react-bootstrap'
+import { Container, Col, Row, Jumbotron } from 'react-bootstrap'
 
 const Clothbags = () => {
 	const [responseData, setResponseData] = useState([])
@@ -22,8 +22,16 @@ const Clothbags = () => {
 	}, [])
 	return (
 		<div>
-			<h1>Detta är sidan för tygkassar.</h1>
 			<Container>
+			<Jumbotron
+				style={{
+					background: 'linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)'
+				}}>
+				<Container className="m-2">
+					<h1>Tygkassar</h1>
+					<p>Här hittar du vårt fina utbud av tygkassar. Välj bland olika stilar och färger.</p>
+				</Container>
+			</Jumbotron>
 			<Row xl={3} lg={4} md={2} sm={2} xs={1}>
 				{responseData.map((data) => data.productCategory === 'clothbag' ? (
 					<Col key={data.id} className="mb-3">
