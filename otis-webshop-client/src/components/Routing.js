@@ -50,7 +50,7 @@ const Routing = ({ cart, setCart }) => {
 				<Container fluid>
 					<Row style={{ textAlign: 'center' }}>
 						{categoryData.map((data) => (
-							<Col className="mb-3">
+							<Col key={data.id} className="mb-3">
 								<CategoryCard
 									imgSrc={data.imgSrc}
 									imgAlt={data.imgAlt}
@@ -69,7 +69,7 @@ const Routing = ({ cart, setCart }) => {
 				<Container fluid>
 					<Row lg={4} md={3} sm={2} xs={1}>
 						{responseData.map((data) => (
-							<Col className="mb-3">
+							<Col key={data.id} className="mb-3">
 								<Product
 									id={data.id}
 									productID={data.productID}
