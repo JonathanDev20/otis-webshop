@@ -6,10 +6,7 @@ const Footer = () => {
 			<footer className="pt-5 footer-container bg-dark">
 				<div className="row m-4">
 					<div className="footer-text col-12 col-md mr-5">
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio
-						sequi impedit, dolorem consectetur labore in natus explicabo porro
-						ducimus minus voluptate enim! Nemo velit aliquid architecto ad amet
-						unde maxime.
+						OTIS Design började som en hobby-verksamhet där jag tyckte om att tillverka egendesignade produkter. Jag har alltid tyckt om att göra egna designer och att tillverka produkter själv. 
 					</div>
 					<div className="col-6 col-md footer-border">
 						<div className="footer-links">
