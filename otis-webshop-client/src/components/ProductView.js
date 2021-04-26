@@ -18,6 +18,7 @@ import {
 } from 'react-bootstrap'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 
+
 const ProductView = ({ cart, setCart }) => {
 	const [responseData, setResponseData] = useState([])
 	const { id } = useParams()
@@ -92,7 +93,7 @@ const ProductView = ({ cart, setCart }) => {
 										<Table>
 											<thead>
 												<tr>
-												<td>Material</td>
+												<td> Material</td>
 												<td>Ek</td>
 												</tr>
 												<tr>
