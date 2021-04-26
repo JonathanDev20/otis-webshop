@@ -14,6 +14,8 @@ import {
 	Badge
 } from 'react-bootstrap'
 
+import Search from './Search.js'
+
 const NavBar = ({ cart }) => {
 	return (
 			<Navbar
@@ -42,14 +44,7 @@ const NavBar = ({ cart }) => {
 									<AiOutlineShoppingCart className="shopping-cart" />
 								<Badge id="cartQuantity" pill variant="danger">{cart}</Badge>	
 							</Nav.Link>
-						<Form inline>
-							<FormControl
-								type="text"
-								placeholder="Sök produkter..."
-								className="mr-sm-2"
-							/>
-							<Button variant="outline-info">Sök</Button>
-						</Form>
+						<Search />
 					</Nav>
 				</Navbar.Collapse>
 			</Navbar>
