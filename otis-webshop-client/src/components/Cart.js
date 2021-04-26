@@ -2,7 +2,7 @@ import React from 'react'
 
 // Import Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Container, Row, Col, Card, Button, Image } from 'react-bootstrap'
+import { Container, Row, Col, Card, Button } from 'react-bootstrap'
 
 const Cart = ({ cart, setCart }) => {
 	const deleteHandler = (product) => {
@@ -26,7 +26,7 @@ const Cart = ({ cart, setCart }) => {
 
 	const FilledCart = () => (
 		<div className="cartItems p-3 m-2">
-			<h3>Detta är dina produkter!</h3>
+			<h3>Välkommen till din varukorg</h3>
 			<Row className="my-3" lg={4} md={3} sm={2} xs={1}>
 				{cart.map((product) => (
 					<Col key={product.productID}>
@@ -38,7 +38,7 @@ const Cart = ({ cart, setCart }) => {
 								<Button
 									onClick={() => deleteHandler(product.productID)}
 									size="md"
-									variant="danger">
+									variant="outline-danger">
 									Ta bort
 								</Button>
 							</Card.Body>
@@ -46,11 +46,15 @@ const Cart = ({ cart, setCart }) => {
 					</Col>
 				))}
 			</Row>
-			<Row>
-				<h4>Totalt: {totalPrice}kr</h4>
+			<Row className="align-items-center">
         <Col>
-				<Button className="m-2">Rensa</Button>
-        <Button>Gå vidare till köp</Button>
+				<h4>Totalt: {totalPrice}kr</h4>
+        </Col>
+        <Col>
+        </Col>
+        <Col>
+				<Button onClick={() => setCart([])} variant="danger" className="m-2">Rensa Varukorg</Button>
+        <Button variant="success">Gå vidare till köp</Button>
         </Col>
 			</Row>
 		</div>
@@ -58,7 +62,6 @@ const Cart = ({ cart, setCart }) => {
 
 	return (
 		<div>
-			<h1>Detta är sidan för Varukorgen.</h1>
 			<Container>{!cart.length ? <EmptyCart /> : <FilledCart />}</Container>
 		</div>
 	)
