@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react'
-
-import axios from 'axios'
+import React, { useState, useEffect, useContext } from 'react'
+import { UserContext } from '../context/UserContext.js'
 
 // Import Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Form, FormControl, Button } from 'react-bootstrap'
-import { Redirect, Route, Link } from 'react-router-dom'
-import SearchPage from './SearchPage'
+import { Redirect, Link } from 'react-router-dom'
 
-const Search = ({ search, setSearch }) => {
+const Search = () => {
+
+  const [search, setSearch] = useContext(UserContext)
 
 	const buttonHandler = () => {
 		return (

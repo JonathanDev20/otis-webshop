@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext, createContext } from 'react'
 import './App.css'
 import { BrowserRouter as Router } from 'react-router-dom'
+import { UserContext } from './context/UserContext.js'
 
 // Import Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -9,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import NavBar from './components/NavBar'
 import Footer from './components/Footer'
 import Routing from './components/Routing'
+
 
 function App() {
 
@@ -41,10 +43,11 @@ function App() {
 	return (
 		<>
 		<Router>
-	
+			<UserContext.Provider value={[search, setSearch]}>
 			<NavBar cart={cart.length} search={search} setSearch={setSearch} />
 				<Routing cart={cart} setCart={setCart} search={search} setSearch={setSearch} />
 			<Footer />
+			</UserContext.Provider>
 		</Router>
 		</>
 	)
