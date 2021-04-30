@@ -14,40 +14,58 @@ import {
 	Badge
 } from 'react-bootstrap'
 
+import { Redirect } from 'react-router-dom'
+
 import Search from './Search.js'
 
-const NavBar = ({ cart }) => {
+const NavBar = ({ cart, search, setSearch }) => {
 	return (
-			<Navbar
-				className="sticky-top"
-				collapseOnSelect
-				expand="md"
-				bg="dark"
-				variant="dark">
-				<Navbar.Brand href="/">OTIS Webshop</Navbar.Brand>
-				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
-				<Navbar.Collapse id="responsive-navbar-nav">
-					<Nav className="mr-auto">
-							<Nav.Link href="/" to="/">Startsida</Nav.Link>
-						<NavDropdown title="Produkter" id="collasible-nav-dropdown">
-								<NavDropdown.Item to="/pipes" href="/pipes">Pipor</NavDropdown.Item>
-								<NavDropdown.Item to="/clothbags" href="/clothbags">Tygkassar</NavDropdown.Item>
-								<NavDropdown.Item to="/paintings" href="/paintings">Tavlor</NavDropdown.Item>
-							<NavDropdown.Divider />
-								<NavDropdown.Item to="/extras" href="/extras">Övrigt</NavDropdown.Item>
-						</NavDropdown>
-							<Nav.Link to="/special" href="/special">Gör din egen</Nav.Link>
-							<Nav.Link to="/about" href="/about">Om oss</Nav.Link>
-					</Nav>
-					<Nav>
-							<Nav.Link to="/cart" href="/cart">
-									<AiOutlineShoppingCart className="shopping-cart" />
-								<Badge id="cartQuantity" pill variant="danger">{cart}</Badge>	
-							</Nav.Link>
-						<Search />
-					</Nav>
-				</Navbar.Collapse>
-			</Navbar>
+		<Navbar
+			className="sticky-top"
+			collapseOnSelect
+			expand="md"
+			bg="dark"
+			variant="dark">
+			<Navbar.Brand href="/">OTIS Webshop</Navbar.Brand>
+			<Navbar.Toggle aria-controls="responsive-navbar-nav" />
+			<Navbar.Collapse id="responsive-navbar-nav">
+				<Nav className="mr-auto">
+					<Nav.Link href="/" to="/">
+						Startsida
+					</Nav.Link>
+					<NavDropdown title="Produkter" id="collasible-nav-dropdown">
+						<NavDropdown.Item to="/pipes" href="/pipes">
+							Pipor
+						</NavDropdown.Item>
+						<NavDropdown.Item to="/clothbags" href="/clothbags">
+							Tygkassar
+						</NavDropdown.Item>
+						<NavDropdown.Item to="/paintings" href="/paintings">
+							Tavlor
+						</NavDropdown.Item>
+						<NavDropdown.Divider />
+						<NavDropdown.Item to="/extras" href="/extras">
+							Övrigt
+						</NavDropdown.Item>
+					</NavDropdown>
+					<Nav.Link to="/special" href="/special">
+						Gör din egen
+					</Nav.Link>
+					<Nav.Link to="/about" href="/about">
+						Om oss
+					</Nav.Link>
+				</Nav>
+				<Nav>
+					<Nav.Link to="/cart" href="/cart">
+						<AiOutlineShoppingCart className="shopping-cart" />
+						<Badge id="cartQuantity" pill variant="danger">
+							{cart}
+						</Badge>
+					</Nav.Link>
+					<Search search={search} setSearch={setSearch} />
+				</Nav>
+			</Navbar.Collapse>
+		</Navbar>
 	)
 }
 

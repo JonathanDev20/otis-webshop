@@ -13,8 +13,7 @@ import Routing from './components/Routing'
 function App() {
 
 	const [cart, setCart] = useState([])
-
-	
+	const [search, setSearch] = useState('')
 	
 	// Use Effect
 	useEffect(() => {
@@ -42,8 +41,9 @@ function App() {
 	return (
 		<>
 		<Router>
-			<NavBar cart={cart.length} />
-				<Routing cart={cart} setCart={setCart} />
+	
+			<NavBar cart={cart.length} search={search} setSearch={setSearch} />
+				<Routing cart={cart} setCart={setCart} search={search} setSearch={setSearch} />
 			<Footer />
 		</Router>
 		</>
