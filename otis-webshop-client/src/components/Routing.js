@@ -15,6 +15,7 @@ import About from './About.js'
 import Cart from './Cart.js'
 import SpecialOrder from './SpecialOrder.js'
 import ProductView from './ProductView.js'
+import SearchPage from './SearchPage.js'
 
 const Routing = ({ cart, setCart }) => {
 	const [responseData, setResponseData] = useState([])
@@ -37,7 +38,9 @@ const Routing = ({ cart, setCart }) => {
 
 	async function getCategories() {
 		try {
-			const response = await axios.get('http://localhost:5000/products/loadCategories')
+			const response = await axios.get(
+				'http://localhost:5000/products/loadCategories'
+			)
 			setCategoryData(response.data.allCategories)
 		} catch (error) {
 			console.log(error)
@@ -105,8 +108,15 @@ const Routing = ({ cart, setCart }) => {
 				<Cart cart={cart} setCart={setCart} />
 			</Route>
 			<Route
+				path="/searchPage"
+				render={(props) => (
+					<SearchPage {...props} />
+				)}></Route>
+			<Route
 				path="/product/:id"
-				render={(props) => <ProductView cart={cart} setCart={setCart} {...props} />}></Route>
+				render={(props) => (
+					<ProductView cart={cart} setCart={setCart} {...props} />
+				)}></Route>
 		</Switch>
 	)
 }

@@ -79,6 +79,27 @@ export class ProductsController {
     }
   }
 
+  async searchProducts (req, res, next) {
+    try {
+      const viewData = {
+        products: (await Product.find({})).filter(product => product.title.toLowerCase().includes(req.params.search)).map(
+          (product) => ({
+            id: product._id,
+            productID: product.productID,
+            title: product.title,
+            description: product.description,
+            imgSrc: product.imgSrc,
+            imgAlt: product.imgAlt,
+            price: product.price
+          })
+        )
+      }
+      res.send(viewData)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   async randomProducts (req, res, next) {
     try {
       const viewData = {

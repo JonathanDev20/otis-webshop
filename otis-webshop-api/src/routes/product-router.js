@@ -11,4 +11,6 @@ router.get('/random', controller.randomProducts)
 
 router.get('/loadCategories', controller.loadCategories)
 
+router.get('/search/:search', controller.searchProducts)
+
 router.get('/:id', controller.specificProduct)
