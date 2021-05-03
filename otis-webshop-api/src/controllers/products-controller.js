@@ -82,7 +82,7 @@ export class ProductsController {
   async searchProducts (req, res, next) {
     try {
       const viewData = {
-        products: (await Product.find({})).filter(product => product.title.toLowerCase().includes(req.params.search)).map(
+        products: (await Product.find({})).filter(product => product.title.toLowerCase().includes(req.params.search.toLowerCase())).map(
           (product) => ({
             id: product._id,
             productID: product.productID,

@@ -25,7 +25,7 @@ const main = async () => {
   app.use(helmet())
 
   const corsOptions = {
-    origin: 'http://localhost:3000'
+    origin: ['https://otis-webshop.herokuapp.com', 'http://localhost:3000']
   }
 
   app.use(cors(corsOptions))

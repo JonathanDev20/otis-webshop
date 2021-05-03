@@ -31,7 +31,7 @@ const SearchPage = () => {
 					<div>
 						<h1 className="notFoundTitle">404</h1>
 						<p className="notFoundText">
-							Tyvärr hittade vi inga resultat för "{search}".
+							Tyvärr hittade vi inga resultat för "{search}", vänligen försök med något annat.
 						</p>
 						<Button href="/" size="lg" className="m-3" variant="warning">Gå tillbaka</Button>
 					</div>

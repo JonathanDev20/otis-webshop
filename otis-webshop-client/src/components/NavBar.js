@@ -2,19 +2,18 @@ import React from 'react'
 
 // Import react-icons
 import { AiOutlineShoppingCart } from 'react-icons/ai'
+import { GiSmokingPipe } from 'react-icons/gi'
+import { IoBagSharp } from 'react-icons/io5'
+import { BsFillImageFill } from 'react-icons/bs'
+import { IoIosBulb } from 'react-icons/io'
 // Import react bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {
 	Navbar,
 	Nav,
 	NavDropdown,
-	Form,
-	Button,
-	FormControl,
 	Badge
 } from 'react-bootstrap'
-
-import { Redirect } from 'react-router-dom'
 
 import Search from './Search.js'
 
@@ -35,17 +34,17 @@ const NavBar = ({ cart, search, setSearch }) => {
 					</Nav.Link>
 					<NavDropdown title="Produkter" id="collasible-nav-dropdown">
 						<NavDropdown.Item to="/pipes" href="/pipes">
-							Pipor
+							Pipor <GiSmokingPipe />
 						</NavDropdown.Item>
 						<NavDropdown.Item to="/clothbags" href="/clothbags">
-							Tygkassar
+							Tygkassar <IoBagSharp />
 						</NavDropdown.Item>
 						<NavDropdown.Item to="/paintings" href="/paintings">
-							Tavlor
+							Tavlor <BsFillImageFill />
 						</NavDropdown.Item>
 						<NavDropdown.Divider />
 						<NavDropdown.Item to="/extras" href="/extras">
-							Övrigt
+							Övrigt <IoIosBulb />
 						</NavDropdown.Item>
 					</NavDropdown>
 					<Nav.Link to="/special" href="/special">
