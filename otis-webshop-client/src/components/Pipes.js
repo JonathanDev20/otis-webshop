@@ -11,6 +11,7 @@ const Pipes = () => {
 
 	useEffect(() => {
 		async function getData() {
+			console.log(process.env.REACT_APP_URL)
 			try {
 				const response = await axios.get(process.env.REACT_APP_URL)
 				setResponseData(response.data.allProducts)

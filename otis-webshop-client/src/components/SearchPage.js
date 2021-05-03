@@ -12,6 +12,7 @@ const SearchPage = () => {
 
 	useEffect(() => {
 		async function getData() {
+      console.log(search.value)
 			try {
 				const response = await axios.get(
 					`http://localhost:5000/products/search/${search}`

@@ -108,10 +108,9 @@ const Routing = ({ cart, setCart }) => {
 				<Cart cart={cart} setCart={setCart} />
 			</Route>
 			<Route
-				path="/searchPage"
-				render={(props) => (
-					<SearchPage {...props} />
-				)}></Route>
+				path="/searchPage">
+					<SearchPage />
+					</Route>
 			<Route
 				path="/product/:id"
 				render={(props) => (

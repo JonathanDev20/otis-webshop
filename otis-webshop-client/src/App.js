@@ -44,8 +44,8 @@ function App() {
 		<>
 		<Router>
 			<UserContext.Provider value={[search, setSearch]}>
-			<NavBar cart={cart.length} search={search} setSearch={setSearch} />
-				<Routing cart={cart} setCart={setCart} search={search} setSearch={setSearch} />
+			<NavBar cart={cart.length} />
+				<Routing cart={cart} setCart={setCart} />
 			<Footer />
 			</UserContext.Provider>
 		</Router>

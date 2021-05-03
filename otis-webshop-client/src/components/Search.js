@@ -10,12 +10,6 @@ const Search = () => {
 
   const [search, setSearch] = useContext(UserContext)
 
-	const buttonHandler = () => {
-		return (
-			<Redirect to={{ pathname: '/searchPage', state: { search: search } }} />
-		)
-	}
-
 	return (
 		<Form inline>
 			<FormControl
@@ -26,7 +20,7 @@ const Search = () => {
 				onChange={(e) => setSearch(e.target.value)}
 			/>
 			<Link to="/searchPage">
-				<Button onClick={() => buttonHandler()} variant="outline-info">
+				<Button variant="outline-info">
 					Sök
 				</Button>
 			</Link>

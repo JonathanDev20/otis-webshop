@@ -27,7 +27,7 @@ const Cart = ({ cart, setCart }) => {
 	const FilledCart = () => (
 		<div className="cartItems p-3 m-2">
 			<h3>Välkommen till din varukorg</h3>
-			<Row className="my-3" lg={4} md={3} sm={2} xs={1}>
+			<Row className="my-3" lg={3} md={3} sm={2} xs={1}>
 				{cart.map((product) => (
 					<Col key={product.productID}>
 						<Card className="m-2">
