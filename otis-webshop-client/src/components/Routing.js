@@ -39,7 +39,7 @@ const Routing = ({ cart, setCart }) => {
 	async function getCategories() {
 		try {
 			const response = await axios.get(
-				'http://localhost:5000/products/loadCategories'
+				'https://otis-api.herokuapp.com/products/loadCategories'
 			)
 			setCategoryData(response.data.allCategories)
 		} catch (error) {

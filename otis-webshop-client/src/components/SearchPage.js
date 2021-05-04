@@ -12,10 +12,9 @@ const SearchPage = () => {
 
 	useEffect(() => {
 		async function getData() {
-      console.log(search.value)
 			try {
 				const response = await axios.get(
-					`https://otis-api.herokuapp.com/products/${search}`
+					`https://otis-api.herokuapp.com/products/search/${search}`
 				)
 				setProducts(response.data.products)
 			} catch (error) {
