@@ -28,7 +28,7 @@ const ProductView = ({ cart, setCart }) => {
 	useEffect(() => {
 		async function getData() {
 			try {
-				const response = await axios.get(`http://localhost:5000/products/${id}`)
+				const response = await axios.get(`https://otis-api.herokuapp.com/products/${id}`)
 				setResponseData(response.data.productData)
 			} catch (error) {
 				console.log(error)

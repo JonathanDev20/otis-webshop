@@ -25,7 +25,7 @@ const Routing = ({ cart, setCart }) => {
 		async function getData() {
 			try {
 				const response = await axios.get(
-					'http://localhost:5000/products/random'
+					'https://otis-api.herokuapp.com/products/random'
 				)
 				setResponseData(response.data.productData)
 			} catch (error) {
@@ -107,10 +107,9 @@ const Routing = ({ cart, setCart }) => {
 			<Route path="/cart">
 				<Cart cart={cart} setCart={setCart} />
 			</Route>
-			<Route
-				path="/searchPage">
-					<SearchPage />
-					</Route>
+			<Route path="/searchPage">
+				<SearchPage />
+			</Route>
 			<Route
 				path="/product/:id"
 				render={(props) => (

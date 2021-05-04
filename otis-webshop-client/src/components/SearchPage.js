@@ -15,7 +15,7 @@ const SearchPage = () => {
       console.log(search.value)
 			try {
 				const response = await axios.get(
-					`http://localhost:5000/products/search/${search}`
+					`https://otis-api.herokuapp.com/products/${search}`
 				)
 				setProducts(response.data.products)
 			} catch (error) {
