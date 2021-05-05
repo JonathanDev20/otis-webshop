@@ -107,7 +107,7 @@ const Routing = ({ cart, setCart }) => {
 			<Route path="/cart">
 				<Cart cart={cart} setCart={setCart} />
 			</Route>
-			<Route path="/searchPage">
+			<Route path="/search/:slug">
 				<SearchPage />
 			</Route>
 			<Route

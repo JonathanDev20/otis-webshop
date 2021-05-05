@@ -5,16 +5,17 @@ import axios from 'axios'
 
 import Product from './Product.js'
 import { Container, Col, Row, Button } from 'react-bootstrap'
+import { useParams } from 'react-router-dom'
 
 const SearchPage = () => {
 	const [products, setProducts] = useState([])
-	const [search] = useContext(UserContext)
+  let { slug } = useParams()
 
 	useEffect(() => {
 		async function getData() {
 			try {
 				const response = await axios.get(
-					`https://otis-api.herokuapp.com/products/search/${search}`
+					`https://otis-api.herokuapp.com/products/search/${slug}`
 				)
 				setProducts(response.data.products)
 			} catch (error) {
@@ -31,7 +32,7 @@ const SearchPage = () => {
 					<div>
 						<h1 className="notFoundTitle">404</h1>
 						<p className="notFoundText">
-							Tyvärr hittade vi inga resultat för "{search}", vänligen försök med något annat.
+							Tyvärr hittade vi inga resultat för "{slug}", vänligen försök med något annat.
 						</p>
 						<Button href="/" size="lg" className="m-3" variant="warning">Gå tillbaka</Button>
 					</div>
