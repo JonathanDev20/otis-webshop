@@ -21,9 +21,8 @@ import { AiOutlineShoppingCart } from 'react-icons/ai'
 
 const ProductView = ({ cart, setCart }) => {
 	const [responseData, setResponseData] = useState([])
+	const [quantity, setQuantity] = useState(1)
 	const { id } = useParams()
-
-	const input = React.createRef()
 
 	useEffect(() => {
 		async function getData() {
@@ -36,6 +35,20 @@ const ProductView = ({ cart, setCart }) => {
 		}
 		getData()
 	}, [])
+
+	const addToCart = (data) => {
+		const newProduct = {product: data, quantity}
+    const currentIndex = cart.find(product => product.product.productID === newProduct.product.productID)
+		if(currentIndex) {
+			const newItemsInCart = cart.map(item => {
+				return item.product.productID === newProduct.product.productID ? { product: newProduct.product, quantity: ( newProduct.quantity + item.quantity ) } : item
+			})
+			setCart(newItemsInCart)
+			console.log(newItemsInCart)
+		} else {
+			setCart([...cart, newProduct])
+		}
+	}
 
 	return (
 		<div>
@@ -68,15 +81,15 @@ const ProductView = ({ cart, setCart }) => {
 									</p>
 									<InputGroup>
 										<input
-											ref={input}
 											type="number"
 											className="form-control"
 											min="1"
 											max="10"
-											placeholder="1"
+											value={quantity}
+											onChange={(e) => setQuantity(Number(e.target.value))}
 										/>
 										<Button
-											onClick={() => setCart([...cart, data])}
+											onClick={() => addToCart(data)}
 											variant="success"
 											type="submit">
 											<AiOutlineShoppingCart /> Lägg i varukorgen
