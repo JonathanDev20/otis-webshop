@@ -53,9 +53,7 @@ const Cart = ({ cart, setCart }) => {
 				<h4>Totalt: {totalPrice}kr</h4>
         </Col>
         <Col>
-        </Col>
-        <Col>
-				<Button onClick={() => setCart([])} variant="danger" className="m-2">Rensa Varukorg</Button>
+				<Button onClick={() => setCart([])} variant="danger" className="m-1">Rensa Varukorg</Button>
         <Button variant="success">Gå vidare till köp</Button>
         </Col>
 			</Row>

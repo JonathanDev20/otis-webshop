@@ -57,7 +57,7 @@ const NavBar = ({ cart, search, setSearch }) => {
 				<Nav>
 					<Nav.Link to="/cart" href="/cart">
 						<AiOutlineShoppingCart className="shopping-cart" />
-						<Badge id="cartQuantity" pill variant="danger">
+						<Badge style={{fontSize: '0.8rem'}} id="cartQuantity" pill variant="danger">
 							{cart}
 						</Badge>
 					</Nav.Link>
