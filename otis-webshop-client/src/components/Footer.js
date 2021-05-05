@@ -3,7 +3,7 @@ import React from 'react'
 const Footer = () => {
 	return (
 		<>
-			<footer className="pt-5 footer-container bg-dark">
+			<footer className="pt-5 footer-container bg-primary">
 				<div className="row m-4">
 					<div className="footer-text col-12 col-md mr-5">
 						OTIS Design började som en hobby-verksamhet där jag tyckte om att tillverka egendesignade produkter. Jag har alltid tyckt om att göra egna designer och att tillverka produkter själv. 

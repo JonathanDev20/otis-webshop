@@ -23,7 +23,7 @@ const NavBar = ({ cart, search, setSearch }) => {
 			className="sticky-top"
 			collapseOnSelect
 			expand="md"
-			bg="dark"
+			bg="primary"
 			variant="dark">
 			<Navbar.Brand href="/">OTIS Webshop</Navbar.Brand>
 			<Navbar.Toggle aria-controls="responsive-navbar-nav" />

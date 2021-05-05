@@ -21,6 +21,7 @@ const Cart = ({ cart, setCart }) => {
 				<h3>
 					Oops.. Här verkade det vara tomt, kom tillbaka med lite produkter
 				</h3>
+        <Button variant="warning" href="/">Gå tillbaka till startsidan</Button>
 			</div>
 		</div>
 	)
