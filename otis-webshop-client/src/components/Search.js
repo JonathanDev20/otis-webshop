@@ -25,11 +25,9 @@ const Search = () => {
 				value={search}
 				onChange={(e) => setSearch(e.target.value)}
 			/>
-		{/* 	<Link to="/searchPage"> */}
 				<Button onClick={() => buttonHandler()} type="submit" variant="outline-info">
 					Sök
 				</Button>
-			{/* </Link> */}
 		</Form>
 	)
 }

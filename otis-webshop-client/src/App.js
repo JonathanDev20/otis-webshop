@@ -44,7 +44,7 @@ function App() {
 		<>
 		<Router>
 			<UserContext.Provider value={[search, setSearch]}>
-			<NavBar cart={cart.length} />
+			<NavBar cart={cart.reduce((total, obj) => obj.quantity + total,0)} />
 				<Routing cart={cart} setCart={setCart} />
 			<Footer />
 			</UserContext.Provider>
