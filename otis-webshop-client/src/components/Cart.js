@@ -3,10 +3,10 @@ import React from 'react'
 // Import Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Container, Row, Col, Card, Button } from 'react-bootstrap'
-import Checkout from './Checkout.js'
+import { Link  } from 'react-router-dom'
 
 
-const Cart = ({ cart, setCart, setQuantity }) => {
+const Cart = ({ cart, setCart, setQuantity, totalPrice, setTotalPrice }) => {
   const deleteHandler = (product, current) => {
     if(current.quantity <= 1) {
       setCart(cart.filter((el) => el.product.productID !== product))
@@ -15,11 +15,12 @@ const Cart = ({ cart, setCart, setQuantity }) => {
     }
 	}
   
-	let totalPrice = 0
-	for (let i = 0; i < cart.length; i++) {
-		totalPrice += (cart[i].product.price * cart[i].quantity) 
-	}
-  
+    let price = 0
+    for (let i = 0; i < cart.length; i++) {
+      price += (cart[i].product.price * cart[i].quantity)
+    }
+    setTotalPrice(price)
+
 	const EmptyCart = () => (
 		<div className="cartItems p-3 m-2">
 			<div className="emptyCart">
@@ -32,7 +33,7 @@ const Cart = ({ cart, setCart, setQuantity }) => {
 	)
 
 	const FilledCart = () => (
-		<div className="cartItems p-3 m-2">
+    <div className="cartItems p-3 m-2">
 			<h3>Välkommen till din varukorg</h3>
 			<Row className="my-3" lg={3} md={3} sm={2} xs={1}>
 				{cart.map((product) => (
@@ -62,8 +63,10 @@ const Cart = ({ cart, setCart, setQuantity }) => {
         <Col>
 				<h3>Totalt att betala: {totalPrice}kr</h3>
 				<Button onClick={() => setCart([])} variant="danger" className="m-1">Rensa Varukorg</Button>
-        <Button variant="success">Gå vidare till köp</Button>
-        <Checkout totalPrice={totalPrice} />
+        <Link to="/checkout">
+          <Button variant="success">Gå vidare till köp</Button>
+        </Link>
+        {/* <Checkout totalPrice={totalPrice} /> */}
         </Col>
 			</Row>
 		</div>

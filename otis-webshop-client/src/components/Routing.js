@@ -16,8 +16,9 @@ import Cart from './Cart.js'
 import SpecialOrder from './SpecialOrder.js'
 import ProductView from './ProductView.js'
 import SearchPage from './SearchPage.js'
+import Checkout from './Checkout.js'
 
-const Routing = ({ cart, setCart, quantity, setQuantity }) => {
+const Routing = ({ cart, setCart, quantity, setQuantity, totalPrice, setTotalPrice }) => {
 	const [responseData, setResponseData] = useState([])
 	const [categoryData, setCategoryData] = useState([])
 
@@ -105,11 +106,13 @@ const Routing = ({ cart, setCart, quantity, setQuantity }) => {
 				<SpecialOrder />
 			</Route>
 			<Route path="/cart">
-				<Cart cart={cart} setCart={setCart} quantity={quantity} setQuantity={setQuantity} />
+				<Cart totalPrice={totalPrice} setTotalPrice={setTotalPrice} cart={cart} setCart={setCart} quantity={quantity} setQuantity={setQuantity} />
 			</Route>
 			<Route path="/search/:slug">
 				<SearchPage />
 			</Route>
+			<Route path="/checkout"
+			render={(props) => (<Checkout totalPrice={totalPrice} {...props} />)}></Route>
 			<Route
 				path="/product/:id"
 				render={(props) => (
