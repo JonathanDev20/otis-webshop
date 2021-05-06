@@ -160,6 +160,11 @@ p {
 	color: #8d8d8d;
 }
 
+.checkoutWrapper {
+	width: 20vw;
+	justify-content: right;
+}
+
 .productDescription {
 	margin: 15px;
 }

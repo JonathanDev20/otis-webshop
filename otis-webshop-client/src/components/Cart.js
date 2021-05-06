@@ -3,6 +3,7 @@ import React from 'react'
 // Import Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Container, Row, Col, Card, Button } from 'react-bootstrap'
+import Checkout from './Checkout.js'
 
 
 const Cart = ({ cart, setCart, setQuantity }) => {
@@ -62,6 +63,7 @@ const Cart = ({ cart, setCart, setQuantity }) => {
 				<h3>Totalt att betala: {totalPrice}kr</h3>
 				<Button onClick={() => setCart([])} variant="danger" className="m-1">Rensa Varukorg</Button>
         <Button variant="success">Gå vidare till köp</Button>
+        <Checkout totalPrice={totalPrice} />
         </Col>
 			</Row>
 		</div>
