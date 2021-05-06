@@ -15,6 +15,7 @@ import Routing from './components/Routing'
 function App() {
 
 	const [cart, setCart] = useState([])
+	const [quantity, setQuantity] = useState(1)
 	const [search, setSearch] = useState('')
 	
 	// Use Effect
@@ -45,7 +46,7 @@ function App() {
 		<Router>
 			<UserContext.Provider value={[search, setSearch]}>
 			<NavBar cart={cart.reduce((total, obj) => obj.quantity + total,0)} />
-				<Routing cart={cart} setCart={setCart} />
+				<Routing cart={cart} setCart={setCart} quantity={quantity} setQuantity={setQuantity} />
 			<Footer />
 			</UserContext.Provider>
 		</Router>

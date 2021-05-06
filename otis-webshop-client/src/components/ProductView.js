@@ -19,9 +19,9 @@ import {
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 
 
-const ProductView = ({ cart, setCart }) => {
+const ProductView = ({ cart, setCart, quantity, setQuantity }) => {
 	const [responseData, setResponseData] = useState([])
-	const [quantity, setQuantity] = useState(1)
+	// const [quantity, setQuantity] = useState(1)
 	const { id } = useParams()
 
 	useEffect(() => {

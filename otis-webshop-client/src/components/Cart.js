@@ -5,9 +5,13 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { Container, Row, Col, Card, Button } from 'react-bootstrap'
 
 
-const Cart = ({ cart, setCart }) => {
-  const deleteHandler = (product) => {
-    setCart(cart.filter((el) => el.product.productID !== product))
+const Cart = ({ cart, setCart, setQuantity }) => {
+  const deleteHandler = (product, current) => {
+    if(current.quantity <= 1) {
+      setCart(cart.filter((el) => el.product.productID !== product))
+    } else {
+      setQuantity(current.quantity -= 1)
+    }
 	}
   
 	let totalPrice = 0
@@ -32,28 +36,30 @@ const Cart = ({ cart, setCart }) => {
 			<Row className="my-3" lg={3} md={3} sm={2} xs={1}>
 				{cart.map((product) => (
 					<Col key={product.product.productID}>
-						<Card className="m-2">
+						<Card className="my-2">
 							<Card.Img src={product.product.imgSrc} alt={product.product.ImgAlt} />
 							<Card.Body>
-								<Card.Title className="m-3">{product.product.title}</Card.Title>
-                <Card.Text>Antal: {product.quantity}</Card.Text>
-								<Card.Text>{product.product.price}kr</Card.Text>
+								<Card.Title>{product.product.title}</Card.Title>
+                <Card.Text className="productQuantityInCart">Antal: {product.quantity}st</Card.Text>
+								<Card.Text className="productInCartPrice">{product.product.price}kr</Card.Text>
+                <Col className="chooseQuantity">
 								<Button
-									onClick={() => deleteHandler(product.product.productID)}
+									onClick={() => deleteHandler(product.product.productID, product)}
 									size="md"
 									variant="outline-danger">
-									Ta bort
+									-
 								</Button>
+                <Card.Text className="quantityBetween">{product.quantity}</Card.Text>
+                <Button onClick={() => setQuantity(product.quantity += 1)} variant="outline-success">+</Button>
+                </Col>
 							</Card.Body>
 						</Card>
 					</Col>
 				))}
 			</Row>
-			<Row className="align-items-center">
+			<Row className="cartActions">
         <Col>
-				<h4>Totalt: {totalPrice}kr</h4>
-        </Col>
-        <Col>
+				<h3>Totalt att betala: {totalPrice}kr</h3>
 				<Button onClick={() => setCart([])} variant="danger" className="m-1">Rensa Varukorg</Button>
         <Button variant="success">Gå vidare till köp</Button>
         </Col>
