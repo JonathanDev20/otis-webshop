@@ -6,7 +6,7 @@ import { Container, Row, Col, Card, Button } from 'react-bootstrap'
 import { Link  } from 'react-router-dom'
 
 
-const Cart = ({ cart, setCart, setQuantity, totalPrice, setTotalPrice }) => {
+const Cart = ({ cart, setCart, setQuantity }) => {
   const deleteHandler = (product, current) => {
     if(current.quantity <= 1) {
       setCart(cart.filter((el) => el.product.productID !== product))
@@ -15,11 +15,10 @@ const Cart = ({ cart, setCart, setQuantity, totalPrice, setTotalPrice }) => {
     }
 	}
   
-    let price = 0
+    let totalPrice = 0
     for (let i = 0; i < cart.length; i++) {
-      price += (cart[i].product.price * cart[i].quantity)
+      totalPrice += (cart[i].product.price * cart[i].quantity)
     }
-    setTotalPrice(price)
 
 	const EmptyCart = () => (
 		<div className="cartItems p-3 m-2">
@@ -39,8 +38,8 @@ const Cart = ({ cart, setCart, setQuantity, totalPrice, setTotalPrice }) => {
 				{cart.map((product) => (
 					<Col key={product.product.productID}>
 						<Card className="my-2">
-							<Card.Img src={product.product.imgSrc} alt={product.product.ImgAlt} />
 							<Card.Body>
+							<Card.Img src={product.product.imgSrc} alt={product.product.ImgAlt} />
 								<Card.Title>{product.product.title}</Card.Title>
                 <Card.Text className="productQuantityInCart">Antal: {product.quantity}st</Card.Text>
 								<Card.Text className="productInCartPrice">{product.product.price}kr</Card.Text>

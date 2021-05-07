@@ -1,12 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { PayPalButton } from 'react-paypal-button-v2'
-import { Container, Col, Form } from 'react-bootstrap'
+import { Container, Jumbotron, Row, Col, Image, Alert } from 'react-bootstrap'
+import { useHistory } from 'react-router-dom'
 
-const Checkout = ({ totalPrice }) => {
-  console.log(totalPrice)
+const Checkout = ({ cart, setCart }) => {
+  const [showAlert, setShowAlert] = useState(true)
+  let history = useHistory()
 	const onApprove = async (data, actions) => {
 		const order = await actions.order.capture()
 		console.log(order)
+	}
+
+	let totalPrice = 0
+	for (let i = 0; i < cart.length; i++) {
+		totalPrice += cart[i].product.price * cart[i].quantity
 	}
 
 	const onError = (err) => {
@@ -27,38 +34,38 @@ const Checkout = ({ totalPrice }) => {
 		})
 	}
 
+  const onSuccess = (details, data) => {
+    setCart([])
+    history.push('/')
+    return (
+      <Alert variant="success" onClose={() => setShowAlert(false)} dismissible>Transaction completed by {details.payer.name.given_name}</Alert>
+    )
+  } 
+
 	return (
 		<Container>
-      <h1>Vänligen fyll i nedanstående fält</h1>
-			<Form>
-				<Form.Row>
-					<Form.Group as={Col} controlId="formGridEmail">
-						<Form.Label>Email</Form.Label>
-						<Form.Control required type="email" placeholder="john@doe.com" />
-					</Form.Group>
+			<Jumbotron style={{ height: '40vh' }} className="paymentPage">
+				<h1 className="test">Nu är du snart klar med din beställning!</h1>
+			</Jumbotron>
 
-					<Form.Group as={Col} controlId="formGridPassword">
-						<Form.Label>Fullständigt namn</Form.Label>
-						<Form.Control required type="text" placeholder="John Doe" />
-					</Form.Group>
-				</Form.Row>
+			{cart.map((product) => (
+				<Row className="checkoutProducts">
+					<Col>
+						<Image rounded
+							src={product.product.imgSrc}
+							style={{ width: '10vh', height: '100%' }}
+						/>
+					</Col>
+          <Col>
+						<h2 variant="warning">{product.product.title}</h2>
+						<h3>{product.product.price}kr</h3>
+          </Col>
+				</Row>
+			))}
 
-				<Form.Group controlId="formGridAddress1">
-					<Form.Label>Address</Form.Label>
-					<Form.Control required placeholder="1234 Main St" />
-				</Form.Group>
-
-				<Form.Row>
-					<Form.Group as={Col} controlId="formGridCity">
-						<Form.Label>Stad</Form.Label>
-						<Form.Control required />
-					</Form.Group>
-
-					<Form.Group as={Col} controlId="formGridZip">
-						<Form.Label>Postnummer</Form.Label>
-						<Form.Control required />
-					</Form.Group>
-				</Form.Row>
+			<div>
+        <h2>Att betala: {totalPrice}kr</h2>
+			</div>
 			<div className="checkoutWrapper">
 				<PayPalButton
 					createOrder={(data, actions) => createOrder(data, actions)}
@@ -66,12 +73,9 @@ const Checkout = ({ totalPrice }) => {
 					onError={(err) => onError(err)}
 					amount={totalPrice}
 					shippingPreference="NO_SHIPPING"
-					onSuccess={(details, data) => {
-						alert('Transaction completed by ' + details.payer.name.given_name)
-					}}
+					onSuccess={(details, data) => onSuccess(details, data)}
 				/>
 			</div>
-			</Form>
 		</Container>
 	)
 }

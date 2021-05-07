@@ -10,7 +10,18 @@ const products = [
     description: 'En unik och fin pipa som är handgjord med inspiration av porsche. Märket på pipan och på tygpåsen kommer från en riktig porsche.',
     imgSrc: 'https://i.postimg.cc/XNxfsmbP/porsche3.jpg',
     imgAlt: 'Porsche Pipan',
-    price: 1599
+    price: 1599,
+    details: {
+      detailOne: {
+        material: 'Briar'
+      },
+      detailTwo: {
+        color: 'Röd'
+      },
+      detailThree: {
+        clothbag: 'Ja'
+      }
+    }
   },
   {
     productID: uuidv4(),

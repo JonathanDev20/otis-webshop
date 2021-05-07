@@ -111,8 +111,9 @@ const Routing = ({ cart, setCart, quantity, setQuantity, totalPrice, setTotalPri
 			<Route path="/search/:slug">
 				<SearchPage />
 			</Route>
-			<Route path="/checkout"
-			render={(props) => (<Checkout totalPrice={totalPrice} {...props} />)}></Route>
+			<Route path="/checkout">
+				<Checkout cart={cart} setCart={setCart} />
+			</Route>
 			<Route
 				path="/product/:id"
 				render={(props) => (
