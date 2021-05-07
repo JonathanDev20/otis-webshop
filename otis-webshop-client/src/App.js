@@ -21,19 +21,19 @@ function App() {
 	
 	// Use Effect
 	useEffect(() => {
-    getLocalTodos()
+    getLocalCart()
   }, [])
 
    useEffect(() => {
-     saveLocalTodos()
+     saveLocalCart()
    }, [cart])
 
 	 // Save to localStorage
-	 const saveLocalTodos = () => {
+	 const saveLocalCart = () => {
 		localStorage.setItem('cart', JSON.stringify(cart))
 	}
 	
-	const getLocalTodos = () => {
+	const getLocalCart = () => {
 		if(localStorage.getItem('cart') === null) {
 			localStorage.setItem('cart', JSON.stringify([]))
 		} else {
