@@ -11,7 +11,7 @@ const Cart = ({ cart, setCart, setQuantity }) => {
     if(current.quantity <= 1) {
       setCart(cart.filter((el) => el.product.productID !== product))
     } else {
-      setQuantity(current.quantity -= 1)
+      setCart([...cart], setQuantity(current.quantity -= 1))
     }
 	}
   
@@ -51,7 +51,7 @@ const Cart = ({ cart, setCart, setQuantity }) => {
 									-
 								</Button>
                 <Card.Text className="quantityBetween">{product.quantity}</Card.Text>
-                <Button onClick={() => setQuantity(product.quantity += 1)} variant="outline-success">+</Button>
+                <Button onClick={() => setCart([...cart], setQuantity(product.quantity += 1))} variant="outline-success">+</Button>
                 </Col>
 							</Card.Body>
 						</Card>

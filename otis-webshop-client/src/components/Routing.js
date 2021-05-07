@@ -52,7 +52,7 @@ const Routing = ({ cart, setCart, quantity, setQuantity, totalPrice, setTotalPri
 			<Route exact path="/">
 				<MyHeader />
 				<Container fluid>
-					<Row style={{ textAlign: 'center' }}>
+					<Row lg={4} md={3} sm={2} xs={1} style={{ textAlign: 'center' }}>
 						{categoryData.map((data) => (
 							<Col key={data.id} className="mb-3">
 								<CategoryCard

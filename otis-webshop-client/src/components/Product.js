@@ -25,7 +25,7 @@ const Product = (props) => {
 				</Button>
 			</Card.Body>
 			<Button variant="success">
-				<MdAddShoppingCart />
+				Köp <MdAddShoppingCart />
 			</Button>
 		</Card>
 	)

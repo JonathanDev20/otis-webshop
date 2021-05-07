@@ -4,8 +4,8 @@ import { Container, Jumbotron, Row, Col, Image, Alert } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 
 const Checkout = ({ cart, setCart }) => {
-  const [showAlert, setShowAlert] = useState(true)
-  let history = useHistory()
+	const [showAlert, setShowAlert] = useState(true)
+	let history = useHistory()
 	const onApprove = async (data, actions) => {
 		const order = await actions.order.capture()
 		console.log(order)
@@ -34,13 +34,15 @@ const Checkout = ({ cart, setCart }) => {
 		})
 	}
 
-  const onSuccess = (details, data) => {
-    setCart([])
-    history.push('/')
-    return (
-      <Alert variant="success" onClose={() => setShowAlert(false)} dismissible>Transaction completed by {details.payer.name.given_name}</Alert>
-    )
-  } 
+	const onSuccess = (details, data) => {
+		setCart([])
+		history.push('/')
+		return (
+			<Alert show={showAlert} variant="success" onClose={() => setShowAlert(false)} dismissible>
+				Transaction completed by {details.payer.name.given_name}
+			</Alert>
+		)
+	}
 
 	return (
 		<Container>
@@ -51,31 +53,37 @@ const Checkout = ({ cart, setCart }) => {
 			{cart.map((product) => (
 				<Row className="checkoutProducts">
 					<Col>
-						<Image rounded
+						<Image
+							rounded
 							src={product.product.imgSrc}
 							style={{ width: '10vh', height: '100%' }}
 						/>
 					</Col>
-          <Col>
+					<Col>
 						<h2 variant="warning">{product.product.title}</h2>
 						<h3>{product.product.price}kr</h3>
-          </Col>
+						<h4>{product.quantity}st</h4>
+					</Col>
 				</Row>
 			))}
 
-			<div>
-        <h2>Att betala: {totalPrice}kr</h2>
-			</div>
-			<div className="checkoutWrapper">
-				<PayPalButton
-					createOrder={(data, actions) => createOrder(data, actions)}
-					onApprove={(data, actions) => onApprove(data, actions)}
-					onError={(err) => onError(err)}
-					amount={totalPrice}
-					shippingPreference="NO_SHIPPING"
-					onSuccess={(details, data) => onSuccess(details, data)}
-				/>
-			</div>
+			<Row>
+				<Col>
+					<h3>Att betala: {totalPrice}kr</h3>
+				</Col>
+				<Col>
+					<div className="checkoutWrapper">
+						<PayPalButton
+							createOrder={(data, actions) => createOrder(data, actions)}
+							onApprove={(data, actions) => onApprove(data, actions)}
+							onError={(err) => onError(err)}
+							amount={totalPrice}
+							shippingPreference="NO_SHIPPING"
+							onSuccess={(details, data) => onSuccess(details, data)}
+						/>
+					</div>
+				</Col>
+			</Row>
 		</Container>
 	)
 }

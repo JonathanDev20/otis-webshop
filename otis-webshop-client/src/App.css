@@ -169,11 +169,6 @@ p {
 	color: #8d8d8d;
 }
 
-.checkoutWrapper {
-	display: inline-flex;
-	width: 40vw;
-}
-
 .checkoutProducts {
 	display: inline-flex;
 	margin: 20px;
