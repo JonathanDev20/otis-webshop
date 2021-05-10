@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { BlockPicker } from 'react-color'
 
 // Import Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -6,6 +7,11 @@ import { Form, Container } from 'react-bootstrap'
 
 const SpecialOrder = () => {
 	const [productCategory, setProductCategory] = useState('pipes')
+	const [color, setColor] = useState('#d9e3f0')
+
+	const handleChangeComplete = (color) => {
+		setColor(color)
+	}
 
 	const categoryHandler = (e) => {
 		setProductCategory(e.target.value)
@@ -19,6 +25,7 @@ const SpecialOrder = () => {
 					<Form.Group>
 						<Form.Label>E-post adress</Form.Label>
 						<Form.Control
+							required="true"
 							type="email"
 							placeholder="Fyll i din e-post här..."></Form.Control>
 					</Form.Group>
@@ -41,8 +48,15 @@ const SpecialOrder = () => {
 									<option value="">Räfflig pipa</option>
 									<option value="">Något annat</option>
 								</Form.Control>
+								<Form.Group>
+								<Form.Label>Välj bas färg</Form.Label>
+								<BlockPicker color={ color } onChangeComplete={(e) => handleChangeComplete(e.hex)} />
+								</Form.Group>
+								<Form.Label>Önskemål om mönster</Form.Label>
+								<Form.Control as="textarea" row={3} placeholder="T.ex. Randig eller Prickig i blå färg.."></Form.Control>
+								<Form.File label="Ladda upp en egen bild för att underlätta din design."></Form.File>
 							</>
-						) : productCategory === 'clothbags' ? (
+						) : productCategory === 'clothbags' || productCategory === 'paintings' ? (
 							<>
 								<Form.Label>Välj storlek</Form.Label>
 								<Form.Control as="select">

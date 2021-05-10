@@ -47,7 +47,7 @@ const Checkout = ({ cart, setCart }) => {
 	return (
 		<Container>
 			<Jumbotron style={{ height: '40vh' }} className="paymentPage">
-				<h1 className="test">Nu är du snart klar med din beställning!</h1>
+				<h1 className="checkoutHeaderText">Nu är du snart klar med din beställning!</h1>
 			</Jumbotron>
 
 			{cart.map((product) => (
