@@ -17,22 +17,23 @@ function App() {
 	const [cart, setCart] = useState([])
 	const [quantity, setQuantity] = useState(1)
 	const [search, setSearch] = useState('')
+	const [totalPrice, setTotalPrice] = useState(0)
 	
 	// Use Effect
 	useEffect(() => {
-    getLocalTodos()
+    getLocalCart()
   }, [])
 
    useEffect(() => {
-     saveLocalTodos()
+     saveLocalCart()
    }, [cart])
 
 	 // Save to localStorage
-	 const saveLocalTodos = () => {
+	 const saveLocalCart = () => {
 		localStorage.setItem('cart', JSON.stringify(cart))
 	}
 	
-	const getLocalTodos = () => {
+	const getLocalCart = () => {
 		if(localStorage.getItem('cart') === null) {
 			localStorage.setItem('cart', JSON.stringify([]))
 		} else {
@@ -46,7 +47,7 @@ function App() {
 		<Router>
 			<UserContext.Provider value={[search, setSearch]}>
 			<NavBar cart={cart.reduce((total, obj) => obj.quantity + total,0)} />
-				<Routing cart={cart} setCart={setCart} quantity={quantity} setQuantity={setQuantity} />
+				<Routing totalPrice={totalPrice} setTotalPrice={setTotalPrice} cart={cart} setCart={setCart} quantity={quantity} setQuantity={setQuantity} />
 			<Footer />
 			</UserContext.Provider>
 		</Router>

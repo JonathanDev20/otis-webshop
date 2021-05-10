@@ -34,7 +34,7 @@ const ProductView = ({ cart, setCart, quantity, setQuantity }) => {
 			}
 		}
 		getData()
-	}, [])
+	}, [id])
 
 	const addToCart = (data) => {
 		const newProduct = {product: data, quantity}
@@ -63,7 +63,7 @@ const ProductView = ({ cart, setCart, quantity, setQuantity }) => {
 								</p>
 							</Container>
 						</Jumbotron>
-						<Row>
+						<Row key={data.productID}>
 							<div className="productContent">
 								<Image
 									className="productImage mx-5"
@@ -74,9 +74,9 @@ const ProductView = ({ cart, setCart, quantity, setQuantity }) => {
 								<div
 									className="productDescription m-5"
 									style={{ textAlign: 'center' }}>
-									<p style={{ fontSize: '30px' }}>{data.title}</p>
-									<p>Product ID: {data.productID}</p>
-									<p style={{ color: 'red', fontSize: '20px' }}>
+									<p style={{ fontSize: '30px', marginBottom: '1rem' }}>{data.title}</p>
+									<p style={{ marginBottom: '1rem' }}>Product ID: {data.productID}</p>
+									<p style={{ color: 'red', fontSize: '20px', marginBottom: '1rem' }}>
 										{data.price}kr
 									</p>
 									<InputGroup>

@@ -16,8 +16,9 @@ import Cart from './Cart.js'
 import SpecialOrder from './SpecialOrder.js'
 import ProductView from './ProductView.js'
 import SearchPage from './SearchPage.js'
+import Checkout from './Checkout.js'
 
-const Routing = ({ cart, setCart, quantity, setQuantity }) => {
+const Routing = ({ cart, setCart, quantity, setQuantity, totalPrice, setTotalPrice }) => {
 	const [responseData, setResponseData] = useState([])
 	const [categoryData, setCategoryData] = useState([])
 
@@ -51,7 +52,7 @@ const Routing = ({ cart, setCart, quantity, setQuantity }) => {
 			<Route exact path="/">
 				<MyHeader />
 				<Container fluid>
-					<Row style={{ textAlign: 'center' }}>
+					<Row lg={4} md={3} sm={2} xs={1} style={{ textAlign: 'center' }}>
 						{categoryData.map((data) => (
 							<Col key={data.id} className="mb-3">
 								<CategoryCard
@@ -105,10 +106,13 @@ const Routing = ({ cart, setCart, quantity, setQuantity }) => {
 				<SpecialOrder />
 			</Route>
 			<Route path="/cart">
-				<Cart cart={cart} setCart={setCart} quantity={quantity} setQuantity={setQuantity} />
+				<Cart totalPrice={totalPrice} setTotalPrice={setTotalPrice} cart={cart} setCart={setCart} quantity={quantity} setQuantity={setQuantity} />
 			</Route>
 			<Route path="/search/:slug">
 				<SearchPage />
+			</Route>
+			<Route path="/checkout">
+				<Checkout cart={cart} setCart={setCart} />
 			</Route>
 			<Route
 				path="/product/:id"

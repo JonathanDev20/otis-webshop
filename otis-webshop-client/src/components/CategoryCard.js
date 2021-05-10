@@ -7,7 +7,7 @@ import { Card, Button } from 'react-bootstrap'
 const CategoryCard = (props) => {
   return (
     <Card style={{ width: '18rem', margin: '0 auto'}}>
-      <Card.Img variant="top" src={props.imgSrc} />
+      <Card.Img variant="top" src={props.imgSrc} alt={props.imgAlt} />
       <Card.Body>
         <Card.Title>{props.title}</Card.Title>
         <Card.Text>

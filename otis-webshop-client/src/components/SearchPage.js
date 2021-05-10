@@ -1,43 +1,39 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { UserContext } from '../context/UserContext.js'
+import React, { useState, useEffect } from 'react'
 
 import axios from 'axios'
 
 import Product from './Product.js'
-import { Container, Col, Row, Button } from 'react-bootstrap'
+import { Container, Col, Row, Button, Spinner } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 
 const SearchPage = () => {
 	const [products, setProducts] = useState([])
-  let { slug } = useParams()
+	const [isLoading, setIsLoading] = useState(true)
+	let { slug } = useParams()
 
 	useEffect(() => {
 		async function getData() {
 			try {
+				setIsLoading(isLoading)
 				const response = await axios.get(
 					`https://otis-api.herokuapp.com/products/search/${slug}`
 				)
+				setIsLoading(false)
 				setProducts(response.data.products)
 			} catch (error) {
 				console.log(error)
 			}
 		}
 		getData()
-	}, [])
+	}, [slug, isLoading])
 
 	return (
 		<div>
-			{products.length === 0 ? 
-				<Container>
-					<div>
-						<h1 className="notFoundTitle">404</h1>
-						<p className="notFoundText">
-							Tyvärr hittade vi inga resultat för "{slug}", vänligen försök med något annat.
-						</p>
-						<Button href="/" size="lg" className="m-3" variant="warning">Gå tillbaka</Button>
-					</div>
-				</Container>
-			 : 
+			{isLoading ? (
+				<Spinner animation="border" role="status">
+					<span className="sr-only">Loading...</span>
+				</Spinner>
+			) : products.length > 0 ? (
 				<Container>
 					<Row xl={3} lg={4} md={2} sm={2} xs={1}>
 						{products.map((data) => (
@@ -54,7 +50,20 @@ const SearchPage = () => {
 						))}
 					</Row>
 				</Container>
-			}
+			) : (
+				<Container>
+					<div>
+						<h1 className="notFoundTitle">404</h1>
+						<p className="notFoundText">
+							Tyvärr hittade vi inga resultat för "{slug}", vänligen försök med
+							något annat.
+						</p>
+						<Button href="/" size="lg" className="m-3" variant="warning">
+							Gå tillbaka
+						</Button>
+					</div>
+				</Container>
+			)}
 		</div>
 	)
 }

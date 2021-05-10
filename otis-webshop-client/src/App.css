@@ -15,6 +15,15 @@ p {
 	background-size: cover;
 }
 
+.paymentPage {
+	background: url('./assets/header2.jpg') no-repeat center center;
+	display: table;
+	height: 100%;
+	position: relative;
+	width: 100%;
+	background-size: cover;
+}
+
 .company-name {
 	font-size: 60px;
 	color: white;
@@ -160,8 +169,13 @@ p {
 	color: #8d8d8d;
 }
 
-.productDescription {
-	margin: 15px;
+.checkoutProducts {
+	display: inline-flex;
+	margin: 20px;
+	border: 1px solid black;
+	border-radius: 10px;
+	background-image: radial-gradient( circle farthest-corner at 50.3% 44.5%,  #7493b3 0%, rgba(62,83,104,1) 100.2% );
+	color: white;
 }
 
 @media screen and (min-width: 1000px) {
