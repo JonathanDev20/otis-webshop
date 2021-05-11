@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './App.css'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { UserContext } from './context/UserContext.js'
+import GlobalState from './context/AlertContext.js'
 
 // Import Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -10,6 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import NavBar from './components/NavBar'
 import Footer from './components/Footer'
 import Routing from './components/Routing'
+import Alerts from './components/Alerts'
 
 function App() {
 	const [cart, setCart] = useState([])
@@ -42,11 +44,13 @@ function App() {
 
 	return (
 		<>
+			<GlobalState>
 				<Router>
 					<UserContext.Provider value={[search, setSearch]}>
 						<NavBar
 							cart={cart.reduce((total, obj) => obj.quantity + total, 0)}
 						/>
+						<Alerts type="success" show={false} msg='hej' />
 						<Routing
 							totalPrice={totalPrice}
 							setTotalPrice={setTotalPrice}
@@ -58,6 +62,7 @@ function App() {
 						<Footer />
 					</UserContext.Provider>
 				</Router>
+			</GlobalState>
 		</>
 	)
 }
