@@ -21,8 +21,20 @@ import { AiOutlineShoppingCart } from 'react-icons/ai'
 
 const ProductView = ({ cart, setCart, quantity, setQuantity }) => {
 	const [responseData, setResponseData] = useState([])
-	// const [quantity, setQuantity] = useState(1)
+	const [productAddedToCart, setProductAddedToCart] = useState(false)
 	const { id } = useParams()
+
+	useEffect(() => {
+		if(productAddedToCart) {
+			const timeoutID = setTimeout(() => {
+				setProductAddedToCart(false)
+			}, 2000)
+
+			return () => {
+				clearTimeout(timeoutID)
+			}
+		}
+	}, [productAddedToCart])
 
 	useEffect(() => {
 		async function getData() {
@@ -37,6 +49,7 @@ const ProductView = ({ cart, setCart, quantity, setQuantity }) => {
 	}, [id])
 
 	const addToCart = (data) => {
+		setProductAddedToCart(true)
 		const newProduct = {product: data, quantity}
     const currentIndex = cart.find(product => product.product.productID === newProduct.product.productID)
 		if(currentIndex) {
@@ -44,7 +57,6 @@ const ProductView = ({ cart, setCart, quantity, setQuantity }) => {
 				return item.product.productID === newProduct.product.productID ? { product: newProduct.product, quantity: ( newProduct.quantity + item.quantity ) } : item
 			})
 			setCart(newItemsInCart)
-			console.log(newItemsInCart)
 		} else {
 			setCart([...cart, newProduct])
 		}
@@ -90,9 +102,10 @@ const ProductView = ({ cart, setCart, quantity, setQuantity }) => {
 										/>
 										<Button
 											onClick={() => addToCart(data)}
+											disabled={productAddedToCart}
 											variant="success"
 											type="submit">
-											<AiOutlineShoppingCart /> Lägg i varukorgen
+											<AiOutlineShoppingCart /> {productAddedToCart ? 'Tillagd i varukorgen!' : 'Lägg i varukorgen'} 
 										</Button>
 									</InputGroup>
 								</div>

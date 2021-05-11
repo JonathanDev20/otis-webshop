@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './App.css'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { UserContext } from './context/UserContext.js'
+import GlobalState from './context/AlertContext.js'
 
 // Import Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -10,31 +11,30 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import NavBar from './components/NavBar'
 import Footer from './components/Footer'
 import Routing from './components/Routing'
-
+import Alerts from './components/Alerts'
 
 function App() {
-
 	const [cart, setCart] = useState([])
 	const [quantity, setQuantity] = useState(1)
 	const [search, setSearch] = useState('')
 	const [totalPrice, setTotalPrice] = useState(0)
-	
+
 	// Use Effect
 	useEffect(() => {
-    getLocalCart()
-  }, [])
+		getLocalCart()
+	}, [])
 
-   useEffect(() => {
-     saveLocalCart()
-   }, [cart])
+	useEffect(() => {
+		saveLocalCart()
+	}, [cart])
 
-	 // Save to localStorage
-	 const saveLocalCart = () => {
+	// Save to localStorage
+	const saveLocalCart = () => {
 		localStorage.setItem('cart', JSON.stringify(cart))
 	}
-	
+
 	const getLocalCart = () => {
-		if(localStorage.getItem('cart') === null) {
+		if (localStorage.getItem('cart') === null) {
 			localStorage.setItem('cart', JSON.stringify([]))
 		} else {
 			let cartFromLocal = JSON.parse(localStorage.getItem('cart'))
@@ -44,13 +44,25 @@ function App() {
 
 	return (
 		<>
-		<Router>
-			<UserContext.Provider value={[search, setSearch]}>
-			<NavBar cart={cart.reduce((total, obj) => obj.quantity + total,0)} />
-				<Routing totalPrice={totalPrice} setTotalPrice={setTotalPrice} cart={cart} setCart={setCart} quantity={quantity} setQuantity={setQuantity} />
-			<Footer />
-			</UserContext.Provider>
-		</Router>
+			<GlobalState>
+				<Router>
+					<UserContext.Provider value={[search, setSearch]}>
+						<NavBar
+							cart={cart.reduce((total, obj) => obj.quantity + total, 0)}
+						/>
+						<Alerts type="success" show={false} msg='hej' />
+						<Routing
+							totalPrice={totalPrice}
+							setTotalPrice={setTotalPrice}
+							cart={cart}
+							setCart={setCart}
+							quantity={quantity}
+							setQuantity={setQuantity}
+						/>
+						<Footer />
+					</UserContext.Provider>
+				</Router>
+			</GlobalState>
 		</>
 	)
 }

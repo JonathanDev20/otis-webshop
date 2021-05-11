@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import { PayPalButton } from 'react-paypal-button-v2'
 import { Container, Jumbotron, Row, Col, Image, Alert } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
+import { AlertContext } from '../context/AlertContext.js'
 
 const Checkout = ({ cart, setCart }) => {
-	const [showAlert, setShowAlert] = useState(true)
+	const {setShow, setMsg, setType} = React.useContext(AlertContext)
+
 	let history = useHistory()
 	const onApprove = async (data, actions) => {
 		const order = await actions.order.capture()
@@ -37,17 +39,15 @@ const Checkout = ({ cart, setCart }) => {
 	const onSuccess = (details, data) => {
 		setCart([])
 		history.push('/')
-		return (
-			<Alert show={showAlert} variant="success" onClose={() => setShowAlert(false)} dismissible>
-				Transaction completed by {details.payer.name.given_name}
-			</Alert>
-		)
+		setShow(true)
+		setMsg('Tack För Ditt Köp')
+		setType('success')
 	}
 
 	return (
 		<Container>
 			<Jumbotron style={{ height: '40vh' }} className="paymentPage">
-				<h1 className="test">Nu är du snart klar med din beställning!</h1>
+				<h1 className="checkoutHeaderText">Nu är du snart klar med din beställning!</h1>
 			</Jumbotron>
 
 			{cart.map((product) => (

@@ -23,10 +23,12 @@ const Cart = ({ cart, setCart, setQuantity }) => {
 	const EmptyCart = () => (
 		<div className="cartItems p-3 m-2">
 			<div className="emptyCart">
+				<div className="emptyCartText">
 				<h3>
 					Oops.. Här verkade det vara tomt, kom tillbaka med lite produkter
 				</h3>
         <Button variant="warning" href="/">Gå tillbaka till startsidan</Button>
+				</div>
 			</div>
 		</div>
 	)
