@@ -199,6 +199,24 @@ p {
 	background-color: rgba(0, 0, 0, 0.527);
 }
 
+.not-found {
+	min-height: 90vh;
+	background-image: linear-gradient( 90.5deg,  rgba(255,207,139,0.50) 1.1%, rgba(255,207,139,1) 81.3% );
+}
+
+.not-found-container {
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.not-found-container h1 {
+	font-size: 160px;
+	font-weight: 900;
+}
+
 @media screen and (min-width: 1000px) {
 	.company-name {
 		font-size: 8vw;

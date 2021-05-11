@@ -17,6 +17,7 @@ import SpecialOrder from './SpecialOrder.js'
 import ProductView from './ProductView.js'
 import SearchPage from './SearchPage.js'
 import Checkout from './Checkout.js'
+import NotFound from './NotFound.js'
 
 const Routing = ({ cart, setCart, quantity, setQuantity, totalPrice, setTotalPrice }) => {
 	const [responseData, setResponseData] = useState([])
@@ -119,6 +120,9 @@ const Routing = ({ cart, setCart, quantity, setQuantity, totalPrice, setTotalPri
 				render={(props) => (
 					<ProductView cart={cart} setCart={setCart} {...props} quantity={quantity} setQuantity={setQuantity} />
 				)}></Route>
+				<Route path="*">
+					<NotFound />
+				</Route>
 		</Switch>
 	)
 }
