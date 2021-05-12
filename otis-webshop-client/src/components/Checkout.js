@@ -51,12 +51,12 @@ const Checkout = ({ cart, setCart }) => {
 			</Jumbotron>
 
 			{cart.map((product) => (
-				<Row className="checkoutProducts">
+				<Row key={product.product.productID} fluid="true" className="checkoutProducts">
 					<Col>
 						<Image
 							rounded
 							src={product.product.imgSrc}
-							style={{ width: '10vh', height: '100%' }}
+							style={{ width: '10vh', height: '100%', objectFit: 'cover' }}
 						/>
 					</Col>
 					<Col>
