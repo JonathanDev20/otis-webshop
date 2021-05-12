@@ -3,7 +3,14 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
 import Product from './Product.js'
-import { Container, Col, Row, Button, Spinner } from 'react-bootstrap'
+import {
+	Container,
+	Col,
+	Row,
+	Button,
+	Spinner,
+	Jumbotron
+} from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 
 const SearchPage = () => {
@@ -35,6 +42,17 @@ const SearchPage = () => {
 				</Spinner>
 			) : products.length > 0 ? (
 				<Container>
+					<Jumbotron
+						style={{
+							background: 'linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)'
+						}}>
+						<Container className="m-2">
+							<h1 className="logo">Sökresultat</h1>
+							<p>
+								Visar resultatet av "{slug}".
+							</p>
+						</Container>
+					</Jumbotron>
 					<Row xl={3} lg={4} md={2} sm={2} xs={1}>
 						{products.map((data) => (
 							<Col key={data.id} className="mb-3">

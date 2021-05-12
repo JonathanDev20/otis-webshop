@@ -28,7 +28,7 @@ const Extras = () => {
 					background: 'linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)'
 				}}>
 				<Container className="m-2">
-					<h1>Övrigt</h1>
+					<h1 className="logo">Övrigt</h1>
 					<p>Här hittar du vårt fina utbud av övriga produkter. Välj bland olika stilar och produkter.</p>
 				</Container>
 			</Jumbotron>

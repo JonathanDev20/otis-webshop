@@ -29,7 +29,7 @@ const Pipes = () => {
 					background: 'linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)'
 				}}>
 				<Container className="m-2">
-					<h1>Pipor</h1>
+					<h1 className="logo">Pipor</h1>
 					<p>Här hittar du vårt fina utbud av pipor. Välj bland olika stilar och färger.</p>
 				</Container>
 			</Jumbotron>
