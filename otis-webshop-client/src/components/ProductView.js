@@ -15,9 +15,11 @@ import {
 	Tabs,
 	Tab,
 	Jumbotron,
-	Table
+	Table,
+	Form
 } from 'react-bootstrap'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
+import ProductRating from './ProductRating'
 
 const ProductView = ({ cart, setCart, quantity, setQuantity }) => {
 	const [responseData, setResponseData] = useState([])
@@ -167,7 +169,14 @@ const ProductView = ({ cart, setCart, quantity, setQuantity }) => {
 											</Table>
 										</Tab>
 										<Tab eventKey="review" title="Recensioner">
-											blahblah
+											<Form>
+												<Form.Group>
+												<Form.Label>Skriv en recension på denna produkt.</Form.Label>
+												<Form.Control as="textarea" maxLength={500} row={6} placeholder="Max 500 bokstäver.."></Form.Control>
+												</Form.Group>
+											</Form>
+											<ProductRating />
+											<Button>Skriv Recension</Button>
 										</Tab>
 									</Tabs>
 								</div>
