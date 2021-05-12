@@ -12,6 +12,7 @@ import {
 	Jumbotron
 } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
+import LoadingSpinner from './LoadingSpinner.js'
 
 const SearchPage = () => {
 	const [products, setProducts] = useState([])
@@ -19,27 +20,27 @@ const SearchPage = () => {
 	let { slug } = useParams()
 
 	useEffect(() => {
-		async function getData() {
-			try {
-				setIsLoading(isLoading)
-				const response = await axios.get(
-					`https://otis-api.herokuapp.com/products/search/${slug}`
-				)
-				setIsLoading(false)
-				setProducts(response.data.products)
-			} catch (error) {
-				console.log(error)
+		setTimeout(() => {
+			async function getData() {
+				try {
+					setIsLoading(isLoading)
+					const response = await axios.get(
+						`https://otis-api.herokuapp.com/products/search/${slug}`
+					)
+					setIsLoading(false)
+					setProducts(response.data.products)
+				} catch (error) {
+					console.log(error)
+				}
 			}
-		}
-		getData()
+			getData()
+		}, 500)
 	}, [slug, isLoading])
 
 	return (
 		<div>
 			{isLoading ? (
-				<Spinner animation="border" role="status">
-					<span className="sr-only">Loading...</span>
-				</Spinner>
+				<LoadingSpinner />
 			) : products.length > 0 ? (
 				<Container>
 					<Jumbotron
@@ -48,9 +49,7 @@ const SearchPage = () => {
 						}}>
 						<Container className="m-2">
 							<h1 className="logo">Sökresultat</h1>
-							<p>
-								Visar resultatet av "{slug}".
-							</p>
+							<p>Visar resultatet av "{slug}".</p>
 						</Container>
 					</Jumbotron>
 					<Row xl={3} lg={4} md={2} sm={2} xs={1}>

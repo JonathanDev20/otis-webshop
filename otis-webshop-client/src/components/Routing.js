@@ -26,9 +26,7 @@ const Routing = ({ cart, setCart, quantity, setQuantity, totalPrice, setTotalPri
 	useEffect(() => {
 		async function getData() {
 			try {
-				const response = await axios.get(
-					'https://otis-api.herokuapp.com/products/random'
-				)
+				const response = await axios.get(process.env.REACT_APP_RANDOM)
 				setResponseData(response.data.productData)
 			} catch (error) {
 				console.log(error)
@@ -40,9 +38,8 @@ const Routing = ({ cart, setCart, quantity, setQuantity, totalPrice, setTotalPri
 
 	async function getCategories() {
 		try {
-			const response = await axios.get(
-				'https://otis-api.herokuapp.com/products/loadCategories'
-			)
+			const response = await axios.get(process.env.REACT_APP_CATEGORIES)
+			console.log(response)
 			setCategoryData(response.data.allCategories)
 		} catch (error) {
 			console.log(error)
