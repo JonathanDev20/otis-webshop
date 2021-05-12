@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
 import { useParams } from 'react-router-dom'
+import LoadingSpinner from './LoadingSpinner'
 
 // Import Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -18,14 +19,14 @@ import {
 } from 'react-bootstrap'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 
-
 const ProductView = ({ cart, setCart, quantity, setQuantity }) => {
 	const [responseData, setResponseData] = useState([])
 	const [productAddedToCart, setProductAddedToCart] = useState(false)
+	const [isLoading, setIsLoading] = useState(true)
 	const { id } = useParams()
 
 	useEffect(() => {
-		if(productAddedToCart) {
+		if (productAddedToCart) {
 			const timeoutID = setTimeout(() => {
 				setProductAddedToCart(false)
 			}, 2000)
@@ -37,24 +38,36 @@ const ProductView = ({ cart, setCart, quantity, setQuantity }) => {
 	}, [productAddedToCart])
 
 	useEffect(() => {
-		async function getData() {
-			try {
-				const response = await axios.get(`https://otis-api.herokuapp.com/products/${id}`)
-				setResponseData(response.data.productData)
-			} catch (error) {
-				console.log(error)
+		setTimeout(() => {
+			async function getData() {
+				try {
+					const response = await axios.get(
+						`https://otis-api.herokuapp.com/products/${id}`
+					)
+					setResponseData(response.data.productData)
+					setIsLoading(false)
+				} catch (error) {
+					console.log(error)
+				}
 			}
-		}
-		getData()
+			getData()
+		}, 200)
 	}, [id])
 
 	const addToCart = (data) => {
 		setProductAddedToCart(true)
-		const newProduct = {product: data, quantity}
-    const currentIndex = cart.find(product => product.product.productID === newProduct.product.productID)
-		if(currentIndex) {
-			const newItemsInCart = cart.map(item => {
-				return item.product.productID === newProduct.product.productID ? { product: newProduct.product, quantity: ( newProduct.quantity + item.quantity ) } : item
+		const newProduct = { product: data, quantity }
+		const currentIndex = cart.find(
+			(product) => product.product.productID === newProduct.product.productID
+		)
+		if (currentIndex) {
+			const newItemsInCart = cart.map((item) => {
+				return item.product.productID === newProduct.product.productID
+					? {
+							product: newProduct.product,
+							quantity: newProduct.quantity + item.quantity
+					  }
+					: item
 			})
 			setCart(newItemsInCart)
 		} else {
@@ -64,84 +77,105 @@ const ProductView = ({ cart, setCart, quantity, setQuantity }) => {
 
 	return (
 		<div>
-			<Container>
-				{responseData.map((data) => (
-					<>
-						<Jumbotron style={{ background: 'linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)' }}>
-							<Container className="m-2">
-								<h1>{data.title}</h1>
-								<p>
-									Här hittar du mer information kring den produkten du valde att klicka dig in på.
-								</p>
-							</Container>
-						</Jumbotron>
-						<Row key={data.productID}>
-							<div className="productContent">
-								<Image
-									className="productImage mx-5"
-									src={data.imgSrc}
-									alt={data.imgAlt}
-									rounded
-								/>
-								<div
-									className="productDescription m-5"
-									style={{ textAlign: 'center' }}>
-									<p style={{ fontSize: '30px', marginBottom: '1rem' }}>{data.title}</p>
-									<p style={{ marginBottom: '1rem' }}>Product ID: {data.productID}</p>
-									<p style={{ color: 'red', fontSize: '20px', marginBottom: '1rem' }}>
-										{data.price}kr
+			{isLoading ? (
+				<LoadingSpinner />
+			) : (
+				<Container>
+					{responseData.map((data) => (
+						<>
+							<Jumbotron
+								style={{
+									background:
+										'linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)'
+								}}>
+								<Container className="m-2">
+									<h1>{data.title}</h1>
+									<p>
+										Här hittar du mer information kring den produkten du valde
+										att klicka dig in på.
 									</p>
-									<InputGroup>
-										<input
-											type="number"
-											className="form-control"
-											min="1"
-											max="10"
-											value={quantity}
-											onChange={(e) => setQuantity(Number(e.target.value))}
-										/>
-										<Button
-											onClick={() => addToCart(data)}
-											disabled={productAddedToCart}
-											variant="success"
-											type="submit">
-											<AiOutlineShoppingCart /> {productAddedToCart ? 'Tillagd i varukorgen!' : 'Lägg i varukorgen'} 
-										</Button>
-									</InputGroup>
+								</Container>
+							</Jumbotron>
+							<Row key={data.productID}>
+								<div className="productContent">
+									<Image
+										className="productImage mx-5"
+										src={data.imgSrc}
+										alt={data.imgAlt}
+										rounded
+									/>
+									<div
+										className="productDescription m-5"
+										style={{ textAlign: 'center' }}>
+										<p style={{ fontSize: '30px', marginBottom: '1rem' }}>
+											{data.title}
+										</p>
+										<p style={{ marginBottom: '1rem' }}>
+											Product ID: {data.productID}
+										</p>
+										<p
+											style={{
+												color: 'red',
+												fontSize: '20px',
+												marginBottom: '1rem'
+											}}>
+											{data.price}kr
+										</p>
+										<InputGroup>
+											<input
+												type="number"
+												className="form-control"
+												min="1"
+												max="10"
+												value={quantity}
+												onChange={(e) => setQuantity(Number(e.target.value))}
+											/>
+											<Button
+												onClick={() => addToCart(data)}
+												disabled={productAddedToCart}
+												variant="success"
+												type="submit">
+												<AiOutlineShoppingCart />{' '}
+												{productAddedToCart
+													? 'Tillagd i varukorgen!'
+													: 'Lägg i varukorgen'}
+											</Button>
+										</InputGroup>
+									</div>
 								</div>
-							</div>
-							<div className="container m-5">
-								<Tabs className="my-2" defaultActiveKey="description">
-									<Tab eventKey="description" title="Beskrivning">
-										{data.description}
-									</Tab>
-									<Tab eventKey="moreInfo" title="Mer Info">
-										<Table>
-											<thead>
-												<tr>
-												<td> Material</td>
-												<td>Ek</td>
-												</tr>
-												<tr>
-													<td>Färg</td>
-													<td>Röd</td>
-												</tr>
-												<tr>
-													<td>Tilkommer tygkasse</td>
-													<td>Ja</td>
-												</tr>
-											</thead>
-										</Table>
-									</Tab>
-									<Tab eventKey="review" title="Recensioner">
-										blahblah
-									</Tab>
-								</Tabs>
-							</div>
-						</Row>
-					</>
-				))}
-			</Container>
+								<div className="container m-5">
+									<Tabs className="my-2" defaultActiveKey="description">
+										<Tab eventKey="description" title="Beskrivning">
+											{data.description}
+										</Tab>
+										<Tab eventKey="moreInfo" title="Mer Info">
+											<Table>
+												<thead>
+													<tr>
+														<td> Material</td>
+														<td>Ek</td>
+													</tr>
+													<tr>
+														<td>Färg</td>
+														<td>Röd</td>
+													</tr>
+													<tr>
+														<td>Tilkommer tygkasse</td>
+														<td>Ja</td>
+													</tr>
+												</thead>
+											</Table>
+										</Tab>
+										<Tab eventKey="review" title="Recensioner">
+											blahblah
+										</Tab>
+									</Tabs>
+								</div>
+							</Row>
+						</>
+					))}
+				</Container>
+			)}
 		</div>
 	)
 }

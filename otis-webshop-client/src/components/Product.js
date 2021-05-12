@@ -17,8 +17,8 @@ const Product = (props) => {
 						src={props.imgSrc}
 						alt={props.imgAlt}></Card.Img>
 				</Link>
-				<Card.Title tag="h5">{props.title}</Card.Title>
-				<Card.Subtitle tag="h6" className="m-3">
+				<Card.Title tag="h4">{props.title}</Card.Title>
+				<Card.Subtitle tag="h5" className="m-3">
 					{props.price}
 				</Card.Subtitle>
 				<Button href={`/product/${props.id}`} variant="dark" size="sm">

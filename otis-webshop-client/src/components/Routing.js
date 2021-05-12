@@ -22,14 +22,19 @@ import NotFound from './NotFound.js'
 const Routing = ({ cart, setCart, quantity, setQuantity, totalPrice, setTotalPrice }) => {
 	const [responseData, setResponseData] = useState([])
 	const [categoryData, setCategoryData] = useState([])
+	const [error, setError] = useState(null)
 
 	useEffect(() => {
 		async function getData() {
 			try {
 				const response = await axios.get(process.env.REACT_APP_RANDOM)
+				if (response.status !== 200) {
+					throw Error('Could not fetch the data for that resource')
+				} 
 				setResponseData(response.data.productData)
+				setError(null)
 			} catch (error) {
-				console.log(error)
+				setError(error)
 			}
 		}
 		getData()
@@ -39,10 +44,13 @@ const Routing = ({ cart, setCart, quantity, setQuantity, totalPrice, setTotalPri
 	async function getCategories() {
 		try {
 			const response = await axios.get(process.env.REACT_APP_CATEGORIES)
-			console.log(response)
+			if (response.status !== 200) {
+				throw Error('Could not fetch the data for that resource')
+			} 
 			setCategoryData(response.data.allCategories)
+			setError(null)
 		} catch (error) {
-			console.log(error)
+			setError(error)
 		}
 	}
 	return (
@@ -50,6 +58,7 @@ const Routing = ({ cart, setCart, quantity, setQuantity, totalPrice, setTotalPri
 			<Route exact path="/">
 				<MyHeader />
 				<Container fluid>
+					{ error && <div>{ error }</div> }
 					<Row lg={4} md={3} sm={2} xs={1} style={{ textAlign: 'center' }}>
 						{categoryData.map((data) => (
 							<Col key={data.id} className="mb-3">
@@ -69,6 +78,7 @@ const Routing = ({ cart, setCart, quantity, setQuantity, totalPrice, setTotalPri
 					<h1>Våra Produkter</h1>
 				</div>
 				<Container fluid>
+				{ error && <div>{ error }</div> }
 					<Row lg={4} md={3} sm={2} xs={1}>
 						{responseData.map((data) => (
 							<Col key={data.id} className="mb-3">
