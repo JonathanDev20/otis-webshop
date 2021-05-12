@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { PayPalButton } from 'react-paypal-button-v2'
-import { Container, Jumbotron, Row, Col, Image, Alert } from 'react-bootstrap'
+import { Container, Jumbotron, Row, Col, Image, Button } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import { AlertContext } from '../context/AlertContext.js'
 
 const Checkout = ({ cart, setCart }) => {
-	const {setShow, setMsg, setType} = React.useContext(AlertContext)
+	const { setShow, setMsg, setType } = React.useContext(AlertContext)
 
 	let history = useHistory()
 	const onApprove = async (data, actions) => {
@@ -44,14 +44,32 @@ const Checkout = ({ cart, setCart }) => {
 		setType('success')
 	}
 
-	return (
+	return cart.length < 1 ? (
+		<div className="cartItems p-3 m-2">
+			<div className="emptyCart">
+				<div className="emptyCartText">
+					<h3>
+						Det verkar som att du inte har några produkter i din varukorg.
+					</h3>
+					<Button variant="warning" href="/">
+						Gå tillbaka till startsidan
+					</Button>
+				</div>
+			</div>
+		</div>
+	) : (
 		<Container>
 			<Jumbotron style={{ height: '40vh' }} className="paymentPage">
-				<h1 className="checkoutHeaderText">Nu är du snart klar med din beställning!</h1>
+				<h1 className="checkoutHeaderText">
+					Nu är du snart klar med din beställning!
+				</h1>
 			</Jumbotron>
 
 			{cart.map((product) => (
-				<Row key={product.product.productID} fluid="true" className="checkoutProducts">
+				<Row
+					key={product.product.productID}
+					fluid="true"
+					className="checkoutProducts">
 					<Col>
 						<Image
 							rounded
