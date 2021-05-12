@@ -25,6 +25,7 @@ const ProductView = ({ cart, setCart, quantity, setQuantity }) => {
 	const [responseData, setResponseData] = useState([])
 	const [productAddedToCart, setProductAddedToCart] = useState(false)
 	const [isLoading, setIsLoading] = useState(true)
+	const [rating, setRating] = useState(null)
 	const { id } = useParams()
 
 	useEffect(() => {
@@ -85,6 +86,7 @@ const ProductView = ({ cart, setCart, quantity, setQuantity }) => {
 				<Container>
 					{responseData.map((data) => (
 						<>
+						<div key={data.productID}>
 							<Jumbotron
 								style={{
 									background:
@@ -98,7 +100,7 @@ const ProductView = ({ cart, setCart, quantity, setQuantity }) => {
 									</p>
 								</Container>
 							</Jumbotron>
-							<Row key={data.productID}>
+							<Row>
 								<div className="productContent">
 									<Image
 										className="productImage mx-5"
@@ -113,7 +115,7 @@ const ProductView = ({ cart, setCart, quantity, setQuantity }) => {
 											{data.title}
 										</p>
 										<p style={{ marginBottom: '1rem' }}>
-											Product ID: {data.productID}
+											ArtikelNr: {data.productID}
 										</p>
 										<p
 											style={{
@@ -171,16 +173,25 @@ const ProductView = ({ cart, setCart, quantity, setQuantity }) => {
 										<Tab eventKey="review" title="Recensioner">
 											<Form>
 												<Form.Group>
-												<Form.Label>Skriv en recension på denna produkt.</Form.Label>
-												<Form.Control as="textarea" maxLength={500} row={6} placeholder="Max 500 bokstäver.."></Form.Control>
+												<Form.Label style={{ fontWeight: '600' }}>Skriv en recension på denna produkt.</Form.Label>
+												<Form.Control as="textarea" maxLength={500} rows={5} placeholder="Max 500 bokstäver.."></Form.Control>
+												</Form.Group>
+												<Form.Group>
+													<Form.Label style={{ fontWeight: '600' }}>Skulle du rekommendera denna produkt?</Form.Label>
+													<Form.Control as="select">
+														<option value="Ja">Ja</option>
+														<option value="Nej">Nej</option>
+														<option value="Vet Ej">Vet Ej</option>
+													</Form.Control>
 												</Form.Group>
 											</Form>
-											<ProductRating />
-											<Button>Skriv Recension</Button>
+											<ProductRating rating={rating} setRating={setRating} />
+											<Button onClick={() => console.log(rating)}>Skriv Recension</Button>
 										</Tab>
 									</Tabs>
 								</div>
 							</Row>
+							</div>
 						</>
 					))}
 				</Container>

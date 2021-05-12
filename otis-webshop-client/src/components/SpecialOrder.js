@@ -70,7 +70,7 @@ const SpecialOrder = () => {
 									<Form.Control
 										as="textarea"
 										type="text"
-										row={3}
+										rows={3}
 										maxLength={500}
 										placeholder="Ex. Randig eller Prickig i blå färg.."></Form.Control>
 								</Form.Group>
@@ -83,7 +83,7 @@ const SpecialOrder = () => {
 										as="textarea"
 										type="text"
 										maxLength={500}
-										row={4}
+										rows={4}
 										placeholder="Din text här.."></Form.Control>
 								</Form.Group>
 								<Button size="lg" variant="primary">

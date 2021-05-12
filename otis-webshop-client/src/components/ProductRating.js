@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { AiTwotoneStar } from 'react-icons/ai'
 
-const ProductRating = () => {
-	const [rating, setRating] = useState(null)
+const ProductRating = ({ rating, setRating }) => {
   const [hover, setHover] = useState(null)
 
 	return (
@@ -11,7 +10,7 @@ const ProductRating = () => {
 				const ratingValue = i + 1
 
 				return (
-					<label>
+					<label key={ratingValue}>
 						<input
 							type="radio"
 							name="rating"
@@ -28,7 +27,7 @@ const ProductRating = () => {
 					</label>
 				)
 			})}
-      <p>{rating < 1 ? "Sätt ett betyg" : "Betyget är satt till " + rating}</p>
+      <p style={{ fontWeight: '600' }}>{rating < 1 ? "Sätt ett betyg :)" : "Betyget är satt till " + rating + "."}</p>
 		</div>
 	)
 }

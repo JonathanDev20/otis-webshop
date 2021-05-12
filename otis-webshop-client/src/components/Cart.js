@@ -34,7 +34,7 @@ const Cart = ({ cart, setCart, setQuantity }) => {
 	)
 
 	const FilledCart = () => (
-    <div className="cartItems p-3 m-2">
+    <div className="cartItems p-3 m-3">
 			<h3>Välkommen till din varukorg</h3>
 			<Row className="my-3" lg={3} md={3} sm={2} xs={1}>
 				{cart.map((product) => (
