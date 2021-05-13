@@ -87,22 +87,50 @@ const SpecialOrder = () => {
 										placeholder="Din text här.."></Form.Control>
 								</Form.Group>
 								<Button size="lg" variant="primary">
-									Skicka
+									Skicka förfrågan
 								</Button>
 							</>
 						) : productCategory === 'clothbags' ||
 						  productCategory === 'paintings' ? (
 							<>
-								<Form.Label>Välj storlek</Form.Label>
-								<Form.Control as="select">
-									<option value="small">Liten</option>
-									<option value="medium">Mellan</option>
-									<option value="large">Stor</option>
-									<option value="x-large">Extra stor</option>
-								</Form.Control>
+								<Form.Group>
+									<Form.Label>Välj storlek</Form.Label>
+									<Form.Control as="select">
+										<option value="small">Liten</option>
+										<option value="medium">Mellan</option>
+										<option value="large">Stor</option>
+										<option value="x-large">Extra stor</option>
+									</Form.Control>
+								</Form.Group>
+								<Form.Group>
+									<Form.Label>Välj din design</Form.Label>
+									<Form.Control
+										as="textarea"
+										rows={4}
+										maxLength={200}
+										placeholder="Här kan du antingen skriva en design som redan finns eller beskriva en egen."></Form.Control>
+								</Form.Group>
+
+								<Form.Group>
+									<Form.File label="Ladda upp en bild för en bättre beskrivning av din design."></Form.File>
+								</Form.Group>
+								<Button variant="primary">Skicka förfrågan</Button>
 							</>
 						) : (
-							console.log('aaaaaaaa')
+							<>
+								<Form.Group>
+									<Form.Label>Beskriv önskad produkt</Form.Label>
+									<Form.Control
+										as="textarea"
+										maxLength={500}
+										rows={5}
+										placeholder="Ge en beskrivning av vad för produkt du är intresserad av.."></Form.Control>
+								</Form.Group>
+								<Form.Group>
+									<Form.File label="Ladda upp en bild för en bättre beskrivning av din design."></Form.File>
+								</Form.Group>
+								<Button variant="primary">Skicka förfrågan</Button>
+							</>
 						)}
 					</Form.Group>
 				</Form>

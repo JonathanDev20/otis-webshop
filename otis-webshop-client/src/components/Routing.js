@@ -59,7 +59,7 @@ const Routing = ({ cart, setCart, quantity, setQuantity, totalPrice, setTotalPri
 				<MyHeader />
 				<Container fluid>
 					{ error && <div>{ error }</div> }
-					<Row lg={4} md={3} sm={2} xs={1} style={{ textAlign: 'center' }}>
+					<Row lg={4} md={2} sm={2} xs={1}>
 						{categoryData.map((data) => (
 							<Col key={data.id} className="mb-3">
 								<CategoryCard
@@ -96,7 +96,7 @@ const Routing = ({ cart, setCart, quantity, setQuantity, totalPrice, setTotalPri
 				</Container>
 			</Route>
 			<Route path="/pipes">
-				<Pipes />
+				<Pipes cart={cart} setCart={setCart} />
 			</Route>
 			<Route path="/clothbags">
 				<Clothbags />
@@ -114,7 +114,7 @@ const Routing = ({ cart, setCart, quantity, setQuantity, totalPrice, setTotalPri
 				<SpecialOrder />
 			</Route>
 			<Route path="/cart">
-				<Cart totalPrice={totalPrice} setTotalPrice={setTotalPrice} cart={cart} setCart={setCart} quantity={quantity} setQuantity={setQuantity} />
+				<Cart cart={cart} setCart={setCart} quantity={quantity} setQuantity={setQuantity} />
 			</Route>
 			<Route path="/search/:slug">
 				<SearchPage />

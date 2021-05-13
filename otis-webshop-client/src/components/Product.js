@@ -8,6 +8,12 @@ import { Card, Button } from 'react-bootstrap'
 import { MdAddShoppingCart } from 'react-icons/md'
 
 const Product = (props) => {
+
+	const buttonHandler = () => {
+		// console.log(props)
+		// props.setCart([...props.cart, { product: props, quantity: 1}])
+	}
+
 	return (
 		<Card key={props.productID}>
 			<Card.Body>
@@ -25,7 +31,7 @@ const Product = (props) => {
 					Gå till produkt
 				</Button>
 			</Card.Body>
-			<Button variant="success">
+			<Button onClick={() => buttonHandler()} variant="success">
 				Köp <MdAddShoppingCart />
 			</Button>
 		</Card>

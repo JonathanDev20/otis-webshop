@@ -7,7 +7,7 @@ import LoadingSpinner from './LoadingSpinner.js'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Container, Col, Row, Jumbotron } from 'react-bootstrap'
 
-const Pipes = () => {
+const Pipes = ({ cart, setCart }) => {
 	const [responseData, isLoading, error] = useFetch(process.env.REACT_APP_URL)
 	return (
 		<div>
@@ -33,6 +33,8 @@ const Pipes = () => {
 							data.productCategory === 'pipes' ? (
 								<Col key={data.id} className="mb-3">
 									<Product
+										cart={cart} 
+										setCart={setCart}
 										id={data.id}
 										productID={data.productID}
 										title={data.title}

@@ -35,7 +35,7 @@ const Cart = ({ cart, setCart, setQuantity }) => {
 
 	const FilledCart = () => (
     <div className="cartItems p-3 m-3">
-			<h3>Välkommen till din varukorg</h3>
+			<h1 style={{ textAlign: 'center' }} className="logo">Välkommen till din varukorg</h1>
 			<Row className="my-3" lg={3} md={3} sm={2} xs={1}>
 				{cart.map((product) => (
 					<Col key={product.product.productID}>
@@ -67,7 +67,6 @@ const Cart = ({ cart, setCart, setQuantity }) => {
         <Link to="/checkout">
           <Button variant="success">Gå vidare till köp</Button>
         </Link>
-        {/* <Checkout totalPrice={totalPrice} /> */}
         </Col>
 			</Row>
 		</div>

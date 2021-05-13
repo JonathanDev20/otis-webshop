@@ -8,10 +8,9 @@ import {
 	Col,
 	Row,
 	Button,
-	Spinner,
 	Jumbotron
 } from 'react-bootstrap'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import LoadingSpinner from './LoadingSpinner.js'
 
 const SearchPage = () => {
@@ -68,18 +67,18 @@ const SearchPage = () => {
 					</Row>
 				</Container>
 			) : (
-				<Container>
-					<div>
-						<h1 className="notFoundTitle">404</h1>
-						<p className="notFoundText">
-							Tyvärr hittade vi inga resultat för "{slug}", vänligen försök med
-							något annat.
-						</p>
-						<Button href="/" size="lg" className="m-3" variant="warning">
-							Gå tillbaka
-						</Button>
+					<div className="not-found">
+						<div className="not-found-container">
+							<h1>404</h1>
+							<h2>Tyvärr hittade vi inga resultat för "{slug}"</h2>
+							<p>
+								Vänligen försök med något annat eller gå tillbaka till startsidan.
+							</p>
+							<Link to="/">
+								<Button>Till startsidan..</Button>
+							</Link>
+						</div>
 					</div>
-				</Container>
 			)}
 		</div>
 	)
