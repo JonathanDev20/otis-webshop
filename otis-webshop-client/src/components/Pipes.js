@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Product from './Product.js'
 import useFetch from './useFetch.js'
 import LoadingSpinner from './LoadingSpinner.js'
@@ -6,31 +6,12 @@ import LoadingSpinner from './LoadingSpinner.js'
 // Import Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Container, Col, Row, Jumbotron } from 'react-bootstrap'
+import Sorting from './Sorting.js'
 
 const Pipes = ({ cart, setCart }) => {
 	const [responseData, isLoading, error] = useFetch(process.env.REACT_APP_URL)
-	const [filteredProducts, setFilteredProducts] = useState(responseData)
-	const [sort, setSort] = useState(null)
-
-	useEffect(() => {
-		console.log(sort)
-		setFilteredProducts(responseData)
-		sortProducts()
-	}, [sort, responseData])
-
-	const sortProducts = async () => {
-		if (sort === 'price') {
-			 setFilteredProducts(
-				filteredProducts.sort((a, b) => (a.price > b.price ? 1 : -1))
-			)
-		} else if (sort === 'alphabetic') {
-			 setFilteredProducts(
-				filteredProducts.sort((a, b) => (a.title > b.title ? 1 : -1))
-			)
-		} else {
-			setFilteredProducts(responseData)
-		}
-	}
+	const [filteredProducts, setFilteredProducts] = useState([])
+	const [sort, setSort] = useState('default')
 	return (
 		<div>
 			{error && <div>{error}</div>}
@@ -50,13 +31,13 @@ const Pipes = ({ cart, setCart }) => {
 							</p>
 						</Container>
 					</Jumbotron>
-					<div>
-						<select onChange={(e) => setSort(e.target.value)}>
-							<option>Sortera produkter</option>
-							<option value="price">Pris stigande</option>
-							<option value="alphabetic">A-Ö</option>
-						</select>
-					</div>
+					<Sorting
+						sort={sort}
+						setSort={setSort}
+						filteredProducts={filteredProducts}
+						setFilteredProducts={setFilteredProducts}
+						responseData={responseData}
+					/>
 					<Row xl={3} lg={4} md={2} sm={2} xs={1}>
 						{filteredProducts.map((data) =>
 							data.productCategory === 'pipes' ? (

@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Product from './Product.js'
 import useFetch from './useFetch.js'
 import LoadingSpinner from './LoadingSpinner.js'
+import Sorting from './Sorting.js'
 
 // Import Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -9,6 +10,8 @@ import { Container, Col, Row, Jumbotron } from 'react-bootstrap'
 
 const Extras = () => {
 	const [responseData, isLoading, error] = useFetch(process.env.REACT_APP_URL)
+	const [filteredProducts, setFilteredProducts] = useState([])
+	const [sort, setSort] = useState('default')
 	return (
 		<div>
 			{error && <div>{error}</div>}
@@ -28,8 +31,15 @@ const Extras = () => {
 							</p>
 						</Container>
 					</Jumbotron>
+					<Sorting
+						sort={sort}
+						setSort={setSort}
+						filteredProducts={filteredProducts}
+						setFilteredProducts={setFilteredProducts}
+						responseData={responseData}
+					/>
 					<Row xl={3} lg={4} md={2} sm={2} xs={1}>
-						{responseData.map((data) =>
+						{filteredProducts.map((data) =>
 							data.productCategory === 'extras' ? (
 								<Col key={data.id} className="mb-3">
 									<Product
