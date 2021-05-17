@@ -99,13 +99,13 @@ const Routing = ({ cart, setCart, quantity, setQuantity, totalPrice, setTotalPri
 				<Pipes cart={cart} setCart={setCart} />
 			</Route>
 			<Route path="/clothbags">
-				<Clothbags />
+				<Clothbags cart={cart} setCart={setCart} />
 			</Route>
 			<Route path="/paintings">
-				<Paintings />
+				<Paintings cart={cart} setCart={setCart} />
 			</Route>
 			<Route path="/extras">
-				<Extras />
+				<Extras cart={cart} setCart={setCart} />
 			</Route>
 			<Route path="/about">
 				<About />

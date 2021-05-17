@@ -50,7 +50,7 @@ const Pipes = ({ cart, setCart }) => {
 										title={data.title}
 										imgSrc={data.imgSrc}
 										imgAlt={data.imgAlt}
-										price={data.price + 'kr'}
+										price={data.price}
 									/>
 								</Col>
 							) : null

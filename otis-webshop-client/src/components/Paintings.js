@@ -8,7 +8,7 @@ import Sorting from './Sorting.js'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Container, Col, Row, Jumbotron } from 'react-bootstrap'
 
-const Paintings = () => {
+const Paintings = ({ cart, setCart }) => {
 	const [responseData, isLoading, error] = useFetch(process.env.REACT_APP_URL)
 	const [filteredProducts, setFilteredProducts] = useState([])
 	const [sort, setSort] = useState('default')
@@ -44,11 +44,13 @@ const Paintings = () => {
 								<Col key={data.id} className="mb-3">
 									<Product
 										id={data.id}
+										cart={cart}
+										setCart={setCart}
 										productID={data.productID}
 										title={data.title}
 										imgSrc={data.imgSrc}
 										imgAlt={data.imgAlt}
-										price={data.price + 'kr'}
+										price={data.price}
 									/>
 								</Col>
 							) : null
