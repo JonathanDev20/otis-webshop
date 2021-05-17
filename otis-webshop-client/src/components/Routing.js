@@ -19,7 +19,7 @@ import SearchPage from './SearchPage.js'
 import Checkout from './Checkout.js'
 import NotFound from './NotFound.js'
 
-const Routing = ({ cart, setCart, quantity, setQuantity, totalPrice, setTotalPrice }) => {
+const Routing = ({ cart, setCart, quantity, setQuantity }) => {
 	const [responseData, setResponseData] = useState([])
 	const [categoryData, setCategoryData] = useState([])
 	const [error, setError] = useState(null)
@@ -84,11 +84,13 @@ const Routing = ({ cart, setCart, quantity, setQuantity, totalPrice, setTotalPri
 							<Col key={data.id} className="mb-3">
 								<Product
 									id={data.id}
+									cart={cart}
+									setCart={setCart}
 									productID={data.productID}
 									title={data.title}
 									imgSrc={data.imgSrc}
 									imgAlt={data.imgAlt}
-									price={data.price + 'kr'}
+									price={data.price}
 								/>
 							</Col>
 						))}
@@ -117,7 +119,7 @@ const Routing = ({ cart, setCart, quantity, setQuantity, totalPrice, setTotalPri
 				<Cart cart={cart} setCart={setCart} quantity={quantity} setQuantity={setQuantity} />
 			</Route>
 			<Route path="/search/:slug">
-				<SearchPage />
+				<SearchPage cart={cart} setCart={setCart} />
 			</Route>
 			<Route path="/checkout">
 				<Checkout cart={cart} setCart={setCart} />

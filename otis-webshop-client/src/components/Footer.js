@@ -40,7 +40,7 @@ const Footer = () => {
 							<h4>
 								Kontakt<span></span>
 							</h4>
-							<p>E-post: fakedata@gmail.com</p>
+							<p className="mb-4-">E-post: fakedata@gmail.com</p>
 							<p>Telefon: 0123456789</p>
 						</div>
 					</div>

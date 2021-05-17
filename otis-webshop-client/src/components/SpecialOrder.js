@@ -24,7 +24,7 @@ const SpecialOrder = () => {
 						background: 'linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)'
 					}}>
 					<Container className="m-2">
-						<h1 className="logo">Gör din egna beställning</h1>
+						<h1 className="logo mb-2">Gör din egna beställning</h1>
 						<p>Fyll i fälten nedan och designa din egna stil på din produkt.</p>
 						<p>Pris avgörs efter godkänd beställning</p>
 					</Container>

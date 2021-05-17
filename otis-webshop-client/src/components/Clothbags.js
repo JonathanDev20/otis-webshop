@@ -24,7 +24,7 @@ const Clothbags = ({ cart, setCart }) => {
 							background: 'linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)'
 						}}>
 						<Container className="m-2">
-							<h1 className="logo">Tygkassar</h1>
+							<h1 className="logo mb-2">Tygkassar</h1>
 							<p>
 								Här hittar du vårt fina utbud av tygkassar. Välj bland olika
 								stilar och färger.

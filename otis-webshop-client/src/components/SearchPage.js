@@ -13,7 +13,7 @@ import {
 import { useParams, Link } from 'react-router-dom'
 import LoadingSpinner from './LoadingSpinner.js'
 
-const SearchPage = () => {
+const SearchPage = ({ cart, setCart }) => {
 	const [products, setProducts] = useState([])
 	const [isLoading, setIsLoading] = useState(true)
 	let { slug } = useParams()
@@ -47,7 +47,7 @@ const SearchPage = () => {
 							background: 'linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)'
 						}}>
 						<Container className="m-2">
-							<h1 className="logo">Sökresultat</h1>
+							<h1 className="logo mb-2">Sökresultat</h1>
 							<p>Visar resultatet av "{slug}".</p>
 						</Container>
 					</Jumbotron>
@@ -56,11 +56,13 @@ const SearchPage = () => {
 							<Col key={data.id} className="mb-3">
 								<Product
 									id={data.id}
+									cart={cart}
+									setCart={setCart}
 									productID={data.productID}
 									title={data.title}
 									imgSrc={data.imgSrc}
 									imgAlt={data.imgAlt}
-									price={data.price + 'kr'}
+									price={data.price}
 								/>
 							</Col>
 						))}
@@ -70,8 +72,8 @@ const SearchPage = () => {
 					<div className="not-found">
 						<div className="not-found-container">
 							<h1>404</h1>
-							<h2>Tyvärr hittade vi inga resultat för "{slug}"</h2>
-							<p>
+							<h2 className="mb-3">Tyvärr hittade vi inga resultat för "{slug}"</h2>
+							<p className="mb-3">
 								Vänligen försök med något annat eller gå tillbaka till startsidan.
 							</p>
 							<Link to="/">
