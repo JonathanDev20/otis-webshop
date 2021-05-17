@@ -25,7 +25,7 @@ const NavBar = ({ cart, search, setSearch }) => {
 			expand="md"
 			bg="primary"
 			variant="dark">
-			<Navbar.Brand href="/" className="logo">OTIS Webshop</Navbar.Brand>
+			<Navbar.Brand href="/" className="logo">OTIS Webbshop</Navbar.Brand>
 			<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 			<Navbar.Collapse id="responsive-navbar-nav">
 				<Nav className="mr-auto">

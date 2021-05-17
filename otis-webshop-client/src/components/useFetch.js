@@ -26,7 +26,7 @@ const useFetch = (url) => {
 		}, 500)
 	}, [url])
 
-  return [ responseData, isLoading, error ]
+  return [ responseData, isLoading, error, setResponseData ]
 }
 
 export default useFetch

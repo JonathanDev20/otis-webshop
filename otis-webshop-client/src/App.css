@@ -238,6 +238,10 @@ input[type="radio"] {
 	font-weight: 900;
 }
 
+.footer-links p {
+	margin-bottom: 15px;
+}
+
 @media screen and (min-width: 1000px) {
 	.company-name {
 		font-size: 8vw;

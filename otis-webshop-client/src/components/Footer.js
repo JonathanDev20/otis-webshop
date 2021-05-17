@@ -11,7 +11,7 @@ const Footer = () => {
 					<div className="col-6 col-md footer-border">
 						<div className="footer-links">
 							<h4>
-								About<span></span>
+								Information<span></span>
 							</h4>
 							<a href="/about">Om oss</a>
 						</div>
@@ -19,7 +19,7 @@ const Footer = () => {
 					<div className="col-6 col-md footer-border">
 						<div className="footer-links">
 							<h4>
-								Links<span></span>
+								Länkar<span></span>
 							</h4>
 							<p>
 								<a href="/pipes">Pipor</a>
@@ -38,16 +38,16 @@ const Footer = () => {
 					<div className="col-6 col-md footer-border">
 						<div>
 							<h4>
-								Contact<span></span>
+								Kontakt<span></span>
 							</h4>
-							<p>Email: fakedata@gmail.com</p>
-							<p>Phone: 0123456789</p>
+							<p>E-post: fakedata@gmail.com</p>
+							<p>Telefon: 0123456789</p>
 						</div>
 					</div>
 					<div className="col-6 col-md footer-border">
 						<div>
 							<h4>
-								Something<span></span>
+								Annat<span></span>
 							</h4>
 						</div>
 					</div>

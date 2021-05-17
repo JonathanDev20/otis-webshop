@@ -36,6 +36,7 @@ const SpecialOrder = () => {
 							required="true"
 							type="email"
 							placeholder="Fyll i din e-post här..."></Form.Control>
+							<Form.Text size="sm" className="text-muted">Vi kommer inte dela din e-post med någon!</Form.Text>
 					</Form.Group>
 					<Form.Group>
 						<Form.Label>Vad vill du beställa?</Form.Label>
