@@ -3,19 +3,16 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
 import Product from './Product.js'
-import {
-	Container,
-	Col,
-	Row,
-	Button,
-	Jumbotron
-} from 'react-bootstrap'
+import { Container, Col, Row, Button, Jumbotron } from 'react-bootstrap'
 import { useParams, Link } from 'react-router-dom'
 import LoadingSpinner from './LoadingSpinner.js'
+import Sorting from './Sorting.js'
 
 const SearchPage = ({ cart, setCart }) => {
 	const [products, setProducts] = useState([])
 	const [isLoading, setIsLoading] = useState(true)
+	const [filteredProducts, setFilteredProducts] = useState([])
+	const [sort, setSort] = useState('default')
 	let { slug } = useParams()
 
 	useEffect(() => {
@@ -51,8 +48,15 @@ const SearchPage = ({ cart, setCart }) => {
 							<p>Visar resultatet av "{slug}".</p>
 						</Container>
 					</Jumbotron>
+					<Sorting
+						sort={sort}
+						setSort={setSort}
+						filteredProducts={filteredProducts}
+						setFilteredProducts={setFilteredProducts}
+						responseData={products}
+					/>
 					<Row xl={3} lg={4} md={2} sm={2} xs={1}>
-						{products.map((data) => (
+						{filteredProducts.map((data) => (
 							<Col key={data.id} className="mb-3">
 								<Product
 									id={data.id}
@@ -69,18 +73,20 @@ const SearchPage = ({ cart, setCart }) => {
 					</Row>
 				</Container>
 			) : (
-					<div className="not-found">
-						<div className="not-found-container">
-							<h1>404</h1>
-							<h2 className="mb-3">Tyvärr hittade vi inga resultat för "{slug}"</h2>
-							<p className="mb-3">
-								Vänligen försök med något annat eller gå tillbaka till startsidan.
-							</p>
-							<Link to="/">
-								<Button>Till startsidan..</Button>
-							</Link>
-						</div>
+				<div className="not-found">
+					<div className="not-found-container">
+						<h1>404</h1>
+						<h2 className="mb-3">
+							Tyvärr hittade vi inga resultat för "{slug}"
+						</h2>
+						<p className="mb-3">
+							Vänligen försök med något annat eller gå tillbaka till startsidan.
+						</p>
+						<Link to="/">
+							<Button>Till startsidan..</Button>
+						</Link>
 					</div>
+				</div>
 			)}
 		</div>
 	)

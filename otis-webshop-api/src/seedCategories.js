@@ -27,7 +27,7 @@ const products = [
     categoryImgSrc: './images/bordslampa.jpg',
     categoryImgAlt: 'Bordslampa',
     title: 'Övrigt',
-    description: 'Våra blandade produkter i olika stilar. Det finns något för alla och allt är handgjort.',
+    description: 'Här hittar du blandade produkter med olika stilar. Det finns något för alla och allt är såklart handgjort.',
     path: '/extras'
   }
 ]
