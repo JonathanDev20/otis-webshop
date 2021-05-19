@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { BlockPicker } from 'react-color'
+import axios from 'axios'
 
 // Import Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -8,13 +9,52 @@ import { Form, Container, Button, Jumbotron } from 'react-bootstrap'
 const SpecialOrder = () => {
 	const [productCategory, setProductCategory] = useState('pipes')
 	const [color, setColor] = useState('#d9e3f0')
+	const [status, setStatus] = useState('Submit')
+	const [formData, updateFormData] = useState({})
 
-	const handleChangeComplete = (color) => {
+
+	useEffect(() => {
 		setColor(color)
-	}
+	}, [color])
 
+	const handleSubmit = async (e) => {
+		setStatus('Sending...')
+		const initialFormData = {
+			from_email: '',
+			category_pick: 'pipes',
+			pipes_model: '',
+			pipes_color: '',
+			pipes_details: '',
+			file: '',
+			pipes_extras: '',
+			bag_paint_size: '',
+			bag_paint_design: '',
+			extras_details: ''
+		}
+		try {
+			const response = await axios(process.env.REACT_APP_SPECIALORDEREMAIL, {
+				method: 'POST',
+				data: {...initialFormData, ...formData, pipes_color: color} })
+			setStatus('Submit')
+			const result = await response.data
+			alert(result.status)
+			console.log(result)
+		} catch (error) {
+			console.log(error)
+		}
+	}
+	
 	const categoryHandler = (e) => {
 		setProductCategory(e.target.value)
+	}
+
+
+	const handleChange = (e) => {
+		updateFormData({
+			...formData,
+			pipes_color: color,
+			[e.target.name]: e.target.value.trim(),
+		})
 	}
 	return (
 		<>
@@ -29,18 +69,25 @@ const SpecialOrder = () => {
 						<p>Pris avgörs efter godkänd beställning</p>
 					</Container>
 				</Jumbotron>
-				<Form>
+				<Form onSubmit={(e) => handleSubmit(e)}>
 					<Form.Group>
-						<Form.Label>E-post adress</Form.Label>
+						<Form.Label htmlFor="from_email">E-post adress</Form.Label>
 						<Form.Control
-							required="true"
+							name="from_email"
+							required={true}
 							type="email"
+							onChange={(e) => handleChange(e)}
 							placeholder="Fyll i din e-post här..."></Form.Control>
-							<Form.Text size="sm" className="text-muted">Vi kommer inte dela din e-post med någon!</Form.Text>
+						<Form.Text size="sm" className="text-muted">
+							Vi kommer inte dela din e-post med någon!
+						</Form.Text>
 					</Form.Group>
 					<Form.Group>
-						<Form.Label>Vad vill du beställa?</Form.Label>
-						<Form.Control onChange={categoryHandler} as="select">
+						<Form.Label htmlFor="category_pick">Vad vill du beställa?</Form.Label>
+						<Form.Control
+							name="category_pick"
+							onChange={(e) => { categoryHandler(e); handleChange(e)}} 
+							as="select">
 							<option value="pipes">Pipa</option>
 							<option value="clothbags">Tygkasse</option>
 							<option value="paintings">Tavla</option>
@@ -51,44 +98,56 @@ const SpecialOrder = () => {
 						{productCategory === 'pipes' ? (
 							<>
 								<Form.Group>
-									<Form.Label>Välj modell</Form.Label>
-									<Form.Control as="select">
+									<Form.Label htmlFor="pipes_model">Välj modell</Form.Label>
+									<Form.Control
+										name="pipes_model"
+										onChange={(e) => handleChange(e)}
+										as="select">
 										<option value="mattpipe">Matt pipa</option>
 										<option value="longpipe">Lång pipa</option>
-										<option value="">Räfflig pipa</option>
-										<option value="">Något annat</option>
+										<option value="rafflig">Räfflig pipa</option>
+										<option value="annat">Något annat</option>
 									</Form.Control>
 								</Form.Group>
 								<Form.Group>
-									<Form.Label>Välj bas färg</Form.Label>
+									<Form.Label htmlFor="pipes_color">Välj bas färg</Form.Label>
+									<input type="hidden" value={color} onChange={(e) => handleChange(e)} name="pipes_color" />
 									<BlockPicker
 										color={color}
-										onChangeComplete={(e) => handleChangeComplete(e.hex)}
+										onChangeComplete={(e) => setColor(e.hex)}
 									/>
 								</Form.Group>
 								<Form.Group>
-									<Form.Label>Önskemål om mönster</Form.Label>
+									<Form.Label htmlFor="pipes_details">Önskemål om mönster</Form.Label>
 									<Form.Control
+										onChange={(e) => handleChange(e)}
+										name="pipes_details"
 										as="textarea"
 										type="text"
 										rows={3}
 										maxLength={500}
 										placeholder="Ex. Randig eller Prickig i blå färg.."></Form.Control>
 								</Form.Group>
-								<Form.Group>
+								<Form.Group onChange={(e) => handleChange(e)} name="file">
 									<Form.File label="Ladda upp en egen bild för att underlätta din design."></Form.File>
 								</Form.Group>
 								<Form.Group>
-									<Form.Label>Övrig specification eller information</Form.Label>
+									<Form.Label htmlFor="pipes_extras">Övrig specification eller information</Form.Label>
 									<Form.Control
+										onChange={(e) => handleChange(e)}
+										name="pipes_extras"
 										as="textarea"
 										type="text"
 										maxLength={500}
 										rows={4}
 										placeholder="Din text här.."></Form.Control>
 								</Form.Group>
-								<Button size="lg" variant="primary">
-									Skicka förfrågan
+								<Button
+									type="submit"
+									onClick={() => console.log(formData)}
+									size="lg"
+									variant="primary">
+									{status}
 								</Button>
 							</>
 						) : productCategory === 'clothbags' ||
@@ -96,7 +155,7 @@ const SpecialOrder = () => {
 							<>
 								<Form.Group>
 									<Form.Label>Välj storlek</Form.Label>
-									<Form.Control as="select">
+									<Form.Control onChange={(e) => handleChange(e)} name="bag_paint_size" as="select">
 										<option value="small">Liten</option>
 										<option value="medium">Mellan</option>
 										<option value="large">Stor</option>
@@ -106,31 +165,34 @@ const SpecialOrder = () => {
 								<Form.Group>
 									<Form.Label>Välj din design</Form.Label>
 									<Form.Control
+										onChange={(e) => handleChange(e)}
+										name="bag_paint_design"
 										as="textarea"
 										rows={4}
 										maxLength={200}
 										placeholder="Här kan du antingen skriva en design som redan finns eller beskriva en egen."></Form.Control>
 								</Form.Group>
 
-								<Form.Group>
+								<Form.Group onChange={(e) => handleChange(e)} name="file">
 									<Form.File label="Ladda upp en bild för en bättre beskrivning av din design."></Form.File>
 								</Form.Group>
-								<Button variant="primary">Skicka förfrågan</Button>
+								<Button onClick={() => console.log(formData)} variant="primary">Skicka förfrågan</Button>
 							</>
 						) : (
 							<>
 								<Form.Group>
 									<Form.Label>Beskriv önskad produkt</Form.Label>
 									<Form.Control
+										name="extras_details"
 										as="textarea"
 										maxLength={500}
 										rows={5}
 										placeholder="Ge en beskrivning av vad för produkt du är intresserad av.."></Form.Control>
 								</Form.Group>
-								<Form.Group>
+								<Form.Group name="file">
 									<Form.File label="Ladda upp en bild för en bättre beskrivning av din design."></Form.File>
 								</Form.Group>
-								<Button variant="primary">Skicka förfrågan</Button>
+								<Button onClick={() => console.log(formData)} variant="primary">Skicka förfrågan</Button>
 							</>
 						)}
 					</Form.Group>
