@@ -242,7 +242,7 @@ const products = [
 ]
 
 /**
- *
+ * Add product objects to the database.
  */
 const seed = async () => {
   try {

@@ -8,14 +8,16 @@
 import nodemailer from 'nodemailer'
 
 /**
- *
+ * Encapsulates a controller.
  */
 export class EmailsController {
   /**
-	 * @param req
-	 * @param res
-	 * @param next
-	 */
+   * Sends an email with data from a special order.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   * @param {Function} next - Express next middleware function.
+   */
   async specialOrderEmail (req, res, next) {
     console.log(await req.body)
     const testAccount = await nodemailer.createTestAccount()

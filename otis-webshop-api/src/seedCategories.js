@@ -31,6 +31,9 @@ const products = [
     path: '/extras'
   }
 ]
+/**
+ * Add category objects to the database.
+ */
 const seed = async () => {
   try {
     console.log('Seeding started!')
