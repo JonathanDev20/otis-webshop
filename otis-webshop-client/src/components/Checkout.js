@@ -3,9 +3,11 @@ import { PayPalButton } from 'react-paypal-button-v2'
 import { Container, Jumbotron, Row, Col, Image, Button } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import { AlertContext } from '../context/AlertContext.js'
+import axios from 'axios'
 
 const Checkout = ({ cart, setCart }) => {
 	const { setShow, setMsg, setType } = React.useContext(AlertContext)
+	const [paymentData, setPaymentData] = useState({})
 
 	let history = useHistory()
 	const onApprove = async (data, actions) => {
@@ -36,9 +38,26 @@ const Checkout = ({ cart, setCart }) => {
 		})
 	}
 
+	const getPaymentData = (details) => {
+		setPaymentData({
+			id: details.id,
+			payerEmail: details.payer.email_address,
+			payerName: details.purchase_units[0].name.full_name,
+			amount: details.purchase_units[0].amount.value,
+			payerAddressStreet: details.purchase_units[0].shipping.address.adress_line_1,
+			payerAddressCity: details.purchase_units[0].shipping.address.admin_area_2,
+			payerAddressCountry: details.purchase_units[0].shipping.address.admin_area_1,
+			payerAddressPostalCode: details.purchase_units[0].shipping.address.postal_code,
+		})
+
+		axios()
+	}
+
 	const onSuccess = (details, data) => {
+		console.log(details)
+		console.log(data)
 		setCart([])
-		history.push('/')
+		// history.push('/')
 		setShow(true)
 		setMsg('Tack För Ditt Köp')
 		setType('success')

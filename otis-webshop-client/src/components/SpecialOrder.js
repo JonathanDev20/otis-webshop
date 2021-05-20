@@ -1,24 +1,34 @@
 import React, { useState, useEffect } from 'react'
 import { BlockPicker } from 'react-color'
+import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 
 // Import Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Form, Container, Button, Jumbotron } from 'react-bootstrap'
+import {
+	Form,
+	Container,
+	Button,
+	Jumbotron,
+	Modal
+} from 'react-bootstrap'
 
 const SpecialOrder = () => {
 	const [productCategory, setProductCategory] = useState('pipes')
 	const [color, setColor] = useState('#d9e3f0')
-	const [status, setStatus] = useState('Submit')
+	const [status, setStatus] = useState('Skicka förfrågan')
 	const [formData, updateFormData] = useState({})
-
+	const [show, setShow] = useState(false)
+	const [message, setMessage] = useState('')
+	let history = useHistory()
 
 	useEffect(() => {
 		setColor(color)
 	}, [color])
 
 	const handleSubmit = async (e) => {
-		setStatus('Sending...')
+		e.preventDefault()
+		setStatus('Skickar...')
 		const initialFormData = {
 			from_email: '',
 			category_pick: 'pipes',
@@ -34,31 +44,52 @@ const SpecialOrder = () => {
 		try {
 			const response = await axios(process.env.REACT_APP_SPECIALORDEREMAIL, {
 				method: 'POST',
-				data: {...initialFormData, ...formData, pipes_color: color} })
-			setStatus('Submit')
+				data: { ...initialFormData, ...formData, pipes_color: color }
+			})
+			setStatus('Skicka förfrågan')
 			const result = await response.data
-			alert(result.status)
-			console.log(result)
+			setMessage(result.status)
+			setShow(true)
+			updateFormData(initialFormData)
 		} catch (error) {
 			console.log(error)
 		}
 	}
-	
+
 	const categoryHandler = (e) => {
 		setProductCategory(e.target.value)
 	}
 
+	const handleModalClose = () => {
+		setShow(false)
+		history.push('/')
+	}
 
 	const handleChange = (e) => {
 		updateFormData({
 			...formData,
 			pipes_color: color,
-			[e.target.name]: e.target.value.trim(),
+			[e.target.name]: e.target.value.trim()
 		})
 	}
 	return (
 		<>
 			<Container>
+				<Modal
+					backdrop="static"
+					keyboard={false}
+					show={show}
+					onHide={() => handleModalClose()}>
+					<Modal.Header closeButton>
+						<Modal.Title>Tack för ditt mejl!</Modal.Title>
+					</Modal.Header>
+					<Modal.Body>{message}</Modal.Body>
+					<Modal.Footer>
+						<Button variant="success" onClick={() => handleModalClose()}>
+							Uppfattat
+						</Button>
+					</Modal.Footer>
+				</Modal>
 				<Jumbotron
 					style={{
 						background: 'linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)'
@@ -83,10 +114,15 @@ const SpecialOrder = () => {
 						</Form.Text>
 					</Form.Group>
 					<Form.Group>
-						<Form.Label htmlFor="category_pick">Vad vill du beställa?</Form.Label>
+						<Form.Label htmlFor="category_pick">
+							Vad vill du beställa?
+						</Form.Label>
 						<Form.Control
 							name="category_pick"
-							onChange={(e) => { categoryHandler(e); handleChange(e)}} 
+							onChange={(e) => {
+								categoryHandler(e)
+								handleChange(e)
+							}}
 							as="select">
 							<option value="pipes">Pipa</option>
 							<option value="clothbags">Tygkasse</option>
@@ -111,14 +147,21 @@ const SpecialOrder = () => {
 								</Form.Group>
 								<Form.Group>
 									<Form.Label htmlFor="pipes_color">Välj bas färg</Form.Label>
-									<input type="hidden" value={color} onChange={(e) => handleChange(e)} name="pipes_color" />
+									<input
+										type="hidden"
+										value={color}
+										onChange={(e) => handleChange(e)}
+										name="pipes_color"
+									/>
 									<BlockPicker
 										color={color}
 										onChangeComplete={(e) => setColor(e.hex)}
 									/>
 								</Form.Group>
 								<Form.Group>
-									<Form.Label htmlFor="pipes_details">Önskemål om mönster</Form.Label>
+									<Form.Label htmlFor="pipes_details">
+										Önskemål om mönster
+									</Form.Label>
 									<Form.Control
 										onChange={(e) => handleChange(e)}
 										name="pipes_details"
@@ -132,7 +175,9 @@ const SpecialOrder = () => {
 									<Form.File label="Ladda upp en egen bild för att underlätta din design."></Form.File>
 								</Form.Group>
 								<Form.Group>
-									<Form.Label htmlFor="pipes_extras">Övrig specification eller information</Form.Label>
+									<Form.Label htmlFor="pipes_extras">
+										Övrig specification eller information
+									</Form.Label>
 									<Form.Control
 										onChange={(e) => handleChange(e)}
 										name="pipes_extras"
@@ -142,11 +187,7 @@ const SpecialOrder = () => {
 										rows={4}
 										placeholder="Din text här.."></Form.Control>
 								</Form.Group>
-								<Button
-									type="submit"
-									onClick={() => console.log(formData)}
-									size="lg"
-									variant="primary">
+								<Button type="submit" size="lg" variant="primary">
 									{status}
 								</Button>
 							</>
@@ -155,7 +196,10 @@ const SpecialOrder = () => {
 							<>
 								<Form.Group>
 									<Form.Label>Välj storlek</Form.Label>
-									<Form.Control onChange={(e) => handleChange(e)} name="bag_paint_size" as="select">
+									<Form.Control
+										onChange={(e) => handleChange(e)}
+										name="bag_paint_size"
+										as="select">
 										<option value="small">Liten</option>
 										<option value="medium">Mellan</option>
 										<option value="large">Stor</option>
@@ -176,7 +220,9 @@ const SpecialOrder = () => {
 								<Form.Group onChange={(e) => handleChange(e)} name="file">
 									<Form.File label="Ladda upp en bild för en bättre beskrivning av din design."></Form.File>
 								</Form.Group>
-								<Button onClick={() => console.log(formData)} variant="primary">Skicka förfrågan</Button>
+								<Button type="submit" variant="primary">
+									{status}
+								</Button>
 							</>
 						) : (
 							<>
@@ -192,7 +238,9 @@ const SpecialOrder = () => {
 								<Form.Group name="file">
 									<Form.File label="Ladda upp en bild för en bättre beskrivning av din design."></Form.File>
 								</Form.Group>
-								<Button onClick={() => console.log(formData)} variant="primary">Skicka förfrågan</Button>
+								<Button type="submit" variant="primary">
+									{status}
+								</Button>
 							</>
 						)}
 					</Form.Group>
