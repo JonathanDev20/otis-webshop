@@ -7,7 +7,6 @@ import axios from 'axios'
 
 const Checkout = ({ cart, setCart }) => {
 	const { setShow, setMsg, setType } = React.useContext(AlertContext)
-	const [paymentData, setPaymentData] = useState({})
 
 	let history = useHistory()
 	const onApprove = async (data, actions) => {
@@ -38,24 +37,32 @@ const Checkout = ({ cart, setCart }) => {
 		})
 	}
 
-	const getPaymentData = (details) => {
-		setPaymentData({
+	const getPaymentData = async (details) => {
+		cart.map((product) => console.log(product))
+		const paymentObject = {
 			id: details.id,
 			payerEmail: details.payer.email_address,
-			payerName: details.purchase_units[0].name.full_name,
+			payerName: details.purchase_units[0].shipping.name.full_name,
 			amount: details.purchase_units[0].amount.value,
-			payerAddressStreet: details.purchase_units[0].shipping.address.adress_line_1,
+			payerAddressStreet: details.purchase_units[0].shipping.address.address_line_1,
 			payerAddressCity: details.purchase_units[0].shipping.address.admin_area_2,
 			payerAddressCountry: details.purchase_units[0].shipping.address.admin_area_1,
 			payerAddressPostalCode: details.purchase_units[0].shipping.address.postal_code,
-		})
+			products: cart
+		}
 
-		axios()
+		try {
+			await axios(process.env.REACT_APP_ORDERSPECIFICATION, {
+				method: 'POST',
+				data: paymentObject
+			})
+		} catch (error) {
+			console.log(error)
+		}
 	}
 
 	const onSuccess = (details, data) => {
-		console.log(details)
-		console.log(data)
+		getPaymentData(details)
 		setCart([])
 		// history.push('/')
 		setShow(true)

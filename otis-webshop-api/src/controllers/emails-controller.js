@@ -29,7 +29,7 @@ export class EmailsController {
     const bagPaintingSize = req.body.bag_paint_size
     const bagPaintDesign = req.body.bag_paint_design
     const extrasDetails = req.body.extras_details
-    // const testAccount = await nodemailer.createTestAccount()
+
     const contactEmail = nodemailer.createTransport({
       host: 'smtp.gmail.com',
       port: 587,
@@ -69,6 +69,51 @@ export class EmailsController {
         res.json({ status: 'Något gick fel, vänligen försök igen!' })
       } else {
         res.json({ status: 'Din beställning kommer nu granskas och du får ett svar på mejlen inom 1-4 dagar.' })
+      }
+    })
+  }
+
+  async orderSpec (req, res, next) {
+    const contactEmail = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 587,
+      secure: false,
+      requireTLS: true,
+      auth: {
+        user: process.env.AUTH_USER,
+        pass: process.env.AUTH_PASS
+      }
+    })
+
+    contactEmail.verify((error) => {
+      if (error) {
+        console.log(error)
+      } else {
+        console.log('Ready to send!')
+      }
+    })
+
+    const mail = {
+      from: req.body.payerEmail,
+      to: process.env.AUTH_USER,
+      subject: 'Order: ' + req.body.id,
+      html: `<h1>Bekräftelse på en lagd order från kund!</h1>
+             <p><b>Kundens namn</b>: ${req.body.payerName}</p>
+             <p><b>Kundens e-post</b>: ${req.body.payerEmail}</p>
+             <p><b>Belopp</b>: ${req.body.amount} SEK</p>
+             <p><b>Gatuadress</b>: ${req.body.payerAddressStreet}</p>
+             <p><b>Stad</b>: ${req.body.payerAddressCity}</p>
+             <p><b>Postnummer</b>: ${req.body.payerAddressPostalCode}</p>
+             <p><b>Land</b>: ${req.body.payerAddressCountry}</p>
+             <hr></hr>
+             <p><b>Produkter</b>: ${req.body.products.map((item) => item.quantity + 'st ' + item.product.title + ', ID: ( ' + item.product.productID + ' ) ')} </p>
+             `
+    }
+    contactEmail.sendMail(mail, (error) => {
+      if (error) {
+        res.json({ status: 'Något gick fel.. ' + error.message })
+      } else {
+        res.json({ status: 'Beställningsbekräftelse skickad.' })
       }
     })
   }
