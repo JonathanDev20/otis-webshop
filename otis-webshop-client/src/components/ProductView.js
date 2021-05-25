@@ -174,7 +174,7 @@ const ProductView = ({ cart, setCart, quantity, setQuantity }) => {
 											<Form>
 												<Form.Group>
 												<Form.Label style={{ fontWeight: '600' }}>Skriv en recension på denna produkt.</Form.Label>
-												<Form.Control as="textarea" maxLength={500} rows={5} placeholder="Max 500 bokstäver.."></Form.Control>
+												<Form.Control as="textarea" readOnly rows={5} placeholder="För tillfället går det inte att skriva en recension..."></Form.Control>
 												</Form.Group>
 												<Form.Group>
 													<Form.Label style={{ fontWeight: '600' }}>Skulle du rekommendera denna produkt?</Form.Label>
@@ -186,7 +186,7 @@ const ProductView = ({ cart, setCart, quantity, setQuantity }) => {
 												</Form.Group>
 											</Form>
 											<ProductRating rating={rating} setRating={setRating} />
-											<Button onClick={() => console.log(rating)}>Skriv Recension</Button>
+											<Button disabled >Skriv Recension</Button>
 										</Tab>
 									</Tabs>
 								</div>

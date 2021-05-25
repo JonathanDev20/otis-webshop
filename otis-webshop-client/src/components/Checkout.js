@@ -38,7 +38,6 @@ const Checkout = ({ cart, setCart }) => {
 	}
 
 	const getPaymentData = async (details) => {
-		cart.map((product) => console.log(product))
 		const paymentObject = {
 			id: details.id,
 			payerEmail: details.payer.email_address,
@@ -48,7 +47,8 @@ const Checkout = ({ cart, setCart }) => {
 			payerAddressCity: details.purchase_units[0].shipping.address.admin_area_2,
 			payerAddressCountry: details.purchase_units[0].shipping.address.admin_area_1,
 			payerAddressPostalCode: details.purchase_units[0].shipping.address.postal_code,
-			products: cart
+			products: cart,
+			totalPrice: totalPrice
 		}
 
 		try {
@@ -64,7 +64,7 @@ const Checkout = ({ cart, setCart }) => {
 	const onSuccess = (details, data) => {
 		getPaymentData(details)
 		setCart([])
-		// history.push('/')
+		history.push('/')
 		setShow(true)
 		setMsg('Tack För Ditt Köp')
 		setType('success')
@@ -92,28 +92,23 @@ const Checkout = ({ cart, setCart }) => {
 			</Jumbotron>
 
 			{cart.map((product) => (
-				<Row
-					key={product.product.productID}
-					fluid="true"
-					className="checkoutProducts">
-					<Col>
+					<div className="checkoutProducts">
 						<Image
 							rounded
 							src={product.product.imgSrc}
 							style={{ width: '10vh', height: '100%', objectFit: 'cover' }}
 						/>
-					</Col>
-					<Col>
-						<h2 variant="warning">{product.product.title}</h2>
+						<div style={{ textShadow: '2px 10px 20px' }}>
+						<h4 style={{ color: 'black' }}>{product.quantity} st</h4>
+						<h2 style={{ marginLeft: '5px' }}>{product.product.title}</h2>
+						</div>
 						<h3>{product.product.price}kr</h3>
-						<h4>{product.quantity}st</h4>
-					</Col>
-				</Row>
+					</div>
 			))}
 
 			<Row>
 				<Col>
-					<h3>Att betala: {totalPrice}kr</h3>
+					<h3 style={{ textShadow: '5px 4px 10px #666' }}>Att betala: {totalPrice}kr</h3>
 				</Col>
 				<Col>
 					<div className="checkoutWrapper">

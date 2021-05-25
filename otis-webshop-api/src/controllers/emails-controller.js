@@ -107,6 +107,7 @@ export class EmailsController {
              <p><b>Land</b>: ${req.body.payerAddressCountry}</p>
              <hr></hr>
              <p><b>Produkter</b>: ${req.body.products.map((item) => item.quantity + 'st ' + item.product.title + ', ID: ( ' + item.product.productID + ' ) ')} </p>
+             <p><b>Totalt Pris</b>: ${req.body.totalPrice}kr</p>
              `
     }
     contactEmail.sendMail(mail, (error) => {
