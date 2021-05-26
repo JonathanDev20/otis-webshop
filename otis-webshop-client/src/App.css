@@ -251,6 +251,8 @@ input[type="radio"] {
 .aboutContainer {
 	padding: 3rem;
 	text-align: center;
+	box-shadow: #00000040 0px 54px 55px, #0000001f 0px -12px 30px, #0000001f 0px 4px 6px, #0000002b 0px 12px 13px, #00000017 0px -3px 5px;
+	margin-bottom: 15px;
 }
 
 .aboutImage {

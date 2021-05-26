@@ -2,9 +2,10 @@ import React from 'react'
 
 import { Image, Jumbotron, Container } from 'react-bootstrap'
 
+import { FiPhone, FiMail } from 'react-icons/fi'
+
 const About = () => {
 	return (
-		<>
 			<Container>
 				<Jumbotron
 					style={{
@@ -59,10 +60,14 @@ const About = () => {
 							temporibus, porro distinctio dolor expedita sequi nihil accusamus
 							perspiciatis? Aut fugiat nesciunt asperiores incidunt!
 						</p>
+            <div className="m-5" style={{ textAlign: 'center', fontStyle: 'italic' }}>
+            <h1 className="mb-4">Kontakta oss</h1>
+            <h5 className="mb-4"><FiMail size={30} color="#007FFF" /> E-post: fakedata@gmail.com</h5>
+            <h5><FiPhone size={30} color="#17B169" /> Telefon: 0123456789</h5>
+            </div>
 					</div>
 				</div>
 			</Container>
-		</>
 	)
 }
 
