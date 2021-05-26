@@ -24,10 +24,6 @@ const main = async () => {
 
   app.use(helmet())
 
-  /* const corsOptions = {
-    origin: process.env.NODE_ENV === 'production' ? 'https://otis-webshop.herokuapp.com/' : 'http://localhost:3000/'
-  } */
-
   app.use(cors())
 
   // Populates the request object with a body object (req.body).
