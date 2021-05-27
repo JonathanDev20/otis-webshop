@@ -17,7 +17,7 @@ import { Container, Col, Row, Jumbotron } from 'react-bootstrap'
  * Represents a page to show product that belongs to the category "Clothbags".
  * 
  * @param {Object} - State properties.
- * @returns - A page to show clothbag products.
+ * @returns {JSX} - A page to show clothbag products.
  */
 const Clothbags = ({ cart, setCart }) => {
 	const [responseData, isLoading, error] = useFetch(process.env.REACT_APP_URL)

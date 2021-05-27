@@ -17,7 +17,7 @@ import { Container, Col, Row, Jumbotron } from 'react-bootstrap'
  * Represents a page to show product that belongs to the category "Extras".
  * 
  * @param {Object} - State properties.
- * @returns - A page to show extra products.
+ * @returns {JSX} - A page to show extra products.
  */
 const Extras = ({ cart, setCart }) => {
 	const [responseData, isLoading, error] = useFetch(process.env.REACT_APP_URL)

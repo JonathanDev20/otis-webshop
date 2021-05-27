@@ -1,6 +1,14 @@
+// Import React
 import React, { useState } from 'react'
+// Import react-icons
 import { AiTwotoneStar } from 'react-icons/ai'
 
+/**
+ * Represents a component to give rating to a product.
+ * 
+ * @param {Object} - State properties. 
+ * @returns {JSX} - A component to rate a product.
+ */
 const ProductRating = ({ rating, setRating }) => {
   const [hover, setHover] = useState(null)
 

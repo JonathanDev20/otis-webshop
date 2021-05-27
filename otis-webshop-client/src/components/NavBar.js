@@ -23,7 +23,7 @@ import Search from './Search.js'
  * A component that represent a navigation bar to navigate on webpage.
  * 
  * @param {Object} - State properties. 
- * @returns A navigation bar.
+ * @returns {JSX} - A navigation bar.
  */
 const NavBar = ({ cart, search, setSearch }) => {
 	return (

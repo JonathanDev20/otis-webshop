@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 /**
  * Represent a page with information about a resource that have not been found.
  * 
- * @returns - An error page.
+ * @returns {JSX} - An error page.
  */
 const NotFound = () => {
   return (

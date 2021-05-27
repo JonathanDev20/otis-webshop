@@ -17,7 +17,7 @@ import { Container, Col, Row, Jumbotron } from 'react-bootstrap'
  * Represents a page to show product that belongs to the category "Paintings".
  * 
  * @param {Object} - State properties.
- * @returns - A page to show paintings products.
+ * @returns {JSX} - A page to show paintings products.
  */
 const Paintings = ({ cart, setCart }) => {
 	const [responseData, isLoading, error] = useFetch(process.env.REACT_APP_URL)

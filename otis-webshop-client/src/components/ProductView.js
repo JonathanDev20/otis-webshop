@@ -1,9 +1,11 @@
+// Import React
 import React, { useEffect, useState } from 'react'
+// Import Axios
 import axios from 'axios'
-
+// Import React-Router
 import { useParams } from 'react-router-dom'
+// Import LoadingSpinner component
 import LoadingSpinner from './LoadingSpinner'
-
 // Import Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {
@@ -18,9 +20,17 @@ import {
 	Table,
 	Form
 } from 'react-bootstrap'
+// Import react-icons
 import { AiOutlineShoppingCart } from 'react-icons/ai'
+// Import ProductRating component
 import ProductRating from './ProductRating'
 
+/**
+ * Represents a page to show a specific product.
+ * 
+ * @param {Object} - State properties. 
+ * @returns {JSX} - A specific product-page.
+ */
 const ProductView = ({ cart, setCart, quantity, setQuantity }) => {
 	const [responseData, setResponseData] = useState([])
 	const [productAddedToCart, setProductAddedToCart] = useState(false)
@@ -57,6 +67,7 @@ const ProductView = ({ cart, setCart, quantity, setQuantity }) => {
 		}, 200)
 	}, [id])
 
+	// Add the product to cart.
 	const addToCart = (data) => {
 		setProductAddedToCart(true)
 		const newProduct = { product: data, quantity }

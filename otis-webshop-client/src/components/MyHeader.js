@@ -7,7 +7,7 @@ import { Jumbotron, Button } from 'react-bootstrap'
 /**
  * Represents a Header to be shown at the startpage.
  * 
- * @returns - A header section.
+ * @returns {JSX} - A header section.
  */
 const MyHeader = () => {
 	return (

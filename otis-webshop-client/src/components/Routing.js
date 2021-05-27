@@ -1,7 +1,10 @@
+// Import React
 import React, { useEffect, useState } from 'react'
+// Import Axios
 import axios from 'axios'
-
+// Import React-Router
 import { Switch, Route } from 'react-router-dom'
+// Import Bootstrap
 import { Container, Row, Col } from 'react-bootstrap'
 // Import components
 import MyHeader from './MyHeader.js'
@@ -19,12 +22,19 @@ import SearchPage from './SearchPage.js'
 import Checkout from './Checkout.js'
 import NotFound from './NotFound.js'
 
+/**
+ * A component to navigate to correct component.
+ * 
+ * @param {Object} - State properties. 
+ * @returns {JSX} - Links to each component.
+ */
 const Routing = ({ cart, setCart, quantity, setQuantity }) => {
 	const [responseData, setResponseData] = useState([])
 	const [categoryData, setCategoryData] = useState([])
 	const [error, setError] = useState(null)
 
 	useEffect(() => {
+		// Get random products from backend
 		async function getData() {
 			try {
 				const response = await axios.get(process.env.REACT_APP_RANDOM)
@@ -41,6 +51,7 @@ const Routing = ({ cart, setCart, quantity, setQuantity }) => {
 		getCategories()
 	}, [])
 
+	// Get category data
 	async function getCategories() {
 		try {
 			const response = await axios.get(process.env.REACT_APP_CATEGORIES)

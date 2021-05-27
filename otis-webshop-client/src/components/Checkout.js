@@ -15,7 +15,7 @@ import axios from 'axios'
  * A component to represent a checkout-page and payment.
  * 
  * @param {Object} - State properties. 
- * @returns - A page to checkout products. 
+ * @returns {JSX} - A page to checkout products. 
  */
 const Checkout = ({ cart, setCart }) => {
 	const { setShow, setMsg, setType } = React.useContext(AlertContext)

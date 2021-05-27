@@ -4,7 +4,7 @@ import React from 'react'
 /**
  * Represents a footer to show on every page.
  * 
- * @returns - A footer.
+ * @returns {JSX} - A footer.
  */
 const Footer = () => {
 	return (

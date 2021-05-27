@@ -1,11 +1,20 @@
+// Import React
 import React, { useState, useEffect } from 'react'
+// Import React-Router
 import { Link } from 'react-router-dom'
 
 // Import Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Card, Button } from 'react-bootstrap'
+// Import react-icons
 import { MdAddShoppingCart } from 'react-icons/md'
 
+/**
+ * A component that represent an individual product.
+ * 
+ * @param {Object} props - Properties. 
+ * @returns {JSX} - A product component.
+ */
 const Product = (props) => {
 	const [productAddedToCart, setProductAddedToCart] = useState(false)
 
@@ -21,6 +30,7 @@ const Product = (props) => {
 		}
 	}, [productAddedToCart])
 
+	// Add the product to shopping cart.
 	const addToCart = (data) => {
 		setProductAddedToCart(true)
 		const newProduct = { product: data, quantity: 1 }

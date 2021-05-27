@@ -17,7 +17,7 @@ import Sorting from './Sorting.js'
  * Represents a page to show product that belongs to the category "Pipes".
  * 
  * @param {Object} - State properties.
- * @returns - A page to show pipes.
+ * @returns {JSX} - A page to show pipes.
  */
 const Pipes = ({ cart, setCart }) => {
 	const [responseData, isLoading, error] = useFetch(process.env.REACT_APP_URL)

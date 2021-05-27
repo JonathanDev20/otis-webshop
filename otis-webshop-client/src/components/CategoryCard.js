@@ -8,7 +8,7 @@ import { Card, Button } from 'react-bootstrap'
  * Represents a card to show each category.
  * 
  * @param {Object} props - Properties. 
- * @returns - A card to show each category.
+ * @returns {JSX} - A card to show each category.
  */
 const CategoryCard = (props) => {
   return (
