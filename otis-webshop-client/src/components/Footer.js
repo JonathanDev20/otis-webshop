@@ -49,6 +49,7 @@ const Footer = () => {
 							<h4>
 								Annat<span></span>
 							</h4>
+								<p><s>( Kommande funktionalitet )</s></p>
 						</div>
 					</div>
 				</div>
