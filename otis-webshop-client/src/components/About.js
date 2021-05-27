@@ -1,9 +1,17 @@
+// Import React
 import React from 'react'
 
+// Import Bootstrap
 import { Image, Jumbotron, Container } from 'react-bootstrap'
 
+// Import Icons
 import { FiPhone, FiMail } from 'react-icons/fi'
 
+/**
+ * Represents an about-page with information about the seller.
+ * 
+ * @returns {JSX} - Information about seller and contact. 
+ */
 const About = () => {
 	return (
 			<Container>

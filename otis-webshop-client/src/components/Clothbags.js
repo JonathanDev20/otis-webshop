@@ -1,13 +1,24 @@
+// Import React
 import React, { useState } from 'react'
+// Import Product component
 import Product from './Product.js'
+// Import Custom Hook
 import useFetch from './useFetch.js'
+// Import LoadingSpinner component
 import LoadingSpinner from './LoadingSpinner.js'
+// Import Sorting component
 import Sorting from './Sorting.js'
 
 // Import Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Container, Col, Row, Jumbotron } from 'react-bootstrap'
 
+/**
+ * Represents a page to show product that belongs to the category "Clothbags".
+ * 
+ * @param {Object} - State properties.
+ * @returns - A page to show clothbag products.
+ */
 const Clothbags = ({ cart, setCart }) => {
 	const [responseData, isLoading, error] = useFetch(process.env.REACT_APP_URL)
 	const [filteredProducts, setFilteredProducts] = useState([])

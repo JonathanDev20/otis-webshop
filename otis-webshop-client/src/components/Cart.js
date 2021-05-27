@@ -1,11 +1,19 @@
+// Import React
 import React from 'react'
 
 // Import Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Container, Row, Col, Card, Button } from 'react-bootstrap'
+
+// Import React-Router
 import { Link  } from 'react-router-dom'
 
-
+/**
+ * A component that represents a shopping cart.
+ * 
+ * @param {Object} - An Object with state properties.  
+ * @returns {JSX} - JSX to represent either an empty cart or a cart with products.
+ */
 const Cart = ({ cart, setCart, setQuantity }) => {
   const deleteHandler = (product, current) => {
     if(current.quantity <= 1) {
@@ -20,6 +28,7 @@ const Cart = ({ cart, setCart, setQuantity }) => {
       totalPrice += (cart[i].product.price * cart[i].quantity)
     }
 
+	// A cart with no products.
 	const EmptyCart = () => (
 		<div className="cartItems p-3 m-2">
 			<div className="emptyCart">
@@ -33,6 +42,7 @@ const Cart = ({ cart, setCart, setQuantity }) => {
 		</div>
 	)
 
+	// A cart that contains at least one product.
 	const FilledCart = () => (
     <div className="cartItems p-3 m-3">
 			<h1 style={{ textAlign: 'center' }} className="logo">Välkommen till din varukorg</h1>

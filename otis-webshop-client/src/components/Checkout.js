@@ -1,10 +1,22 @@
+// Import React
 import React from 'react'
+// Import PayPalButton
 import { PayPalButton } from 'react-paypal-button-v2'
+// Import Bootstrap
 import { Container, Jumbotron, Row, Col, Image, Button } from 'react-bootstrap'
+// Import React-Router
 import { useHistory } from 'react-router-dom'
+// Import Context
 import { AlertContext } from '../context/AlertContext.js'
+// Import Axios
 import axios from 'axios'
 
+/**
+ * A component to represent a checkout-page and payment.
+ * 
+ * @param {Object} - State properties. 
+ * @returns - A page to checkout products. 
+ */
 const Checkout = ({ cart, setCart }) => {
 	const { setShow, setMsg, setType } = React.useContext(AlertContext)
 
@@ -22,6 +34,7 @@ const Checkout = ({ cart, setCart }) => {
 		console.log(err)
 	}
 
+	// Creates the order.
 	const createOrder = (data, actions) => {
 		return actions.order.create({
 			intent: 'CAPTURE',
@@ -36,6 +49,7 @@ const Checkout = ({ cart, setCart }) => {
 		})
 	}
 
+	// Get data from successful payment.
 	const getPaymentData = async (details) => {
 		const paymentObject = {
 			id: details.id,
@@ -50,6 +64,7 @@ const Checkout = ({ cart, setCart }) => {
 			totalPrice: totalPrice
 		}
 
+		// Post data to backend.
 		try {
 			await axios(process.env.REACT_APP_ORDERSPECIFICATION, {
 				method: 'POST',
@@ -60,6 +75,7 @@ const Checkout = ({ cart, setCart }) => {
 		}
 	}
 
+	// Listen for a successful payment.
 	const onSuccess = (details, data) => {
 		getPaymentData(details)
 		setCart([])

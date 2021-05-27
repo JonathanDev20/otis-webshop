@@ -1,7 +1,15 @@
+// Import React
 import React from 'react'
+// Import Bootstrap
 import { Alert, Modal, Button } from 'react-bootstrap'
+// Import Context
 import { AlertContext } from '../context/AlertContext.js'
 
+/**
+ * A component to show a message for user after a certain event. 
+ * 
+ * @returns {JSX} - Alert and Modal component to show message. 
+ */
 const Alerts = () => {
   const { show, type, setShow, msg } = React.useContext(AlertContext)
   return (
