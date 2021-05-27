@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { PayPalButton } from 'react-paypal-button-v2'
 import { Container, Jumbotron, Row, Col, Image, Button } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
@@ -10,8 +10,7 @@ const Checkout = ({ cart, setCart }) => {
 
 	let history = useHistory()
 	const onApprove = async (data, actions) => {
-		const order = await actions.order.capture()
-		console.log(order)
+		await actions.order.capture()
 	}
 
 	let totalPrice = 0

@@ -3,7 +3,7 @@ import { Alert, Modal, Button } from 'react-bootstrap'
 import { AlertContext } from '../context/AlertContext.js'
 
 const Alerts = () => {
-  const { show, type, setShow, setType, msg, setMsg } = React.useContext(AlertContext)
+  const { show, type, setShow, msg } = React.useContext(AlertContext)
   return (
     <>
       <Alert show={show} variant={type} onClose={() => setShow(false)} dismissible>{msg}</Alert>
