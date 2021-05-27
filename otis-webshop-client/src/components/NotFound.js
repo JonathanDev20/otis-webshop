@@ -1,7 +1,15 @@
-import { Button, Container } from 'react-bootstrap'
+// Import React
 import React from 'react'
+// Import Bootstrap
+import { Button } from 'react-bootstrap'
+// Import React-Router
 import { Link } from 'react-router-dom'
 
+/**
+ * Represent a page with information about a resource that have not been found.
+ * 
+ * @returns - An error page.
+ */
 const NotFound = () => {
   return (
     <div className="not-found">

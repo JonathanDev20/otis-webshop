@@ -1,7 +1,14 @@
+// Import React
 import React from 'react'
+// Import Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Jumbotron, Button } from 'react-bootstrap'
 
+/**
+ * Represents a Header to be shown at the startpage.
+ * 
+ * @returns - A header section.
+ */
 const MyHeader = () => {
 	return (
 		<div className="jumbotron">

@@ -1,3 +1,4 @@
+// Import React
 import React from 'react'
 
 // Import react-icons
@@ -15,8 +16,15 @@ import {
 	Badge
 } from 'react-bootstrap'
 
+// Import Search component
 import Search from './Search.js'
 
+/**
+ * A component that represent a navigation bar to navigate on webpage.
+ * 
+ * @param {Object} - State properties. 
+ * @returns A navigation bar.
+ */
 const NavBar = ({ cart, search, setSearch }) => {
 	return (
 		<Navbar

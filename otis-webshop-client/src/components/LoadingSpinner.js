@@ -1,7 +1,14 @@
+// Import React
 import React from 'react'
 
+// Import Bootstrap
 import { Spinner } from 'react-bootstrap'
 
+/**
+ * Represents an animated icon to be shown when an API call is loading.
+ * 
+ * @returns - A loading icon.
+ */
 const LoadingSpinner = () => {
 	return (
 		<div>
