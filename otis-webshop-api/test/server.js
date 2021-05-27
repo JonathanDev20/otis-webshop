@@ -1,5 +1,5 @@
 /**
- * The starting point of the application.
+ * The starting point of the application for tests.
  *
  * @author Jonathan Olsson <jo223ds@student.lnu.se>
  * @version 1.0.0

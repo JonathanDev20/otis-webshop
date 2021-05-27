@@ -1,3 +1,10 @@
+/**
+ * Product routes.
+ *
+ * @author Jonathan Olsson
+ * @version 1.0.0
+ */
+
 import express from 'express'
 import { ProductsController } from '../controllers/products-controller.js'
 

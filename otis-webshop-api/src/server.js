@@ -1,3 +1,10 @@
+/**
+ * The starting point of the application.
+ *
+ * @author Jonathan Olsson <jo223ds@student.lnu.se>
+ * @version 1.0.0
+ */
+
 import express from 'express'
 import logger from 'morgan'
 import helmet from 'helmet'

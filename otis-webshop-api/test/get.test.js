@@ -1,34 +1,37 @@
 /*eslint-disable */
+// Import mongoose
 import mongoose from 'mongoose'
 
+// Import request from supertest
 import request from 'supertest'
 
+// Import model
 import { Product } from '../src/models/product.js'
 
+// Import object with test data
 import { testData } from './mockdata.js'
 
-//importera dotenv
+// Import dotenv
 import dotenv from 'dotenv'
 
-//importera app från server.js i testmappen
+// Import app from server.js in testfolder
 import { app } from './server.js'
-
 import { appListen } from './server.js'
 
 dotenv.config()
 
 
 describe('Get testing for database routes', () => {
-  // Innan varje test körs denna, Om det skapas flera testfiler så ska describe/beforeEach/afterAll finns i alla filer.
+  // Runs before each test
   beforeEach(async () => {
     await mongoose.connect(process.env.DB_CONNECTION_STRING_TEST, {
       useCreateIndex: true,
       useNewUrlParser: true,
       useUnifiedTopology: true
     })
-    // deleteMany tar bort databasen inför varje test
+    // deleteMany drops the database
     await Product.deleteMany()
-    // insertMany behöver en rad för varje data som ska läsas in i databasen inför varje test
+    // insertMany need one line for each object to test
     await Product.insertMany(testData.productdata)
     await Product.insertMany(testData.productdata2)
     await Product.insertMany(testData.productdata3)

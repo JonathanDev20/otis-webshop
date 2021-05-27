@@ -1,3 +1,10 @@
+/**
+ * Mock data for test.
+ *
+ * @author Jonathan Olsson <jo223ds@student.lnu.se>
+ * @version 1.0.0
+ */
+
 export const testData = {
   productdata: {
     productID: '1000',

@@ -1,3 +1,10 @@
+/**
+ * Seed script for categories.
+ *
+ * @author Jonathan Olsson
+ * @version 1.0.0
+ */
+
 import { connectDB } from './config/mongoose.js'
 import { Category } from './models/category.js'
 

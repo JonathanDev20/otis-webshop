@@ -1,3 +1,10 @@
+/**
+ * Email routes.
+ *
+ * @author Jonathan Olsson
+ * @version 1.0.0
+ */
+
 import express from 'express'
 import { EmailsController } from '../controllers/emails-controller.js'
 

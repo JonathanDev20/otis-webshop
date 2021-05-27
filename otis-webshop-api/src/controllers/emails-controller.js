@@ -41,6 +41,7 @@ export class EmailsController {
       }
     })
 
+    // Verify credentials for email
     contactEmail.verify((error) => {
       if (error) {
         console.log(error)
@@ -49,6 +50,7 @@ export class EmailsController {
       }
     })
 
+    // The mail to be sent
     const mail = {
       from: from,
       to: process.env.AUTH_USER,
@@ -68,11 +70,20 @@ export class EmailsController {
       if (error) {
         res.json({ status: 'Något gick fel, vänligen försök igen!' })
       } else {
-        res.json({ status: 'Din beställning kommer nu granskas och du får ett svar på mejlen inom 1-4 dagar.' })
+        res.json({
+          status: 'Din beställning kommer nu granskas och du får ett svar på mejlen inom 1-4 dagar.'
+        })
       }
     })
   }
 
+  /**
+   * Sends an email with data from an order.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   * @param {Function} next - Express next middleware function.
+   */
   async orderSpec (req, res, next) {
     const contactEmail = nodemailer.createTransport({
       host: 'smtp.gmail.com',
@@ -85,6 +96,7 @@ export class EmailsController {
       }
     })
 
+    // Verify credentials for email
     contactEmail.verify((error) => {
       if (error) {
         console.log(error)
@@ -93,6 +105,7 @@ export class EmailsController {
       }
     })
 
+    // The mail to be sent
     const mail = {
       from: req.body.payerEmail,
       to: process.env.AUTH_USER,

@@ -1,3 +1,10 @@
+/**
+ * Seed script for products.
+ *
+ * @author Jonathan Olsson
+ * @version 1.0.0
+ */
+
 import { connectDB } from './config/mongoose.js'
 import { v4 as uuidv4 } from 'uuid'
 import { Product } from './models/product.js'
