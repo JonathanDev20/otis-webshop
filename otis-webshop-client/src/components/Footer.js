@@ -46,8 +46,8 @@ const Footer = () => {
 							<h4>
 								Kontakt<span></span>
 							</h4>
-							<p className="mb-3">E-post: fakedata@gmail.com</p>
-							<p>Telefon: 0123456789</p>
+							<p className="mb-3">E-post: otis.webshop.test@gmail.com</p>
+							<p>Telefon: 070-713 22 43</p>
 						</div>
 					</div>
 					<div className="col-6 col-md footer-border">
@@ -61,7 +61,7 @@ const Footer = () => {
 				</div>
 				<div className="col-md-12 copy">
 					<p className="text-center">
-						&copy; Copyright 2021 - OTIS. All rights reserved.
+						&copy; 2021 - Jonathan Olsson. All rights reserved.
 					</p>
 				</div>
 			</footer>

@@ -183,8 +183,9 @@ const SpecialOrder = () => {
 										maxLength={500}
 										placeholder="Ex. Randig eller Prickig i blå färg.."></Form.Control>
 								</Form.Group>
-								<Form.Group onChange={(e) => handleChange(e)} name="file">
-									<Form.File label="Ladda upp en egen bild för att underlätta din design."></Form.File>
+								<Form.Group style={{ border: '2px dotted black', padding: '2px' }} onChange={(e) => handleChange(e)} name="file">
+									<Form.File disabled label="Ladda upp en egen bild för att underlätta din design."></Form.File>
+									<p style={{ color: 'red' }}>OBS! Detta är en under arbete och kommer vara en framtida funktionalitet!</p>
 								</Form.Group>
 								<Form.Group>
 									<Form.Label htmlFor="pipes_extras">
@@ -229,8 +230,9 @@ const SpecialOrder = () => {
 										placeholder="Här kan du antingen skriva en design som redan finns eller beskriva en egen."></Form.Control>
 								</Form.Group>
 
-								<Form.Group onChange={(e) => handleChange(e)} name="file">
-									<Form.File label="Ladda upp en bild för en bättre beskrivning av din design."></Form.File>
+								<Form.Group style={{ border: '2px dotted black', padding: '2px' }} onChange={(e) => handleChange(e)} name="file">
+									<Form.File disabled label="Ladda upp en egen bild för att underlätta din design."></Form.File>
+									<p style={{ color: 'red' }}>OBS! Detta är en under arbete och kommer vara en framtida funktionalitet!</p>
 								</Form.Group>
 								<Button type="submit" variant="primary">
 									{status}
@@ -241,14 +243,16 @@ const SpecialOrder = () => {
 								<Form.Group>
 									<Form.Label>Beskriv önskad produkt</Form.Label>
 									<Form.Control
+										onChange={(e) => handleChange(e)}
 										name="extras_details"
 										as="textarea"
 										maxLength={500}
 										rows={5}
 										placeholder="Ge en beskrivning av vad för produkt du är intresserad av.."></Form.Control>
 								</Form.Group>
-								<Form.Group name="file">
-									<Form.File label="Ladda upp en bild för en bättre beskrivning av din design."></Form.File>
+								<Form.Group style={{ border: '2px dotted black', padding: '2px' }} onChange={(e) => handleChange(e)} name="file">
+									<Form.File disabled label="Ladda upp en egen bild för att underlätta din design."></Form.File>
+									<p style={{ color: 'red' }}>OBS! Detta är en under arbete och kommer vara en framtida funktionalitet!</p>
 								</Form.Group>
 								<Button type="submit" variant="primary">
 									{status}

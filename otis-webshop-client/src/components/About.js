@@ -70,8 +70,8 @@ const About = () => {
 						</p>
             <div className="m-5" style={{ textAlign: 'center', fontStyle: 'italic' }}>
             <h1 className="mb-4">Kontakta oss</h1>
-            <h5 className="mb-4"><FiMail size={30} color="#007FFF" /> E-post: fakedata@gmail.com</h5>
-            <h5><FiPhone size={30} color="#17B169" /> Telefon: 0123456789</h5>
+            <h5 className="mb-4"><FiMail size={30} color="#007FFF" /> E-post: otis.webshop.test@gmail.com</h5>
+            <h5><FiPhone size={30} color="#17B169" /> Telefon: 070-713 22 43</h5>
             </div>
 					</div>
 				</div>
