@@ -1,6 +1,10 @@
+// Import React
 import React, { useState, useEffect } from 'react'
+// Import react-color
 import { BlockPicker } from 'react-color'
+// Import React-Router
 import { useHistory } from 'react-router-dom'
+// Import Axios
 import axios from 'axios'
 
 // Import Bootstrap
@@ -13,6 +17,11 @@ import {
 	Modal
 } from 'react-bootstrap'
 
+/**
+ * A component to create a special order.
+ * 
+ * @returns - A page to create a special order.
+ */
 const SpecialOrder = () => {
 	const [productCategory, setProductCategory] = useState('pipes')
 	const [color, setColor] = useState('#d9e3f0')
@@ -26,6 +35,7 @@ const SpecialOrder = () => {
 		setColor(color)
 	}, [color])
 
+	// Listens for a submit of the form
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		setStatus('Skickar...')
@@ -56,6 +66,7 @@ const SpecialOrder = () => {
 		}
 	}
 
+	// Listen on change of category in form
 	const categoryHandler = (e) => {
 		setProductCategory(e.target.value)
 	}
@@ -65,6 +76,7 @@ const SpecialOrder = () => {
 		history.push('/')
 	}
 
+	// Handle of change values in form
 	const handleChange = (e) => {
 		updateFormData({
 			...formData,

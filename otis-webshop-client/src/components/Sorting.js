@@ -1,5 +1,12 @@
+// Import React
 import React, { useEffect } from 'react'
 
+/**
+ * A component to be able to filter products.
+ * 
+ * @param {Object} - State properties.
+ * @returns - A sorting functionality for products.
+ */
 const Sorting = ({sort, setSort, filteredProducts, setFilteredProducts, responseData}) => {
   useEffect(() => {
 		sortProducts()

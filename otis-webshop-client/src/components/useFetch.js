@@ -1,6 +1,14 @@
+// Import React
 import { useEffect, useState } from 'react'
+// Import Axios
 import axios from 'axios'
 
+/**
+ * Represents a custom hook to make requests to backend.
+ * 
+ * @param {String} url - A string that represent the URL to fetch. 
+ * @returns - A custom hook for API calls.
+ */
 const useFetch = (url) => {
 	const [responseData, setResponseData] = useState([])
 	const [isLoading, setIsLoading] = useState(true)

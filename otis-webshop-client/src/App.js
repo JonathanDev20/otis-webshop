@@ -1,18 +1,25 @@
+// Import React
 import React, { useState, useEffect } from 'react'
+// Import CSS
 import './App.css'
+// Import React-Router
 import { BrowserRouter as Router } from 'react-router-dom'
+// Import Context
 import { UserContext } from './context/UserContext.js'
 import GlobalState from './context/AlertContext.js'
-
 // Import Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
-
 // Import Components
 import NavBar from './components/NavBar'
 import Footer from './components/Footer'
 import Routing from './components/Routing'
 import Alerts from './components/Alerts'
 
+/**
+ * Starting point of the application.
+ * 
+ * @returns - The application
+ */
 function App() {
 	const [cart, setCart] = useState([])
 	const [quantity, setQuantity] = useState(1)

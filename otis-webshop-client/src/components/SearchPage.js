@@ -1,13 +1,22 @@
+// Import React
 import React, { useState, useEffect } from 'react'
-
+// Import Axios
 import axios from 'axios'
-
-import Product from './Product.js'
+// Import Bootstrap
 import { Container, Col, Row, Button, Jumbotron } from 'react-bootstrap'
+// Import React-Router
 import { useParams, Link } from 'react-router-dom'
+// Import components
+import Product from './Product.js'
 import LoadingSpinner from './LoadingSpinner.js'
 import Sorting from './Sorting.js'
 
+/**
+ * Represents a page with search results.
+ * 
+ * @param {Object} - State properties.
+ * @returns - A page to show result from a search.
+ */
 const SearchPage = ({ cart, setCart }) => {
 	const [products, setProducts] = useState([])
 	const [isLoading, setIsLoading] = useState(true)
