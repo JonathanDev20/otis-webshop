@@ -46,7 +46,7 @@ const Footer = () => {
 							<h4>
 								Kontakt<span></span>
 							</h4>
-							<p className="mb-3">E-post: otis.webshop.test@gmail.com</p>
+							<p className="mb-3" style={{ wordWrap: 'break-word' }}>E-post: otis.webshop.test@gmail.com</p>
 							<p>Telefon: 070-713 22 43</p>
 						</div>
 					</div>

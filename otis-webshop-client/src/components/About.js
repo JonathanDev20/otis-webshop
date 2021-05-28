@@ -27,6 +27,7 @@ const About = () => {
 					</Container>
 				</Jumbotron>
 				<div className="aboutContainer">
+					<h3 style={{ color: 'red' }} className="mb-5">OBS! Denna sida är under uppbyggnad och visar hur det kan komma att se ut längre fram.</h3>
 					<Image src="../images/blandat.JPEG" rounded className="aboutImage" />
 					<div className="aboutText">
 						<p>
@@ -68,9 +69,9 @@ const About = () => {
 							temporibus, porro distinctio dolor expedita sequi nihil accusamus
 							perspiciatis? Aut fugiat nesciunt asperiores incidunt!
 						</p>
-            <div className="m-5" style={{ textAlign: 'center', fontStyle: 'italic' }}>
+            <div className="m-5 contactInfo">
             <h1 className="mb-4">Kontakta oss</h1>
-            <h5 className="mb-4"><FiMail size={30} color="#007FFF" /> E-post: otis.webshop.test@gmail.com</h5>
+            <h5 className="mb-4" style={{ wordWrap: 'break-word' }}><FiMail size={30} color="#007FFF" /> E-post: otis.webshop.test@gmail.com</h5>
             <h5><FiPhone size={30} color="#17B169" /> Telefon: 070-713 22 43</h5>
             </div>
 					</div>

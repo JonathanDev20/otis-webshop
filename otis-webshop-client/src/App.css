@@ -272,6 +272,11 @@ input[type="radio"] {
 	text-align: justify;
 }
 
+.contactInfo {
+	text-align: center;
+	font-style: italic;
+}
+
 .footer-links p {
 	margin-bottom: 15px;
 }
