@@ -44,7 +44,7 @@ export class EmailsController {
     // Verify credentials for email
     contactEmail.verify((error) => {
       if (error) {
-        console.log(error)
+        next(error)
       } else {
         console.log('Ready to send!')
       }
@@ -99,7 +99,7 @@ export class EmailsController {
     // Verify credentials for email
     contactEmail.verify((error) => {
       if (error) {
-        console.log(error)
+        next(error)
       } else {
         console.log('Ready to send!')
       }
