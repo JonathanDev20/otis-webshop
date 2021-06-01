@@ -61,7 +61,7 @@ const Footer = () => {
 				</div>
 				<div className="col-md-12 copy">
 					<p className="text-center">
-						&copy; 2021 - Jonathan Olsson. All rights reserved.
+						&copy; 2021 - Jonathan Olsson.
 					</p>
 				</div>
 			</footer>

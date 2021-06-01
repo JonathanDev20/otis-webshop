@@ -35,7 +35,7 @@ export class ProductsController {
       }
       res.send(viewData)
     } catch (error) {
-      console.log(error)
+      next(error)
     }
   }
 
@@ -60,7 +60,7 @@ export class ProductsController {
       }
       res.send(viewData)
     } catch (error) {
-      console.log(error)
+      next(error)
     }
   }
 
@@ -87,7 +87,7 @@ export class ProductsController {
       }
       res.send(viewData)
     } catch (error) {
-      console.log(error)
+      next(error)
     }
   }
 
@@ -119,7 +119,7 @@ export class ProductsController {
       }
       res.send(viewData)
     } catch (error) {
-      console.log(error)
+      next(error)
     }
   }
 
@@ -147,7 +147,7 @@ export class ProductsController {
       }
       res.send(viewData)
     } catch (error) {
-      console.log(error)
+      next(error)
     }
   }
 }
